@@ -1,0 +1,77 @@
+;~~~~~~~~~~~~~ ~/. Global Git Config File ~~~~~~~~~~~~~
+; File:           $HOME/.gitconfig
+; Current User:   alisha@Rodrig
+; Git Username:   harmonicalchemy
+; Environment:    Rodrigo (my new 27" iMac OS X Sierra)
+; Last Updated:   2017-001-30
+; Note:           ('#' or ';' are both comments)
+; Ref:            https://git-scm.com/docs/git-config
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;
+;~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~~
+[user]
+	name = Alisha Awen
+	email = Siren1@disroot.org
+	signingkey = 0x31B438E60BA7E7BAE4862D4F49FC1C61D86383BA
+;
+;~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+  interactive = auto
+  ui = auto
+;
+; Explicit colors below are commented out...
+;  (The above "auto" settings appear to work just fine)
+;
+;[color "branch"]
+;  current = yellow bold
+;  local = green bold
+;  remote = cyan bold
+;[color "diff"]
+;  meta = yellow bold
+;  frag = magenta bold
+;  old = red bold
+;  new = green bold
+;  whitespace = red reverse
+;[color "status"]
+;  added = green bold
+;  changed = yellow bold
+;  untracked = red bold
+;
+;Cleanup unnecessary files and optimize local repo:
+[gc]
+  auto=1
+;
+;~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~~
+[core]
+	editor = emacs
+	excludesfile = ~/.gitignore_global
+;
+;~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~~
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.googlemail.com
+	smtpuser = Ben@MarketingWebMedia.com
+	smtppass = password
+	smtpserverport = 587
+;
+[web]
+	browser = firefox
+;
+;~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~~
+;Configure Git with extMerge & extDiff wrappers (glue):
+[merge]
+  tool = extMerge
+[mergetool "extMerge"]
+  cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  trustExitCode = false
+[diff]
+  external = extDiff
+;
+;
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
