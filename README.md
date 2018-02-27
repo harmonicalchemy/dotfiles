@@ -4,7 +4,7 @@
 
 ## Introduction:
 
-These are collected configuration/initialization files I use on a daily basis on `MacOS` and other `nx` environments.  Mostly similar to all those other `.dotfile` repos out there.   I hope someone finds this useful in a world full of this kind of **TMI!**
+These are collected configuration/initialization files I use on a daily basis on `MacOS` and other `nx` environments.  Mostly similar to all those other **TMI** `.dotfile` repos out there.  I have private projects hosted on Bitbucket.  I have learned a lot from public Github projects, but I have not contributed any myself yet...  So here goes with my first **_public_** repository on Github.  Good enough for a start eh? ;-) 
 
 I created this repository initially to make these files available within my Qubes Laptop working environment without having to do risky USB memory stick transfers...
 
