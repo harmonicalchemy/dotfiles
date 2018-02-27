@@ -1,4 +1,4 @@
-# Dotfiles README.md
+# Dotfiles I use for `MacOS` & other `nx` environments
 
 ## Introduction:
 
