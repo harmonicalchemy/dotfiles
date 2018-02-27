@@ -1,13 +1,16 @@
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## File: .profile
-## Modified 2017-Apr-10: by Alisha Sheppard to include support for SSH.
+## File: ~/.profile
+## (Yet another convoluted shell init file on my MacOS ;-)
+## You may or may not need this... It's kind of redundant if it lives with
+## other shell init files but you never know... Some package installs
+## may add things here if it exists...
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:$HOME/.rvm/bin"
 #
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 #
 # Ensure GnuPG gets the output of the 'tty' command.
 GPG_TTY=$(tty)

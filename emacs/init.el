@@ -1,5 +1,11 @@
 ;Record startup timestamp
 
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; File:   $HOME/.emacs.d/init.el (Emacs configuration)
+;; Ref:    https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html
+;; Note:   This could also be: $HOME/.emacs as well...
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.

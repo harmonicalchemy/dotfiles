@@ -1,20 +1,16 @@
-;~~~~~~~~~~~~~ ~/. Global Git Config File ~~~~~~~~~~~~~
-; File:           $HOME/.gitconfig
-; Current User:   alisha@Rodrig
-; Git Username:   harmonicalchemy
-; Environment:    Rodrigo (my new 27" iMac OS X Sierra)
-; Last Updated:   2017-001-30
-; Note:           ('#' or ';' are both comments)
-; Ref:            https://git-scm.com/docs/git-config
-;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; File:   $HOME/.gitconfig (global git config file)
+;; Ref:    https://git-scm.com/docs/git-config
+;; Note:   ('#' or ';' are both comments)
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;
-;~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~~
+;; ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~
 [user]
-	name = Alisha Awen
-	email = Siren1@disroot.org
-	signingkey = 0x31B438E60BA7E7BAE4862D4F49FC1C61D86383BA
+	name = <your-name>
+	email = <your-email@example.com>
+	signingkey = 0x05AF05AF05AF05AF05AF05AF05AF05AF0        
 ;
-;~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~
+;; ~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~
 [color]
   branch = auto
   diff = auto
@@ -44,23 +40,26 @@
 [gc]
   auto=1
 ;
-;~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~~
+;
+;; ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
 [core]
 	editor = emacs
 	excludesfile = ~/.gitignore_global
 ;
-;~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~~
+;
+;; ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
 [sendemail]
 	smtpencryption = tls
-	smtpserver = smtp.googlemail.com
-	smtpuser = Ben@MarketingWebMedia.com
-	smtppass = password
-	smtpserverport = 587
+	smtpserver = <mail-server.example.com>
+	smtpuser = <your-email@example.com>
+	smtppass = <password>
+	smtpserverport = <smtp-port>
 ;
 [web]
 	browser = firefox
 ;
-;~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~~
+;
+;; ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
 ;Configure Git with extMerge & extDiff wrappers (glue):
 [merge]
   tool = extMerge

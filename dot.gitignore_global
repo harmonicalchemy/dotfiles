@@ -1,4 +1,12 @@
-# The following will be globally ignored by git for all local repos #
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## File:  $HOME/.gitignore_global
+##        Global Git Ignore file
+##        (as defined within $HOME/.gitconfig)
+## Ref:   https://github.com/github/gitignore
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# The following will be globally ignored by git for all local
+# repositories...
 #
 # Compiled source #
 ###################
