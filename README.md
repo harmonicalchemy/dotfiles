@@ -1,4 +1,4 @@
-# Dotfiles I use for `MacOS` & other `nx` environments
+# Dotfiles & conf files for `MacOS` & other `nx` environments
 
 ## Introduction:
 
