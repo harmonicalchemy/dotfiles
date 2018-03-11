@@ -1,10 +1,43 @@
-;Record startup timestamp
+;;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; File:     ~/.emacs -or- ~/.emacs.d/init.el - Emacs Configuration Template
+;; Ref:  https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html
+;; Created:  2018-003-08 by: Alisha Awen
+;;;
+;; Info:
+;;   This is an example .emacs -or- init.el which Emacs will use when it starts.
+;;   You could possibly even have both and choose to do different initializations
+;;   within both if you so choose.  I use this template to create Emacs init
+;;   files on MacOS, Linux (for development), and also on remote VPS web-servers
+;;   (Ubuntu 16.04) where I need to do a lot of editing...
+;;;
+;;   This file is broken into two major sevtions:
+;;;
+;;   An Automated Section:
+;;
+;;     DO not hand edit this section.  This is where configurations are/will be
+;;     programatically written by the Emacs Package Manager or other scripts...
+;;
+;;     NOTE: You may need to use existing "automated code blocks" from your
+;;     existing emacs config file(s) in place of my custom settings below...
+;;     For most cases, you will want to replace my provided settings.  Hoever if
+;;     you are just statting out, leave the section below "as is" and try it out.
+;;     You can ajusst them later on the fly, as you are using emacs...
+;;
+;;     For existing setups, remove everything between the BEGIN and END Automated
+;;     Section: below and replace it with your existing "automated section(s)".
+;;     Then leave it alone...  You will from then on have one tidy desiginated
+;;     place for all your emacs automated customizations to be written...
+;;
+;;   Manual Custom Configurations Section:
+;;
+;;     Keep it Simple: The next section below the "Automated Section" is where
+;;     you may add your Manual emacs configuratios...  That's it!  Enjoy ;-)
+;;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; File:   $HOME/.emacs.d/init.el (Emacs configuration)
-;; Ref:    https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html
-;; Note:   This could also be: $HOME/.emacs as well...
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; BEGIN Automated Section: - Do Not Edit!
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -12,46 +45,12 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-;; Load OS X Environment Vars if we are on OS X...
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
-(defvar super-emacs/invokation-time
-  (current-time))
-
-;Load configuration files
-(load-file "~/.emacs.d/lisp/super-emacs/repositories.el")
-(load-file "~/.emacs.d/lisp/super-emacs/packages.el")
-(load-file "~/.emacs.d/lisp/super-emacs/interface.el")
-(load-file "~/.emacs.d/lisp/super-emacs/misc.el")
-(load-file "~/.emacs.d/lisp/super-emacs/key-bindings.el")
-
-;; Configure Alisha's custom elisp library load path.
-;;   Note: This now works on my iMac but may have to be
-;;         tweaked to be portable to Linux.
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
-(let ((default-directory  "~/.emacs.d/lisp/"))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
-
-;; Load path for themes.
-(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/my-lisp-lib/themes/")
-
-;; Load Blackboard Color Theme.
-(load-theme 'blackboard t)
-
-;Print welcome message
-(princ (cl-concatenate 'string
-                       "Startup completed in "
-                       (number-to-string (cadr (time-subtract (current-time)
-                                                              super-emacs/invokation-time)))
-                       " seconds\n\n"
-                       "Welcome to Alisha's New iMac emacs!\n\n"
-                       "Today's date: "
-                       (format-time-string "%Y %B %d"))
-       (get-buffer-create (current-buffer)))
-
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 120)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -62,9 +61,11 @@
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
    (vector "#ffffff" "#f36c60" "#8bc34a" "#fff59d" "#4dd0e1" "#b39ddb" "#81d4fa" "#263238"))
+ '(cua-mode t nil (cua-base))
  '(fci-rule-color "#37474f")
  '(hl-sexp-background-color "#1c1f26")
  '(org-tags-column 0)
+
  '(package-selected-packages
    (quote
     (markdown-mode+ markdown-mode htmlize use-package olivetti fountain-mode exec-path-from-shell vmd-mode theme-looper myterminal-controls meta-presenter which-key dired-launch material-theme neotree undo-tree ztree auto-complete buffer-move switch-window powerline ace-jump-mode multiple-cursors helm)))
@@ -93,86 +94,39 @@
      (360 . "#8bc34a"))))
  '(vc-annotate-very-old-color nil))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 120)))))
+ '(custom-enabled-themes (quote (tango-dark)))
+ '(custom-safe-themes
+   (quote
+    ("a6e31e808b22de1f6cab0ef3f0a997a83c96946c0cf2299b850ef2dc2b4b25ed" "7e413972e568937edb\
+6813cdb4f1969428de89ad67b735cbbe35d765fd371c02" "68a560c46983f2cbba2e01e436573367d40abe01cc\
+b416769cf127a0140f67ea" "6989ce11c92f2274d95bd515c90ef3480008ea2c189700dd667890796c68848b" \
+"85bf45c8d657b8a583a5fa0dce4407d53b75d6408879beaf8b6ea75133b55d61" "65344229ccf8dd1996f671b\
+bdf99779a93f8a1c2a91e4db68c1bfadfcead0ca5" "280fc63ffeccd6857dc4d4c4be759561fdffb832808e369\
+ec14c5b472da533b6" "3bad407ed1e526f3ab7b0cd353fc4777cba4386820003ec21b4fe5b65756b94c" defau\
+lt))))
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; Alisha's Custom Configs:
+;; END Automated Section.
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; Use GPG Version 2 (gpg2) instead of gpg.
-;; TODO: upgrade GPG on Pythagoras... Make new GPG2 Keys...
-(setq epg-gpg-program "gpg")
 
-;; Global Keybindings:
-(global-set-key (kbd "M-n") 'vmd-mode) 
-(global-set-key (kbd "M-N") 'org-md-export-as-markdown) 
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; BEGIN Manual Configurations Section: (add your custom scripts below)
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Load OS X Environment Vars if we are on OS X...
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-(defvar super-emacs/invokation-time
-  (current-time))
-
-;Load configuration files
-(load-file "~/.emacs.d/lisp/super-emacs/repositories.el")
-(load-file "~/.emacs.d/lisp/super-emacs/packages.el")
-(load-file "~/.emacs.d/lisp/super-emacs/interface.el")
-(load-file "~/.emacs.d/lisp/super-emacs/misc.el")
-(load-file "~/.emacs.d/lisp/super-emacs/key-bindings.el")
-
-;; Configure Alisha's custom elisp library load path.
-;;   Note: This now works on my iMac but may have to be
-;;         tweaked to be portable to Linux.
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
-(let ((default-directory  "~/.emacs.d/lisp/"))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
-
-;; Load path for themes.
-(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/my-lisp-lib/themes/")
-
-;; Load Blackboard Color Theme.
-(load-theme 'blackboard t)
-
-;Print welcome message
-(princ (cl-concatenate 'string
-                       "Startup completed in "
-                       (number-to-string (cadr (time-subtract (current-time)
-                                                              super-emacs/invokation-time)))
-                       " seconds\n\n"
-                       "Welcome to Alisha's New iMac emacs!\n\n"
-                       "Today's date: "
-                       (format-time-string "%Y %B %d"))
-       (get-buffer-create (current-buffer)))
-
-
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; Alisha's Custom Configs:
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 ;; Use GPG Version 2 (gpg2) instead of gpg.
-;; TODO: upgrade GPG on Pythagoras... Make new GPG2 Keys...
-(setq epg-gpg-program "gpg")
+;(setq epg-gpg-program "gpg2")
 
 ;; Global Keybindings:
-(global-set-key (kbd "M-n") 'vmd-mode) 
-(global-set-key (kbd "M-N") 'org-md-export-as-markdown) 
-
-;; Alist of parameters for the initial X window frames.
-;; Parameters specified here supersede the values given in
-;;   `default-frame-alist'.
-(setq initial-frame-alist
-      '((top . 400) (left . 1067) (width . 90) (height . 47)))
+;(global-set-key (kbd "M-n") 'vmd-mode) 
+;(global-set-key (kbd "M-N") 'org-md-export-as-markdown) 
 
 ;; Alist of parameters for special frames.
-;; Parameters specified here supersede the values given in
 ;;   `default-frame-alist'.
 (setq special-display-frame-alist '((width . 90) (height . 55)))
 
@@ -193,22 +147,68 @@
 ;;turn off highlight long lines
 (setq whitespace-line-column 10000)
 
+
+;; Load OS X Environment Vars if we are on OS X:
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+;; *** Super Emacs ***
+(defvar super-emacs/invokation-time
+  (current-time))
+
+;; Load Super Emacs Configuration files:
+(load-file "~/path/to/proj-repo/super-emacs/repositories.el")
+(load-file "~/path/to/proj-repo/super-emacs/packages.el")
+(load-file "~/path/to/proj-repo/super-emacs/interface.el")
+(load-file "~/path/to/proj-repo/super-emacs/misc.el")
+(load-file "~/path/to/proj-repo/super-emacs/key-bindings.el")
+
+;; Configure Alisha's custom elisp library load path.
+;;   Note: This is the path on my iMac.  Adjust to fit
+;;   your particular environment:
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(let ((default-directory  "~/.emacs.d/lisp/"))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
+
+;; Load path for themes. (adjust this as necessary)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/my-lisp-lib/themes/")
+
+;; Load Blackboard Color Theme.
+(load-theme 'blackboard t)
+
+;Print welcome message
+(princ (cl-concatenate 'string
+                       "Startup completed in "
+                       (number-to-string (cadr (time-subtract (current-time)
+                                                              super-emacs/invokation-time)))
+                       " seconds\n\n"
+                       "Welcome to Alisha's New iMac emacs!\n\n"
+                       "Today's date: "
+                       (format-time-string "%Y %B %d"))
+       (get-buffer-create (current-buffer)))
+
+
+;;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; *** Enable this section if you need to disable mouse wheel:
+;; 
 ;; Disable mouse wheel (and two finger swipe) scrolling because
 ;; it scrolls horribly and I would rather work without it.
-(mouse-wheel-mode -1)
-
-(global-set-key [wheel-up] 'ignore)
-(global-set-key [wheel-down] 'ignore)
-(global-set-key [wheel-right] 'ignore)
-(global-set-key [wheel-left] 'ignore)
-(global-set-key [double-wheel-up] 'ignore)
-(global-set-key [double-wheel-down] 'ignore)
-(global-set-key [double-wheel-right] 'ignore)
-(global-set-key [double-wheel-left] 'ignore)
-(global-set-key [triple-wheel-up] 'ignore)
-(global-set-key [triple-wheel-down] 'ignore)
-(global-set-key [triple-wheel-right] 'ignore)
-(global-set-key [triple-wheel-left] 'ignore)
+;;
+;(mouse-wheel-mode -1)
+;(global-set-key [wheel-up] 'ignore)
+;(global-set-key [wheel-down] 'ignore)
+;(global-set-key [wheel-right] 'ignore)
+;(global-set-key [wheel-left] 'ignore)
+;(global-set-key [double-wheel-up] 'ignore)
+;(global-set-key [double-wheel-down] 'ignore)
+;(global-set-key [double-wheel-right] 'ignore)
+;(global-set-key [double-wheel-left] 'ignore)
+;(global-set-key [triple-wheel-up] 'ignore)
+;(global-set-key [triple-wheel-down] 'ignore)
+;(global-set-key [triple-wheel-right] 'ignore)
+;(global-set-key [triple-wheel-left] 'ignore)
 
 ;;
 ;; Org-Mode Configurations...
@@ -246,13 +246,6 @@
 (setq org-latex-table-caption-above nil)
 ;; don't export tags
 (setq org-export-with-tags nil)
-
-;;
-;; Use Custom CSS:
-;;
-;; Uncomment the below when you have a CSS set up...
-;(setq org-html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.example.com/css/your-custom.css\" />
-;<link rel=\"stylesheet\" type=\"text/css\" href=\"your-custom.css\" />")
 
 ;; Org-Bullets Mode:
 (require 'org-bullets)
@@ -348,3 +341,14 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 ;; Restore Original Window Configuration after Ediff quits:
 (winner-mode)
 (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; END Manual Configurations Section: 
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; END ~/.emacs -or- ~/.emacs.d/init.el 
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

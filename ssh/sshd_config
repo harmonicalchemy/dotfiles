@@ -1,0 +1,65 @@
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# /etc/ssh/sshd_config - SSH Daemon Configurations...
+# Last Modified: 2018-March-10 - Alisha Awen Siren1@disroot.org
+#
+# This is my Master SSH Daemon configuration file Template for my own VPSs
+# (currently running Ubuntu 16.04 with latest up-to-date SSH packages installed)
+#
+# Use this template when configuring a new SSH droplet on Digital Ocean or other
+# hosting provider.
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Use public key authentication instead... 
+PubkeyAuthentication yes
+
+# Use the stronger protocol 2. (If set to 1, change it!!)...
+Protocol 2
+
+# Host Keys:
+# Note: Add host keys to user specific host sections
+# in ~/.ssh/config rather than here... Most likely you will
+# have one key for each different service to be more secure
+# through compartmentalizaton...
+# Enable ONLY the two Server Host Keys below default operations:
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+# KexAlgorithms:
+# Default to single curve25519-sha256 for normal opearations on my own
+# servers.  You may need diffie-hellman-group-exchange-sah256
+# to connect to Github and/or Bitbucket with git for deploy-hooks...
+# if you use diffie-hellman group exchange you must also do the following:
+#   awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
+#   wc -l "${HOME}/moduli" # make sure there is something left
+#   mv "${HOME}/moduli" /etc/ssh/moduli
+# Then edit /etc/ssh/moduli     (you may have to create this file)
+KexAlgorithms curve25519-sha256@libssh.org
+#             ,diffie-hellman-group-exchange-sah256
+
+# Cyphers: Since I am the only one connecting to this VPS, 
+# I am limiting this list to the single: chacha20-poly1305 cipher
+# Which is the strongest to date.  These two others are pretty 
+# strong and may be used optionally if needed (but see Update below!)
+#    aes256-gcm@openssh.com 
+#    aes256-ctr 
+# Update: According to Stribika: “SSH doesn’t encrypt packet sizes 
+# with any EtM algorithms. There is no way around this unless you 
+# can live with chacha20-poly1305 only.” So... I have no problem
+# Restricting my own VPS and connections to what's below... Fine ;-)
+Ciphers chacha20-poly1305@openssh.com
+
+# Message Authentication Codes: (these will provide best integrity)
+MACs hmac-sha2-512
+#    Start with the above, add sha2-256 later if needed...
+
+# Disable password authentication... The ultimate first step!
+# Don’t do this without a working SSH keypair all ready. DOH! %~)
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+
+# NOTE: I have added more configurations to this on my server to increase
+# security hardening... I may add those here in this template a well later...
+
+# END /etc/ssh/sshd_config
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

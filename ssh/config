@@ -1,0 +1,219 @@
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~/.ssh/config - Local User's $HOME SSH Configurations...
+# Last Modified: 2018-Mar-03 - Alisha Awen Siren1@disroot.org
+#
+# This example SSH config (for any user's $HOME directory) is for specific HOST
+# sections created to meet special requirements that the global HOST * section
+# can't or would'nt be recommended to handle independently.  Conslut the file:
+# /etc/ssh/ssh_config within this same directory for an example of what the
+# global HOST * section looks like.
+#
+# Using the examples in this file, copy and/or rename a specific <named> HOST
+# section below for any host that requres special treatment.  Change its name
+# to the name of your special host or service requiring special treatment.
+# (e.g., service1, service2, legacy-host1, uncomplient-host2, etc.).
+#
+# Override keyword directives set within the global HOST * section that do not
+# match the reqirements of your difficult host or service by setting those same
+# keyword directives within your special named host section below, using a
+# different attribute that does match your difficult host's requirements...
+# 
+# Note: This method works well because the OpenSSH configuration parsor takes
+# the first value for any directive it finds: (first: from the command line,
+# second: from this local $HOME/.ssh/config, and third: from the system wide
+# /etc/ssh/ssh_config file which is used by ALL local user accounts intended
+# for the OS your are building or modifying.  It is for this reason the global
+# HOST * section must be placed last within (any) file you put it in (which
+# could be at the bottom of this file as well, if that is your choosing rather
+# than using a single system wide: /etc/ssh/ssh_config file.
+#
+# In other words: If the SSH configuration parsor finds a duplicate keyword
+# configuration directive set later during it's parsig journey, it will ignore
+# it... Keep this in mind when you use these examples to set up your own
+# configurations.  Happy con-fog-uring and debugging! - Alisha ;-)
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Specific Host Sections:
+#
+# Note: For any HOST section below, if you have to set KexAlgorithms to:
+#   diffie-hellman-group-exchange-sha256, (custom DH with SHA2) you also
+#   need to do the following:
+#
+#     Open /etc/ssh/moduli if exists, and delete lines where the 5th column is
+#     less than 2000 as follows:
+#       $ awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
+#       $ wc -l "${HOME}/moduli"
+#       make sure there is something left! if not forget this and skip below to
+#       create a new /etc/ssh/moduli.
+#       mv "${HOME}/moduli" /etc/ssh/moduli
+#
+#     If /etc/ssh/moduli does not exist, create it as follows:
+#       $ ssh-keygen -G /etc/ssh/moduli.all -b 4096
+#       $ ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
+#       $ mv /etc/ssh/moduli.safe /etc/ssh/moduli
+#       $ rm /etc/ssh/moduli.all
+#     This will take a while as it runs intensive calculations of rounds...
+
+#####
+# HOST Github.com:
+# Try this limited configuration set "as-is" here first, (wihch is considedred
+# to be the best reasonably secure configuration for GIthub).
+#
+# If you run into probelms connecting, (and you have debugged to make sure you
+# have not done something elsewhere incorrectly) try adding some of the other
+# suggested settings within this comment (one at a time) until you get things
+# connecting successfully. Using the -v (verbose) option with your SSH
+# command gives more info while debugging.  Adding more than one -v options to
+# the SSH command line will increase the amout of info that gets displayed...
+#
+# NOTE: According to Stribika (and other security experts):
+# (https://github.com/stribika/stribika.github.io/wiki/Secure-Secure-Shell)
+# Github needs KexAlgorithms: diffie-hellman-group-exchange-sha1 some of the
+# time but not always. diffie-hellman-group-exchange-sha1 is only 1024 bits
+# which does not offer a sufficient enough security margin these days.
+# I tried: curve25519-sha256@libssh.org and it worked for me!  Hopefully it
+# will work for you as well...  I believe you could use the directives set
+# within this Github section for Heroku as well...
+# (with possibly a few minor adjustments)
+#
+# The following are the only SSH config options still considerd reasonably
+# secure that ARE known to be supported by Github if you run into problems
+# you could try some of these.  They are listed in decending order from
+# strongest to weakest security...
+#
+# KexAlgorithms:
+#  My first choice:
+#    curve25519-sha256@libssh.org
+#    This seems to be the only key exchange algo accpeted by Github (besides
+#    other unsecure ones) however it is the best Kex algo available, and my
+#    first choice...
+#
+#  You could try this one as well but is has not been confirmed to work
+#  with Github:
+#    diffie-hellman-group-exchange-sha256 (See Note: at top of this file)
+#
+#  Only try this last option as a last resort for Github (after trying
+#  everything else you can think of - it is not secure. (see Note: above):
+#    diffie-hellman-group-exchange-sha1
+#
+# Chiphers:
+#    chacha20-poly1305@openssh.com  (this one is best and my first choice)
+#    aes256-ctr
+#    aes192-ctr
+#    aes128-ctr
+#
+# MACs:
+#    hmac-sha2-512  (this one is best and my first choice)
+#    hmac-sha2-256
+#
+# IdentityFile:
+#    (I could not get ed25519 to be accepted so I created a 4096 rsa key)
+#
+HOST github.com
+   Hostname github.com
+   HostKeyAlgorithms: ssh-rsa
+   IdentityFile  ~/.ssh/<use-RSA-Key-ID-for-Github>
+#
+# END HOST Github.com
+#####
+
+
+#####
+# HOST Bitbucket.org: (Lets hope Bitbucket is up to date as well)
+# Update: Bitbucket may not support what we wish...
+# See: https://jira.atlassian.com/browse/BSERV-10175
+#
+HOST bitbucket.org
+   Hostname bitbucket.org 
+   HostKeyAlgorithms: ssh-rsa
+   IdentityFile ~/.ssh/<Key-RSA-ID-for-Bitbucket>
+#
+# END HOST GithubBitbucket.org
+#####
+
+
+#####
+# HOST VPS1.example.com (your private server 1)
+#
+HOST vps1
+   HostName vps1.example.com  
+   IdentitiesOnly yes
+   user admin1
+   IdentityFile ~/.ssh/vps1_id_ed25519
+#
+# END HOST VPS1
+#####
+
+
+#####
+# HOST VPS2.example.com (your private server 2)
+#
+HOST vps2
+   HostName vps2.example.com  
+   IdentitiesOnly yes
+   user admin2
+   IdentitiesOnly yes
+   IdentityFile ~/.ssh/vps2_id_ed25519
+#
+# END HOST VPS2
+#####
+
+
+#####
+# Default Generic Host Section: (make this the last section)
+# These will NOT override any duplicates set above, a behavior
+# which may be your intention.  If not, watch out, could be a bug!
+#
+HOST *
+#
+# Use the stronger protocol 2!
+    Protocol 2 
+#
+# Enable Public Key Authentication...
+    PubkeyAuthentication yes
+#
+# Limit Key Exchange to curve22519-sha256 only...
+    KexAlgorithms curve25519-sha256@libssh.org
+#
+# Limit Host Keys to ed22519 as well...  If you run into issues,
+# try enabling (at greater risk) the following algorithms one
+# at a time until you are able to connect to a service...
+# These algorithms are still relatively safe to use in 2017:
+# ssh-rsa-cert-v01@openssh.com, ssh-ed25519, and ssh-rsa     
+    HostKeyAlgorithms ssh-ed25519
+#
+# Limit available cyphers to single chacha256-gcm for strongest 
+# security possible.
+    Ciphers   chacha20-poly1305@openssh.com
+#
+# Message Authentication Codes:
+    MACs hmac-sha2-512
+
+# IdentitiesOnly:  
+    IdentitiesOnly yes
+
+# Enable this only if you need to use One Time Password (OTP), 
+# or Timed One Time Password (TOPT), e.g., yubikey, google auth, etc.  
+    ChallengeResponseAuthentication no
+#
+# General SSH configurations for tuning performance etc...
+    ServerAliveInterval 60
+    ServerAliveCountMax 30
+
+# Display Visual Host Key ascii-art:  
+    VisualHostKey yes
+
+# Hash Names:
+    HostKnownHosts yes
+
+# The rest of these should all be disabled...
+    PasswordAuthentication no
+#    UseRoaming no  (depreciated after OpenSSH v7.0)
+    ForwardAgent no
+    ForwardX11 no
+#
+# END Default Generic Host Section
+#####
+#
+# END ~/.ssh/config
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,107 @@
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# /etc/ssh/ssh_config - Generic System Wide client SSH Configurations...
+# Last Modified: 2018-March-02 - Alisha Awen Siren1@disroot.org
+#
+# This file could be added to a template that sets up the root files on
+# any unix/bsd/Linux compatable OS you need to build for either local
+# development, Personal Computer, or web server...  In addition you could
+# simply add everything below to the bottom of your $HOME/.ssh/config file.
+# 
+# Note: The OpenSSH configuration parsor takes the first value for any
+# directive it finds: (first: from the command line, second: from local
+# $HOME/.ssh/config, and third: from this system wide /etc/ssh/ssh_config file
+# which is used by ALL local user accounts intended for the OS your are building.
+#
+# If the configuration parsor finds a duplicate keyword configuration directive
+# set later it will ignore it... Keep this in mind when you use these examples
+# to set up your own configurations. This generic section should be put last in
+# your chain allowing you to set directives for a single host specific purpose,
+# beforehand. Your specific HOST directives set earlier, will override any
+# generic settings made here for default connections... 
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#####
+# BEGIN Default Generic Host Section:
+# (copy this as the last section of ~/.ssh/config if you are doing this for
+# your home or work computer and have only one user account ont it besides root.
+# Note: These will NOT override any duplicates set earlier, a behavior which may
+# be your intention.  If not, watch out, could be a bug! (read info in header)
+#
+# NOTE: Connection to my own VPS machines is set to as narrow and secure attack
+# surface as possible.  The default settings below reflect this strict nature.
+# Connection to other services may require overrides within their respective
+# HOST sections in order to negotiate a matching configuration with those
+# services.  Specific HOST sections are usually NOT set in /etc/ssh/ssh_config.
+##
+HOST *
+
+# ALWAYS Use the stronger protocol 2!
+    Protocol 2
+
+# Enable Public Key Authentication...
+    PubkeyAuthentication yes
+
+# Key eXchange Algorithms:
+# Limit Key Exchange to: curve22519-sha256 only within this default HOST *
+# section...
+    KexAlgorithms curve25519-sha256@libssh.org
+
+# Host Key Algorithms:
+# Limit HostKeyAlgorithms to: ssh-ed25519 only within this default HOST *
+# section...
+    HostKeyAlgorithms ssh-ed25519
+
+# Cyphers:
+# Limit Cyphers to: chacha20-poly1305@openssh.com only within this default
+# HOST * section...
+    Ciphers  chacha20-poly1305@openssh.com
+
+# Message Authentication Codes (MACs):
+# Limit MACs to: hmac-sha2-512 only within this default HOST * section...
+    MACs  hmac-sha2-512
+
+# IdentitiesOnly:
+    IdentitiesOnly yes
+
+# Challenge Response Authentication:
+# Enable Challenge Response Authentication only if you need to use One Time
+# Password (OTP), or Timed One Time Password (TOPT), e.g., yubikey, google auth,
+# etc.
+    ChallengeResponseAuthentication no
+
+# General SSH configurations for tuning performance etc...
+    ServerAliveInterval 60
+    ServerAliveCountMax 30
+    
+# Display random—ASCII-art representation of remote host key fingerprint at
+# login & for unknown host keys to make it easier to recognize...
+# Enable this if you think it will help you verify host you are trying to
+# connect to...  It would be better if the images were a real graphic rather
+# than ASCII art which is almost as difficult as recognizing the code itself.
+# Security at the expense of usability comes at the expense of security.
+    VisualHostKey yes
+
+# Hash names & addresses within ~/.ssh/known_hosts so they can only be read by
+# ssh & sshd, (no 3rd parties can read)
+    HashKnownHosts yes
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# The rest of these should all be disabled...  They may be depreciated as well.
+# Use the -v (verbose) option when you connect to find out.  if you see a line
+# saying the option is depreciated, you can remove it from here to get rid of
+# that message.  UseRoaming has been depreciated since OpenSSH V7.0.  I keep it
+# here for reference, and also in the rare case I have to set up a machine with
+# an older version of SSH.  I will see it and remember to set it for that older
+# installed version of OpenSSH...
+    PasswordAuthentication no
+#    UseRoaming no
+    ForwardAgent no
+    ForwardX11 no
+
+##
+# END Default Generic Host Section:
+#####
+  
+# END /etc/ssh/ssh_config
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
