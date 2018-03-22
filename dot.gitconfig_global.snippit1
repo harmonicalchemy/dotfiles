@@ -1,0 +1,36 @@
+;; ~~~~~~~~~~~~~~~~ Global Git Config File ~~~~~~~~~~~~~~~~~~
+; File:           $HOME/.gitconfig
+; Current User:   user@example.com
+; Git Username:   <my-git-username>
+; Environment:    <my-spiffy-razor-thin-silver-laptop>>
+; Last Updated:   2018-003-21
+; Note:           ('#' or ';' are both comments)
+; Ref:            https://git-scm.com/docs/git-config
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+;; ~~~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~~~~
+
+;; Configure Git with kdiff3: (best open-source diff/merge GUI)
+[difftool "kdiff3"]
+    path = /Path-To-Installed-Apps/kdiff3.app
+    trustExitCode = false
+[difftool]
+    prompt = false
+[diff]
+    tool = kdiff3
+[mergetool "kdiff3"]
+    path = /Path-To-Installed-Apps/kdiff3.app
+    trustExitCode = false
+[mergetool]
+    keepBackup = false
+[merge]
+    tool = kdiff3
+
+;; Configure GPG for Git:
+;; Note: On MacOS, gpg2.2+ is now simply called gpg
+;;    but on Fedora 26 you have to specify gpg2... 
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
+
