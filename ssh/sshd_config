@@ -1,6 +1,6 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # /etc/ssh/sshd_config - SSH Daemon Configurations...
-# Last Modified: 2018-March-10 - Alisha Awen Siren1@disroot.org
+# Last Modified: 2018-003-11 - Alisha Awen Siren1@disroot.org
 #
 # This is my Master SSH Daemon configuration file Template for my own VPSs
 # (currently running Ubuntu 16.04 with latest up-to-date SSH packages installed)
@@ -9,11 +9,11 @@
 # hosting provider.
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Use public key authentication instead... 
-PubkeyAuthentication yes
-
 # Use the stronger protocol 2. (If set to 1, change it!!)...
 Protocol 2
+
+# Use public key authentication instead... 
+PubkeyAuthentication yes
 
 # Host Keys:
 # Note: Add host keys to user specific host sections
@@ -22,7 +22,17 @@ Protocol 2
 # through compartmentalizaton...
 # Enable ONLY the two Server Host Keys below default operations:
 #HostKey /etc/ssh/ssh_host_rsa_key
-#HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# IdentitiesOnly:
+#   Set this to yes so that only the ID specified above will be used...
+#   ssh-agent may have others in memory, however I am also tuning my
+#   server to only load a single key into memory and sticking with the
+#   one that works... The rest will be safely stored in a keepass db,
+#   and only exported and loaded into the ssh-agent if needed... They
+#   are shreaded/deleted immediately after I am done using them...
+#   Good management of server host keys is critical and paramont!!!
+    IdentitiesOnly yes
 
 # KexAlgorithms:
 # Default to single curve25519-sha256 for normal opearations on my own
@@ -35,6 +45,11 @@ Protocol 2
 # Then edit /etc/ssh/moduli     (you may have to create this file)
 KexAlgorithms curve25519-sha256@libssh.org
 #             ,diffie-hellman-group-exchange-sah256
+
+# HostKeyAlgotithms:
+#   Limit Default Host Key algorithms to ssh-ed22519.
+#   Some hosts may only accept ssh-rsa...
+    HostKeyAlgorithms ssh-ed25519
 
 # Cyphers: Since I am the only one connecting to this VPS, 
 # I am limiting this list to the single: chacha20-poly1305 cipher
@@ -55,9 +70,21 @@ MACs hmac-sha2-512
 # Disable password authentication... The ultimate first step!
 # Don’t do this without a working SSH keypair all ready. DOH! %~)
 PasswordAuthentication no
+
+# Enable this next option only if you need to use One Time Password (OTP), 
+# or Timed One Time Password (TOPT), e.g., yubikey, google auth, etc.  
 ChallengeResponseAuthentication no
 
-# NOTE: I have added more configurations to this on my server to increase
+#   Hash names and addresses within ~/.ssh/known_hosts
+#   so they can only be read by ssh & sshd, but not 3rd parties.
+#   (This directive may only be for clients... need to verify)
+#HashKnownHosts yes
+
+# The rest of these should all be disabled... (also may only be for clients)
+#    ForwardAgent no
+#    ForwardX11 no
+
+# NOTE: I have added more configurations to this file on my servers to increase
 # security hardening... I may add those here in this template a well later...
 
 # END /etc/ssh/sshd_config

@@ -40,6 +40,11 @@
 *.sql
 *.sqlite
 
+# Emacs Backup/Temp files #
+###########################
+*~
+.#*
+
 # OS generated files #
 ######################
 .DS_Store

@@ -3,13 +3,13 @@
 ;; Ref:    https://git-scm.com/docs/git-config
 ;; Note:   ('#' or ';' are both comments)
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;
+
 ;; ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~
 [user]
 	name = <your-name>
 	email = <your-email@example.com>
 	signingkey = 0x05AF05AF05AF05AF05AF05AF05AF05AF0        
-;
+
 ;; ~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~
 [color]
   branch = auto
@@ -17,9 +17,9 @@
   status = auto
   interactive = auto
   ui = auto
-;
+
 ; Explicit colors below are commented out...
-;  (The above "auto" settings appear to work just fine)
+; (Uncomment the ones you want to customize)
 ;
 ;[color "branch"]
 ;  current = yellow bold
@@ -35,18 +35,16 @@
 ;  added = green bold
 ;  changed = yellow bold
 ;  untracked = red bold
-;
+
 ;Cleanup unnecessary files and optimize local repo:
 [gc]
   auto=1
-;
-;
+
 ;; ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
 [core]
 	editor = emacs
 	excludesfile = ~/.gitignore_global
-;
-;
+
 ;; ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
 [sendemail]
 	smtpencryption = tls
@@ -54,23 +52,39 @@
 	smtpuser = <your-email@example.com>
 	smtppass = <password>
 	smtpserverport = <smtp-port>
-;
+
 [web]
 	browser = firefox
-;
-;
+
 ;; ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
-;Configure Git with extMerge & extDiff wrappers (glue):
-[merge]
-  tool = extMerge
-[mergetool "extMerge"]
-  cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-  trustExitCode = false
+
+;; Configure Git with kdiff3: (best open-source diff/merge GUI)
+[difftool "kdiff3"]
+    path = /usr/bin/kdiff3
+    trustExitCode = false
+[difftool]
+    prompt = false
 [diff]
-  external = extDiff
-;
-;
+    tool = kdiff3
+[mergetool "kdiff3"]
+    path = /usr/bin/kdiff3
+    trustExitCode = false
+[mergetool]
+    keepBackup = false
+[merge]
+    tool = kdiff3
+
+;; GnuPG:
+:: Note:  If you have a version of GnuPG between ~V2.1.1
+;;        and V2.2, you may have gpg -AND- gpg2 binaries installed.
+;;        This is a heads up for you to get the command below correct
+;;        for your intended purposes.  Will it be gpg or gpg2?
+;;        For all other versions (earlier and later) the binary is
+;;        always "gpg".
 [gpg]
 	program = gpg
 [commit]
 	gpgsign = true
+
+;; ~~~~~~~~~~~~~~~~ END: ~/.gitconfig ~~~~~~~~~~~~~~~~~~
+

@@ -1,6 +1,6 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~/.ssh/config - Local User's $HOME SSH Configurations...
-# Last Modified: 2018-Mar-03 - Alisha Awen Siren1@disroot.org
+# Last Modified: 2018-Mar-11 - Alisha Awen Siren1@disroot.org
 #
 # This example SSH config (for any user's $HOME directory) is for specific HOST
 # sections created to meet special requirements that the global HOST * section
@@ -108,28 +108,78 @@
 #
 # IdentityFile:
 #    (I could not get ed25519 to be accepted so I created a 4096 rsa key)
+#    This may change in the future hopefully...
 #
 HOST github.com
-   Hostname github.com
-   HostKeyAlgorithms: ssh-rsa
-   IdentityFile  ~/.ssh/<use-RSA-Key-ID-for-Github>
+
+     HostName github.com
+
+# For git to do her job, set her as the "user" for git commands.
+# This works with testing as well: ($ ssh -v -T github.com)...
+
+     user git
+
+# Host Key Algorithms:
+#   There are only two options I am willing to use...
+#   If Github does not accept my global default ssh-ed25519,
+#   uncomment HostKeyAlgorithms ssh-rsa here:
+ 
+    HostKeyAlgorithms ssh-rsa
+
+# Identity File:
+#   There are only two options I am willing to use: ed25519 and
+#   4096 rsa.  I created a key for both... I first tried my ed25519,
+#   but it was not accepted, so I now use a 4096 rsa key instead.
+
+    IdentityFile /home/user/.ssh/<put-4096-RSA-public-key-file-here>
+
 #
 # END HOST Github.com
 #####
 
 
+
 #####
 # HOST Bitbucket.org: (Lets hope Bitbucket is up to date as well)
-# Update: Bitbucket may not support what we wish...
+# Update: Bitbucket did not support our defaults...
 # See: https://jira.atlassian.com/browse/BSERV-10175
-#
+# I made changes below to reflect Bitbucket's limitations for OpenSSH...
 HOST bitbucket.org
-   Hostname bitbucket.org 
-   HostKeyAlgorithms: ssh-rsa
-   IdentityFile ~/.ssh/<Key-RSA-ID-for-Bitbucket>
-#
-# END HOST GithubBitbucket.org
+
+    HostName bitbucket.org
+
+# For git to do her job, set her as the "user" for git commands.
+# This works with testing as well: ($ ssh -v -T bitbucket.org)...
+
+    user git
+
+# Host Key Algorithms:
+#   There are only two options I am willing to use...
+#   If Bitbucket does not accept my global default ssh-ed25519,
+#   uncomment HostKeyAlgorithms ssh-rsa here:
+ 
+    HostKeyAlgorithms ssh-rsa
+
+# MACs - Message Authentication Codes:
+#   From the link in the header above it appears the best Message
+#   Authentication code Bitbucket allows are:
+#     hmac-sha2-256-etm@openssh.com
+#     hmac-sha2-256
+#   None of the others are acceptable...
+#   Limt MACs for Bitbucket to:
+
+    MACs hmac-sha2-256-etm@openssh.com
+
+# Identity File:
+#   There are only two options I am willing to use: ed25519 and
+#   4096 rsa.  I created a key for both... I first tried an ed25519,
+#   but it was not accepted, For now use a 4096 rsa key instead.
+
+    IdentityFile /home/user/.ssh/<put-4096-RSA-public-key-file-here>
+
+# END HOST Bitbucket.org
 #####
+
 
 
 #####
@@ -139,10 +189,12 @@ HOST vps1
    HostName vps1.example.com  
    IdentitiesOnly yes
    user admin1
+   IdentitiesOnly yes
    IdentityFile ~/.ssh/vps1_id_ed25519
 #
 # END HOST VPS1
 #####
+
 
 
 #####
@@ -159,33 +211,35 @@ HOST vps2
 #####
 
 
+
 #####
-# Default Generic Host Section: (make this the last section)
-# These will NOT override any duplicates set above, a behavior
-# which may be your intention.  If not, watch out, could be a bug!
+# Default Generic Host Section:
+# (make this the last section)
+# These will NOT override any duplicates set above, a behavior which may be
+# your intention.  If not, watch out, could be a bug!
 #
 HOST *
 #
 # Use the stronger protocol 2!
     Protocol 2 
-#
+
 # Enable Public Key Authentication...
     PubkeyAuthentication yes
-#
+
 # Limit Key Exchange to curve22519-sha256 only...
     KexAlgorithms curve25519-sha256@libssh.org
-#
+
 # Limit Host Keys to ed22519 as well...  If you run into issues,
 # try enabling (at greater risk) the following algorithms one
 # at a time until you are able to connect to a service...
 # These algorithms are still relatively safe to use in 2017:
 # ssh-rsa-cert-v01@openssh.com, ssh-ed25519, and ssh-rsa     
     HostKeyAlgorithms ssh-ed25519
-#
+
 # Limit available cyphers to single chacha256-gcm for strongest 
 # security possible.
     Ciphers   chacha20-poly1305@openssh.com
-#
+
 # Message Authentication Codes:
     MACs hmac-sha2-512
 
@@ -195,7 +249,7 @@ HOST *
 # Enable this only if you need to use One Time Password (OTP), 
 # or Timed One Time Password (TOPT), e.g., yubikey, google auth, etc.  
     ChallengeResponseAuthentication no
-#
+
 # General SSH configurations for tuning performance etc...
     ServerAliveInterval 60
     ServerAliveCountMax 30
@@ -214,6 +268,6 @@ HOST *
 #
 # END Default Generic Host Section
 #####
-#
+
 # END ~/.ssh/config
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
