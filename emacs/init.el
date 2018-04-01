@@ -1,43 +1,61 @@
-;;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; File:     ~/.emacs -or- ~/.emacs.d/init.el - Emacs Configuration Template
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; File: ~/.emacs -or- ~/.emacs.d/init.el - Emacs Configuration Template
 ;; Ref:  https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html
-;; Created:  2018-003-08 by: Alisha Awen
-;;;
+;; Author:        Alisha Awen - siren1@disroot.org
+;; Created:       2018-003-08
+;; Last Modified: 2018-003-31
 ;; Info:
 ;;   This is an example .emacs -or- init.el which Emacs will use when it starts.
-;;   You could possibly even have both and choose to do different initializations
-;;   within both if you so choose.  I use this template to create Emacs init
-;;   files on MacOS, Linux (for development), and also on remote VPS web-servers
-;;   (Ubuntu 16.04) where I need to do a lot of editing...
-;;;
-;;   This file is broken into two major sevtions:
-;;;
-;;   An Automated Section:
+;;   You could possibly even use both these files together, (Note: I haven't
+;;   checked if this is practical or even possible, but you can do almost
+;;   anything in Emacs. (including producing a configured mess! or something
+;;   truly genus!).  That is all up to you.  For example: If you so choose,
+;;   you might use init.el for some initialisation sections and .emacs for other
+;;   initialisation sections...
 ;;
-;;     DO not hand edit this section.  This is where configurations are/will be
-;;     programatically written by the Emacs Package Manager or other scripts...
+;;   I use this template to create a single ~/.emacs.d/init.el file on all OS
+;;   platforms, including my remote VPS web-servers (Ubuntu 16.04) where I need
+;;   to do a lot of editing...
 ;;
-;;     NOTE: You may need to use existing "automated code blocks" from your
-;;     existing emacs config file(s) in place of my custom settings below...
-;;     For most cases, you will want to replace my provided settings.  Hoever if
-;;     you are just statting out, leave the section below "as is" and try it out.
-;;     You can ajusst them later on the fly, as you are using emacs...
+;; This file is broken into two major sections:
+;;
+;; Automated Section:
+;;
+;;   The first major section below is the Automated Section. Do Not hand edit
+;;   the Automated Section!  This is where configurations are/will be
+;;   programmatically written by the Emacs Package Manager or other scripts...
+;;
+;;   NOTE: You may need to use existing "automated code blocks" from your
+;;     existing Emacs config file(s) in place of my custom settings below...
+;;     For most cases, you will want to replace my provided settings.
+;;     However if you are just starting out, leave the section below "as is"
+;;     and try it out.  You will most likely get errors the first time you
+;;     start Emacs because required packages are missing.  Go to the emacs
+;;     package manager and install the missing packages from MELPA and restart
+;;     Emacs... The errors should go away and you can then take it for a test
+;;     run...  Later, You can adjust settings/packages on the fly, as you are
+;;     using Emacs day-to-day...
 ;;
 ;;     For existing setups, remove everything between the BEGIN and END Automated
 ;;     Section: below and replace it with your existing "automated section(s)".
-;;     Then leave it alone...  You will from then on have one tidy desiginated
-;;     place for all your emacs automated customizations to be written...
+;;     Then leave it alone...  You will from then on have one tidy designated
+;;     place for all your Emacs automated customisation to be written...
 ;;
-;;   Manual Custom Configurations Section:
+;; Manual (custom configurations) Section:
 ;;
-;;     Keep it Simple: The next section below the "Automated Section" is where
-;;     you may add your Manual emacs configuratios...  That's it!  Enjoy ;-)
-;;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;   The next major section below the Automated Section is where you may add
+;;   your manual Emacs configurations.  Configurations made here will not be
+;;   overwritten by package managers etc.  It is located below the Automated
+;;   Section for good reason as Emacs needs to parse the auto/added things
+;;   first to register auto installed packages etc!  Do not duplicate anything
+;;   already defined by the Automated section within this manual section,
+;;   otherwise you may experience conflicts or unexpected behaviour.
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; BEGIN Automated Section: - Do Not Edit!
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; BEGIN Automated Section: - Do Not Edit anything within this major section
+;; between the BEGIN and END banners!  This is for programmatic changes only...
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -109,50 +127,82 @@ lt))))
 ;; END Automated Section.
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; BEGIN Manual Configurations Section: (add your custom scripts below)
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; Load OS X Environment Vars if we are on OS X...
-(when (memq window-system '(mac ns))
+;; Load Environment Vars if we are using unix in a POSIX compliant shell.
+;; (e.g., OS X, Linux, BSD, with POSIX: Bash, or Zsh etc.)
+;; Reference: GitHub:Purcell/exec-path-from-shell
+(when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
 ;; Use GPG Version 2 (gpg2) instead of gpg.
-;(setq epg-gpg-program "gpg2")
+;; Note: If you are using GnuPG later than V2.2 change below from "gpg2"
+;; to "gpg".  After version 2.2, the default GnuPG command defaults back
+;; to "gpg" (like GnuPG was before V2). "gpg2" was required while we were
+;; all transitioning and needed both... That transition period is over now.
+(setq gpg-gpg-program "gpg2")
 
-;; Global Keybindings:
-;(global-set-key (kbd "M-n") 'vmd-mode) 
+;; Configure Alisha's custom elisp library load path.
+;;   Note: This is the path I use.  Edit below to fit
+;;   your particular environment path:
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(let ((default-directory  "~/.emacs.d/lisp/"))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
+
+;; Load path for your custom color themes. (adjust this as needed for your environment)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/my-lisp-lib/themes/")
+
+;; mmd-mode - Multimarkdown extensions to markdown-mode:
+;; Reference: GitHub:jmquigley/mmd-mode
+;; Note: you will need to clone the above GitHub repo into the path specified
+;; on the next line before enabling this section... (change path to fit your environment)
+;(add-to-list 'load-path "{~/.emacs.d/lisp/mmd-mode}")
+;(require 'mmd-mode)
+
+;(add-to-list 'auto-mode-alist '("\\.md\\'" . mmd-mode))
+;(add-to-list 'auto-mode-alist '("\\.mdwn\\'" . mmd-mode))
+;(add-to-list 'auto-mode-alist '("\\.mdt\\'" . mmd-mode))
+;(add-to-list 'auto-mode-alist '("\\.mmd\\'" . mmd-mode))
+
+;; Global org/vmd mode Keybindings:
+;; Remove comments if you want to try vmd-mode (install it first though)
+;; Ref: vmd-mode: https://github.com/blak3mill3r/vmd-mode
+;; (install above with Emacs package manager - MELPA)
+;(global-set-key (kbd "M-n") 'vmd-mode)
 ;(global-set-key (kbd "M-N") 'org-md-export-as-markdown) 
 
-;; Alist of parameters for special frames.
+;; A list of parameters for special frames. (Sets default Frame Dimensions)
+;; You may have to play with this depending on your total screen size etc...
 ;;   `default-frame-alist'.
-(setq special-display-frame-alist '((width . 90) (height . 55)))
+(setq special-display-frame-alist '((width . 90) (height . 40)))
 
-;; Alist of parameters for the Minibuffer Frame.
-;;(setq minibuffer-frame-alist
-;;      '((top . 1) (left . 1) (width . 90) (height . 2)))
-
-;Set defult font to Hermit medium 13
-(set-frame-font
-    "-*-Hermit-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
+;Set default font to Hermit medium 13 (OS X Only, Others are set programmatically)
+;(set-frame-font
+;    "-*-Hermit-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
 
 ;; highlight current line
 (global-hl-line-mode +1)
 
-;; change all prompts to y or n
-(fset 'yes-or-no-p 'y-or-n-p)
-
 ;;turn off highlight long lines
 (setq whitespace-line-column 10000)
 
+;; change all prompts to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
 
-;; Load OS X Environment Vars if we are on OS X:
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+;; Turn on Visual Line Mode for text modes only
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 ;; *** Super Emacs ***
+;; Note: Before you can use the settings below you must clone
+;; git@github.com:myTerminal/super-emacs.git somewhere on your
+;; machine (where to do such things) and then adjust the paths
+;; below under "Load Super Emacs Configuration files.
+;; Note: the way I did it was clone the repo outside of Emacs
+;; then I copy the .el files below to my ~/.emacs.d/lisp/ directory.
 (defvar super-emacs/invokation-time
   (current-time))
 
@@ -163,19 +213,11 @@ lt))))
 (load-file "~/path/to/proj-repo/super-emacs/misc.el")
 (load-file "~/path/to/proj-repo/super-emacs/key-bindings.el")
 
-;; Configure Alisha's custom elisp library load path.
-;;   Note: This is the path on my iMac.  Adjust to fit
-;;   your particular environment:
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
-(let ((default-directory  "~/.emacs.d/lisp/"))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
-
-;; Load path for themes. (adjust this as necessary)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/my-lisp-lib/themes/")
-
 ;; Load Blackboard Color Theme.
+;; (My Favourite Theme! Love the White Chalk Comments & Serious Code Colours! ;-)
+;; I customised a few things there as well...  My custom blackboard.el is included...
+;; Put it in the path specified by the line under the heading "Load path for your
+;; custom color themes" above... (if you don't want to use it comment the next line:
 (load-theme 'blackboard t)
 
 ;Print welcome message
@@ -184,7 +226,7 @@ lt))))
                        (number-to-string (cadr (time-subtract (current-time)
                                                               super-emacs/invokation-time)))
                        " seconds\n\n"
-                       "Welcome to Alisha's New iMac emacs!\n\n"
+                       "Welcome to your new Super Emacs Configuration!\n\n"
                        "Today's date: "
                        (format-time-string "%Y %B %d"))
        (get-buffer-create (current-buffer)))
@@ -254,8 +296,6 @@ lt))))
 ;; Github flavored Markdown preview minor-mode.
 (require 'vmd-mode)
 
-;; Turn on Visual Line Mode for text modes only
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; spelling - Taken from bjm-starter-init.el
@@ -316,6 +356,19 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 ;;set this to M-c
 (global-set-key "\M-c" 'toggle-letter-case)
 
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; Magit Customizations:
+;; Anything in here requires installing the Magit Package from MELPA.
+;; So far I only really need to set the key for git status...
+;; More may come later.  I do most of my git on the command line,
+;; I have not used any porcelains for git and am kind of paranoid
+;; to actually use git from anything but the command line...
+;; I need to try Magit on a test repo first.  ;-)
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Ediff Customizations:
 ;; From: https://oremacs.com/2015/01/17/setting-up-ediff/
@@ -345,8 +398,6 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; END Manual Configurations Section: 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; END ~/.emacs -or- ~/.emacs.d/init.el 
