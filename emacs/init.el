@@ -156,6 +156,9 @@ lt))))
 ;; Load path for your custom color themes. (adjust this as needed for your environment)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/my-lisp-lib/themes/")
 
+;; Automatically sense SSH config files and set ssh-config-mode:
+ (add-to-list 'auto-mode-alist '("~/.ssh/config\\'" . ssh-config-mode))
+
 ;; mmd-mode - Multimarkdown extensions to markdown-mode:
 ;; Reference: GitHub:jmquigley/mmd-mode
 ;; Note: you will need to clone the above GitHub repo into the path specified
