@@ -38,16 +38,17 @@
 
 ;Cleanup unnecessary files and optimize local repo:
 [gc]
-  auto=1
+   auto=1
 
 ;; ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
 [core]
-	editor = emacs
-	excludesfile = ~/.gitignore_global
+   editor = emacs
+   excludesfile = ~/.gitignore_global
+   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 ;; ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
 [sendemail]
-	smtpencryption = tls
+smtpencryption = tls
 	smtpserver = <mail-server.example.com>
 	smtpuser = <your-email@example.com>
 	smtppass = <password>

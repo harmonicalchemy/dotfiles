@@ -137,6 +137,11 @@ lt))))
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
+;; Set F1 key to automatically load man page for the current library
+;; call at the current cursor position...
+(global-set-key  [(f1)]  (lambda () (interactive) (manual-entry (cur-
+       rent-word))))
+
 ;; Use GPG Version 2 (gpg2) instead of gpg.
 ;; Note: If you are using GnuPG later than V2.2 change below from "gpg2"
 ;; to "gpg".  After version 2.2, the default GnuPG command defaults back
@@ -155,6 +160,9 @@ lt))))
 
 ;; Load path for your custom color themes. (adjust this as needed for your environment)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/my-lisp-lib/themes/")
+
+;; Automatically sense SSH config files and set ssh-config-mode:
+(add-to-list 'auto-mode-alist '("/path-to-your-ssh/config\\'" . ssh-config-mode))
 
 ;; mmd-mode - Multimarkdown extensions to markdown-mode:
 ;; Reference: GitHub:jmquigley/mmd-mode
