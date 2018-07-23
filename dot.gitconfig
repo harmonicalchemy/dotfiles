@@ -76,7 +76,7 @@ smtpencryption = tls
     tool = kdiff3
 
 ;; GnuPG:
-:: Note:  If you have a version of GnuPG between ~V2.1.1
+;; Note:  If you have a version of GnuPG between ~V2.1.1
 ;;        and V2.2, you may have gpg -AND- gpg2 binaries installed.
 ;;        This is a heads up for you to get the command below correct
 ;;        for your intended purposes.  Will it be gpg or gpg2?
