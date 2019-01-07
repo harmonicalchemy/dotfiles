@@ -2,12 +2,13 @@
 ## File:  $HOME/.gitignore_global
 ##        Global Git Ignore file
 ##        (as defined within $HOME/.gitconfig)
+##
 ## Ref:   https://github.com/github/gitignore
+##
+## The following will be globally ignored by git for all local
+## repositories...
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# The following will be globally ignored by git for all local
-# repositories...
-#
+
 # Compiled source #
 ###################
 *.com
@@ -17,9 +18,10 @@
 *.o
 *.so
 
+
 # Packages #
 ############
-# it's better to unpack these files and commit the raw source
+# it's bette to unpack these files and commit the raw source
 # git has its own built in compression methods
 *.7z
 *.dmg
@@ -30,9 +32,11 @@
 *.tar
 *.zip
 
+
 # Password Files #
 ##################
 *.vault_pass
+
 
 # Logs and databases #
 ######################
@@ -40,10 +44,57 @@
 *.sql
 *.sqlite
 
-# Emacs Backup/Temp files #
-###########################
+
+# Emacs #
+#########
 *~
-.#*
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+
+# directory configuration
+.dir-locals.el
+
+# network security
+/network-security.data
+
 
 # OS generated files #
 ######################
@@ -54,3 +105,4 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
