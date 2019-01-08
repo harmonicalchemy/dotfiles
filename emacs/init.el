@@ -45,17 +45,6 @@
 ;; BEGIN Emacs Manual Configurations: (add your custom scripts below)
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; Load Environment Vars:
-;; If we are using unix in a POSIX compliant shell...
-;; (e.g., OS X, Linux, BSD, with POSIX: Bash, or Zsh etc.)
-;; Reference: GitHub:Purcell/exec-path-from-shell
-;; Install: from MELPA exec-path-from-shell
-;;
-;; Note: This is initially commented out because it does not work
-;;       on all systems.  It only seems to be working on my iMac...
-;(when (memq window-system '(mac ns x))
-;  (exec-path-from-shell-initialize))
-
 ;; Map Alt key to Meta:
 ;; Note: Comment this out on MacOS!. Mac already works fine with the option key.
 (setq x-alt-keysym 'meta)
@@ -130,6 +119,14 @@
 ;; (My Favorite - White Chalk Comments! Serious Code Colors! ;-)
 ;; My custom blackboard.el is loaded into my custom-themes folder...
 (load-theme 'blackboard t)
+
+;; Load Environment Vars from shell:
+;; If we are using unix in a POSIX compliant shell...
+;; (e.g., OS X, Linux, BSD, with POSIX: Bash, or Zsh etc.)
+;; Reference: GitHub:Purcell/exec-path-from-shell
+;; Install: from MELPA exec-path-from-shell
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
