@@ -14,3 +14,7 @@ I use SuperEmacs as my emacs base and customize from that.  If you want to use m
 
 See the Super Emacs README.md file at: https://github.com/myTerminal/super-emacs for more information.  Then come back here and read through my init.el file and other extra .el files within this directory...  You will see what I have added and also what I may have excluded from the SuperEmacs base install...  But as I said, unless you came here because you saw something extra (that you Were Looking For, not just cause you thought my logo is cool [-) than you may try adding my extras on top of an existing SuperEmacs install... Sure! GO Ahead! Try it...
 
+This is a work in progress.  Currently my init.el file depends on certian packages to be installed... I installed those packages on the fly and need to sort out which ones are needed staring right off the bat.  Once that is figured out I will add those to get automatically installed so you won't experience any errors of things not defined or whatever the first time you run my init.el in your setup!
+
+This file will be updated once I get a turn-key setup working out of this repository... To Be continued...
+

@@ -55,19 +55,19 @@
 ;; Disable mouse wheel (and two finger swipe) scrolling because
 ;; it scrolls horribly and I would rather work without it. %~)
 ;;
-;(mouse-wheel-mode -1)
-;(global-set-key [wheel-up] 'ignore)
-;(global-set-key [wheel-down] 'ignore)
-;(global-set-key [wheel-right] 'ignore)
-;(global-set-key [wheel-left] 'ignore)
-;(global-set-key [double-wheel-up] 'ignore)
-;(global-set-key [double-wheel-down] 'ignore)
-;(global-set-key [double-wheel-right] 'ignore)
-;(global-set-key [double-wheel-left] 'ignore)
-;(global-set-key [triple-wheel-up] 'ignore)
-;(global-set-key [triple-wheel-down] 'ignore)
-;(global-set-key [triple-wheel-right] 'ignore)
-;(global-set-key [triple-wheel-left] 'ignore)
+(mouse-wheel-mode -1)
+(global-set-key [wheel-up] 'ignore)
+(global-set-key [wheel-down] 'ignore)
+(global-set-key [wheel-right] 'ignore)
+(global-set-key [wheel-left] 'ignore)
+(global-set-key [double-wheel-up] 'ignore)
+(global-set-key [double-wheel-down] 'ignore)
+(global-set-key [double-wheel-right] 'ignore)
+(global-set-key [double-wheel-left] 'ignore)
+(global-set-key [triple-wheel-up] 'ignore)
+(global-set-key [triple-wheel-down] 'ignore)
+(global-set-key [triple-wheel-right] 'ignore)
+(global-set-key [triple-wheel-left] 'ignore)
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Use GPG Version 2 (gpg2) instead of gpg.
@@ -182,6 +182,14 @@
 ;; Install: from MELPA exec-path-from-shell
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;Set F1 key to load man page for keyword at current curson position (woman):
+(global-set-key (kbd "<f1>")
+                (lambda ()
+                  (interactive)
+                  (let ((woman-use-topic-at-point t))
+                    (woman))))
 
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
