@@ -93,7 +93,10 @@
 
 ;; Alist of parameters for special frames. (Sets default Frame Dimensions)
 ;; You may have to play with this depending on your total screen size etc...
-(setq default-frame-alist '((width . 101) (height . 38) (menu-bar-lines . 1)))
+(setq default-frame-alist
+      '((width . 101)
+        (height . 38)
+        (menu-bar-lines . 1)))
 
 ;; highlight current line
 (global-hl-line-mode +1)
@@ -107,6 +110,56 @@
 ;; Turn on Visual Line Mode for text modes only
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
+;; Toggle imenu-list (and its window) on and off:
+(global-set-key (kbd "C-'") #'imenu-list-smart-toggle)
+
+;; Toggle olivetti minor mode (for writing) on and off:
+(global-set-key (kbd "C-`") #'olivetti-mode)
+
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; Dired Extras - (added 2018-011-04 by Alisha)
+
+;; auto load dired-jump and dired-jump-other-window:
+(autoload 'dired-jump "dired-x"
+  "Jump to Dired buffer corresponding to current buffer." t)
+
+(autoload 'dired-jump-other-window "dired-x"
+  "Like \\[dired-jump] (dired-jump) but in other window." t)
+
+(define-key global-map "\C-x\C-j" 'dired-jump)
+(define-key global-map "\C-x4\C-j" 'dired-jump-other-window)
+
+;; Load direx-x.el when dired is first invoked (e.g., when you first type C-x d)
+(add-hook 'dired-load-hook
+          (lambda ()
+            (load "dired-x")
+            ;; Set dired-x global variables here:
+            ;; For example:
+            ;;   (setq dired-guess-shell-gnutar "gtar")
+            ;;   (setq dired-x-hands-off-my-keys nil)
+            ;;
+            ;; Specify default ls swithes for dired to use:
+            (setq-default dired-omit-files-p t)
+            (setq dired-listing-switches
+                  "-laB --ignore='#*' --ignore='.DS_Store' --ignore='Icon*' --group-directories-first")
+            ;;
+            ;; Specify which files get omitted in Dired mode:
+            (setq dired-omit-files "^\\.?#\\|\\.DS_STORE\\|Icon*")
+            ))
+;;
+(add-hook 'dired-mode-hook
+          (lambda ()
+            ;; Set dired-x buffer-local variables here:
+            ;; For example:
+            ;;   (dired-omit-mode 1)
+            ;;
+            ;; Begin new dired sessions with dired-omit-mode `on` by default...
+            (dired-omit-mode 1)
+	    (define-key dired-mode-map (kbd "h") #'dired-omit-mode)
+            ))
+
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Load Super Emacs Configuration files:
 (load-file "~/.emacs.d/lisp/super-emacs/00-system.el")
 (load-file "~/.emacs.d/lisp/super-emacs/01-repositories.el")
@@ -115,11 +168,13 @@
 (load-file "~/.emacs.d/lisp/super-emacs/04-misc.el")
 (load-file "~/.emacs.d/lisp/super-emacs/05-key-bindings.el")
 
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Load Blackboard Color Theme.
 ;; (My Favorite - White Chalk Comments! Serious Code Colors! ;-)
 ;; My custom blackboard.el is loaded into my custom-themes folder...
 (load-theme 'blackboard t)
 
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Load Environment Vars from shell:
 ;; If we are using unix in a POSIX compliant shell...
 ;; (e.g., OS X, Linux, BSD, with POSIX: Bash, or Zsh etc.)
