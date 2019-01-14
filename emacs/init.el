@@ -159,6 +159,7 @@
 	    (define-key dired-mode-map (kbd "h") #'dired-omit-mode)
             ))
 
+
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Load Super Emacs Configuration files:
 (load-file "~/.emacs.d/lisp/super-emacs/00-system.el")
@@ -170,9 +171,10 @@
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Load Blackboard Color Theme.
+;; This line Moved to: ~/.emacs.d/lisp/super-emacs/03.interface.el
 ;; (My Favorite - White Chalk Comments! Serious Code Colors! ;-)
 ;; My custom blackboard.el is loaded into my custom-themes folder...
-(load-theme 'blackboard t)
+;(load-theme 'blackboard t)
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Load Environment Vars from shell:
@@ -220,50 +222,51 @@
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Org Mode Exporters
-;(require 'ox-md)
-;(require 'ox-latex)
+(require 'ox-md)
+(require 'ox-latex)
 
 ;; speed keys for quick navigation
-;(setq org-use-speed-commands 1)
+(setq org-use-speed-commands 1)
 
 ;; set maximum indentation for org-mode description lists
-;(setq org-list-description-max-indent 5)
+(setq org-list-description-max-indent 5)
 
 ;; prevent org-mode demoting heading also shifting text inside sections
-;(setq org-adapt-indentation nil)
+(setq org-adapt-indentation nil)
 
 ;; stop inline images being too big
-;(setq org-image-actual-width '(500))
+(setq org-image-actual-width '(500))
 
 ;; automatically refresh inline images
 ;; http://emacs.stackexchange.com/questions/3302/live-refresh-of-inline-images-with-org-display-inline-images
-;(defun shk-fix-inline-images ()
-;  (when org-inline-image-overlays
-;    (org-redisplay-inline-images)))
+(defun shk-fix-inline-images ()
+  (when org-inline-image-overlays
+    (org-redisplay-inline-images)))
 
-;(add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
+(add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
 
 ;; export options
 ;; syntax highlight code blocks
-;(setq org-src-fontify-natively t)
+(setq org-src-fontify-natively t)
+
 ;; put caption below in tables
-;(setq org-export-latex-table-caption-above nil)
-;(setq org-latex-table-caption-above nil)
+(setq org-export-latex-table-caption-above nil)
+(setq org-latex-table-caption-above nil)
+
 ;; don't export tags
-;(setq org-export-with-tags nil)
+(setq org-export-with-tags nil)
 
 ;; Org-Bullets Mode:
-;(require 'org-bullets)
-;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; Github flavored Markdown preview minor-mode.
-;(require 'vmd-mode)
+(require 'vmd-mode)
 
 ;; Global Keybindings:
 
-;(global-set-key (kbd "M-n") 'vmd-mode) 
-;(global-set-key (kbd "M-N") 'org-md-export-as-markdown)
-
+(global-set-key (kbd "M-N") 'org-md-export-as-markdown)
+(global-set-key (kbd "M-n") 'vmd-mode) 
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Spelling:
@@ -282,12 +285,11 @@
 (setq-default ispell-program-name "aspell")
 
 (setq ispell-program-name "aspell")
-(setq ispell-dictionary "british")
+(setq ispell-dictionary "en_US")
 (setq ispell-check-comments t)
 (setq ispell-local-dictionary-alist
-      `(("british" "[[:alpha:]]" "[^[:alpha:]]" "[']" t ("-d" "en_GB") nil
-         utf-8)))
-
+      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
+ 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; change case of letters:
 ;; http://ergoemacs.org/emacs/modernization_upcase-word.html
