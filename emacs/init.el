@@ -6,7 +6,7 @@
 ;;   This is my default Emacs Initialisation file for Linux & OSX.  I don't use
 ;;   any MS Windows machines so I don't know if this works there as well.  If
 ;;   you try this on Windows and get it to work, please drop me a message and I
-;;   will work with you as my Windows OS test engineer.  If we get a good
+;;   will work with you as my MS Windows OS test engineer.  If we get a good
 ;;   version of this file working on Windows I will include it in this repo
 ;;   and credit you as the author of any Windows config files you provide.
 ;;   B-)  Thanks in advance!
@@ -14,9 +14,23 @@
 ;; Reference: Emacs Manual - 49.4 - The Emacs Initialization File
 ;;   https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html
 ;;
-;; Change Log: (decending cronological order)
+;; Dependencies / Requirements:
+;;   This init file is specifically designed to work with:
+;;   https://github.com/harmonicalchemy/super-emacs.git
+;;   which a clone of this file is also a member of...
 ;;
-;;   2019-001-06 - Version Q1.0-2019:
+;; Change Log: (decending cronological order) (shorter commit messages in git as well)
+;;
+;;   2019-001-14 - Harmonic Alchemy super-emacs [Q1 2019] v0.4:
+;;      Cleaned up mess in Spelling: section... See Article:
+;;      http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html
+;;
+;;   2019-001-13 - Harmonic Alchemy super-emacs [Q1 2019] v0.3:
+;;      Tested and working with my new fork of super-emacs!  Have not tried integration
+;;      test of installing completely from scratch on a bare bones AppVM yet...
+;;      That acid test comes next... (after updating my documentation etc.)
+;;
+;;   2019-001-06 - Harmonic Alchemy super-emacs [Q1 2019] v0.0:
 ;;      This new 2019 version is completely different from the current init.el
 ;;      commited to my dotfiles repo.  I will push this new modified file as
 ;;      soon as I have it working and tested.  This version finally gets the
@@ -24,7 +38,7 @@
 ;;      that the emacs system leaves your init.el (this file) alone for your own
 ;;      custom manual configurations...
 ;;
-;;   2018-011-13 - Version Q4.0-2018:
+;;   2018-011-13 - Harmonic Alchemy super-emacs [Q4 2019] v0.0
 ;;      This represents a BIG departure from my previous emacs configurations.
 ;;      I need to use this file to update my default init.el in my dotfiles
 ;;      Github repository...
@@ -37,7 +51,7 @@
 ;;       Change title by editing: ~/.emacs.d/lisp/super-emacs/03-interface.el 
 ;;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; *** Load Start time for Super Emacs ***
+;; *** Load Start time for Harmonic Alchemy Super Emacs ***
 (defvar config-start-time
   (current-time))
 
@@ -50,7 +64,11 @@
 (setq x-alt-keysym 'meta)
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; Enable this section if you need to disable mouse wheel:
+;; Disable this section if you like using the mouse wheel:
+;;
+;; On my laptop my palms get in the way and cause all kinds
+;; of scrolling crazy stuff. I hate it!!! Seriously. Key commands
+;; are best in Emacs.  Right? I Mean Right??? Yup. ;-)
 ;; 
 ;; Disable mouse wheel (and two finger swipe) scrolling because
 ;; it scrolls horribly and I would rather work without it. %~)
@@ -85,7 +103,7 @@
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
 
-;; Load path for your custom colour themes:
+;; Load path for your custom Emacs themes:
 (add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes/")
 
 ;; Automatically sense SSH config files and set ssh-config-mode:
@@ -169,12 +187,6 @@
 (load-file "~/.emacs.d/lisp/super-emacs/04-misc.el")
 (load-file "~/.emacs.d/lisp/super-emacs/05-key-bindings.el")
 
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; Load Blackboard Color Theme.
-;; This line Moved to: ~/.emacs.d/lisp/super-emacs/03.interface.el
-;; (My Favorite - White Chalk Comments! Serious Code Colors! ;-)
-;; My custom blackboard.el is loaded into my custom-themes folder...
-;(load-theme 'blackboard t)
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Load Environment Vars from shell:
@@ -186,7 +198,8 @@
   (exec-path-from-shell-initialize))
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;Set F1 key to load man page for keyword at current curson position (woman):
+;; Set F1 key to load man page for keyword at current curson position (woman):
+;; This key is universal...  Nice to have it in Emacs for Man Pages! Cool! 
 (global-set-key (kbd "<f1>")
                 (lambda ()
                   (interactive)
@@ -213,12 +226,6 @@
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Org-Mode Configurations...
-;;
-;; Note: Org Mode is currently disabled. It's best to wait
-;;       until you have a workng emacs first then try enabling
-;;       ORG mode by removing comments where approprate within
-;;       this init file...
-;;       btw, `vmd-mode` is an ORG mode related thing...
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Org Mode Exporters
@@ -270,26 +277,108 @@
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Spelling:
-;;   Note: I use aspell instead of hunspell
-;;   because it works better in code...
+;;   Note: I use aspell instead of Hunspell because it
+;;   is considered by may to be better for code...
+;;   I also am a writer however... We will see if it is also
+;;   good for that... (given some time using it)
+;;   Currently I do not have Hunspell installed so the function
+;;   Below will follow the aspel conditions only...
+;;
+;; Ref: http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+;; Function: flyspell-detect-ispell-args()
+;; if (aspell installed) { use aspell}
+;; else if (hunspell installed) { use hunspell }
+;; whatever spell checker I use, I always use English dictionary
+;; I prefer use aspell because:
+;; 1. aspell is older
+;; 2. looks Kevin Atkinson still get some road map for aspell:
+;; @see http://lists.gnu.org/archive/html/aspell-announce/2011-09/msg00000.html
+
+(defun flyspell-detect-ispell-args (&optional run-together)
+  "If RUN-TOGETHER is true, spell check the CamelCase words.
+Please note RUN-TOGETHER will make aspell less capable. So it should only be used in prog-mode-hook."
+  (let* (args)
+    (when ispell-program-name
+      (cond
+       ((string-match "aspell$" ispell-program-name)
+        ;; force the English dictionary, support Camel Case spelling check (tested with aspell 0.6)
+        (setq args (list "--sug-mode=ultra" "--lang=en_US"))
+        ;; "--run-together-min" could not be 3, see `check` in "speller_impl.cpp" . The algorithm is
+        ;; not precise .
+        ;; Run `echo tasteTableConfig | aspell --lang=en_US -C --run-together-limit=16  --encoding=utf-8 -a` in shell.
+        (if run-together
+            (setq args (append args '("--run-together" "--run-together-limit=16")))))
+       ((string-match "hunspell$" ispell-program-name)
+        (setq args nil))))
+    args))
+
+;; Don't bother testing for aspel or Hunspell, Just set the variable... Just make sure
+;; to install aspell globally on the OS!
+;; Important Note!: Realize this breaks if you don't have aspell installed in this environment!
+;; Note to self: Add warning in the README.md file!  Don't forget. ;-)
+(setq ispell-program-name "aspell")
+
+;; Set dictionarys...
+(setq ispell-local-dictionary "en_US")
+(setq ispell-local-dictionary-alist
+'(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
+
+;; According to the above linked article: ispell-cmd-args are useless...
+;; it's the list of *extra* arguments we will append to the ispell
+;; process when "ispell-word" is called.
+;;
+;; On the other hand, ispell-extra-args are the command arguments which
+;; will *always* be used when we start the ispell process...
+;;
+;; Please Note: When you use hunspell, ispell-extra-args will NOT be used.
+;;
+;; OK Got that?... Lets Hack ispell-local-dictionary-alist instead:
+
+(setq-default ispell-extra-args (flyspell-detect-ispell-args t))
+
+;; (setq ispell-cmd-args (flyspell-detect-ispell-args))
+(defadvice ispell-word (around my-ispell-word activate)
+  (let ((old-ispell-extra-args ispell-extra-args))
+    (ispell-kill-ispell t)
+    (setq ispell-extra-args (flyspell-detect-ispell-args))
+    ad-do-it
+    (setq ispell-extra-args old-ispell-extra-args)
+    (ispell-kill-ispell t)))
+
+(defadvice flyspell-auto-correct-word (around my-flyspell-auto-correct-word activate)
+  (let ((old-ispell-extra-args ispell-extra-args))
+    (ispell-kill-ispell t)
+    ;; use emacs original arguments
+    (setq ispell-extra-args (flyspell-detect-ispell-args))
+    ad-do-it
+    ;; restore our own ispell arguments
+    (setq ispell-extra-args old-ispell-extra-args)
+    (ispell-kill-ispell t)))
+
+(defun text-mode-hook-setup ()
+  ;; Turn off RUN-TOGETHER option when spell check text-mode
+  (setq-local ispell-extra-args (flyspell-detect-ispell-args)))
+(add-hook 'text-mode-hook 'text-mode-hook-setup)
 
 ;; turn on flyspell in desired modes
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
+;; Set Keybindings:
+
+;; You can also use "M-x ispell-word" or hotkey "M-$". It will pop up a multiple
+;; choice box.
+;; @see http://frequal.com/Perspectives/EmacsTip03-FlyspellAutoCorrectWord.html
+
+(global-set-key (kbd "C-c s") 'flyspell-auto-correct-word)
+
 ;; Flyspell Correct Helm key binding:
 (require 'flyspell-correct-helm)
 (define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-previous-word-generic)
 
-(setq-default ispell-program-name "aspell")
 
-(setq ispell-program-name "aspell")
-(setq ispell-dictionary "en_US")
-(setq ispell-check-comments t)
-(setq ispell-local-dictionary-alist
-      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
- 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; change case of letters:
 ;; http://ergoemacs.org/emacs/modernization_upcase-word.html
