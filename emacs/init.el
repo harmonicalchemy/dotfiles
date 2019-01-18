@@ -1,25 +1,40 @@
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; File: ~/.emacs.d/init.el - Emacs Configuration for Linux and MacOS.
-;; Author:   Alisha Awen - siren1@disroot.org
+;; File: ~/.emacs.d/init.el - Emacs Configuration for Linux and Mac-OS.
+;; Author:   Alisha Awen Sheppard - siren1@disroot.org
 ;; First Created:  2018-011-13
 ;; Info:
-;;   This is my default Emacs Initialisation file for Linux & OSX.  I don't use
+;;   This is my default Emacs Initialization file for Linux & OSX.  I don't use
 ;;   any MS Windows machines so I don't know if this works there as well.  If
 ;;   you try this on Windows and get it to work, please drop me a message and I
-;;   will work with you as my MS Windows OS test engineer.  If we get a good
-;;   version of this file working on Windows I will include it in this repo
-;;   and credit you as the author of any Windows config files you provide.
-;;   B-)  Thanks in advance!
+;;   may end up working with you as the MS Windows OS test engineer for this emacs
+;;   config.  If we get a good version of this working on Windows I will include
+;;   it in this repo and credit you as the author of any Windows config files you
+;;   provide.  B-) Thanks in advance!
 ;;
 ;; Reference: Emacs Manual - 49.4 - The Emacs Initialization File
 ;;   https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html
 ;;
 ;; Dependencies / Requirements:
 ;;   This init file is specifically designed to work with:
-;;   https://github.com/harmonicalchemy/super-emacs.git
-;;   which a clone of this file is also a member of...
+;;   https://GitHub.com/harmonicalchemy/super-emacs.git
 ;;
-;; Change Log: (decending cronological order) (shorter commit messages in git as well)
+;; NOTE: (mostly to self) If you change the Version (as in Change Log: below)
+;;       change the Window Title to reflect that so you will know which version
+;;       you are running quickly when comparing different emacs windows from
+;;       different machines or VPS.
+;;
+;;       Change title by editing: ~/.emacs.d/lisp/super-emacs/03-interface.el
+;;       Also change the Welcome Message at the bottom of this file to the new
+;;       version number!
+;;
+;; Change Log: (descending chronological order)
+;;
+;;   2019-001-15 - Harmonic Alchemy super-emacs [Q1 2019] v0.5:
+;;      With Spelling working well, I corrected some errors and inconsistencies
+;;      in this file...  A next step in house cleaning will break sections
+;;      out of this file into modules and bring this file back to top level
+;;      exec of those modules only... That will make things much more useful
+;;      for everyone...
 ;;
 ;;   2019-001-14 - Harmonic Alchemy super-emacs [Q1 2019] v0.4:
 ;;      Cleaned up mess in Spelling: section... See Article:
@@ -32,7 +47,7 @@
 ;;
 ;;   2019-001-06 - Harmonic Alchemy super-emacs [Q1 2019] v0.0:
 ;;      This new 2019 version is completely different from the current init.el
-;;      commited to my dotfiles repo.  I will push this new modified file as
+;;      committed to my dotfiles repo.  I will push this new modified file as
 ;;      soon as I have it working and tested.  This version finally gets the
 ;;      custom.el (for automated internal emacs updates) working correctly so
 ;;      that the emacs system leaves your init.el (this file) alone for your own
@@ -41,14 +56,7 @@
 ;;   2018-011-13 - Harmonic Alchemy super-emacs [Q4 2019] v0.0
 ;;      This represents a BIG departure from my previous emacs configurations.
 ;;      I need to use this file to update my default init.el in my dotfiles
-;;      Github repository...
-;;      
-;; NOTE: (mostly to self) If you change the Version (as in Change Log: above)
-;;       change the Window Title to reflect that so you will know which version
-;;       you are running quickly when comparing different emacs windows from
-;;       different machines or VPS.
-;;
-;;       Change title by editing: ~/.emacs.d/lisp/super-emacs/03-interface.el 
+;;      GitHub repository...      
 ;;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; *** Load Start time for Harmonic Alchemy Super Emacs ***
@@ -60,7 +68,7 @@
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Map Alt key to Meta:
-;; Note: Comment this out on MacOS!. Mac already works fine with the option key.
+;; Note: Comment this out on Mac-OS!. Mac already works fine with the option key.
 (setq x-alt-keysym 'meta)
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -93,7 +101,8 @@
 ;; below from "gpg2" back to "gpg". (After version 2.2, the default GnuPG
 ;; command defaults back to "gpg" (like GnuPG was before V2).
 ;; However some systems have both gpg & gpg2 installed so it is best to
-;; leave it below the way it is. (you could also create an alias in .bashrc)
+;; leave it below the way it is. (you could also create an alias in .bashrc
+;; .profile, etc.)
 (setq epg-gpg-program "gpg2")
 
 ;; Configure custom elisp library load path.
@@ -109,29 +118,29 @@
 ;; Automatically sense SSH config files and set ssh-config-mode:
  (add-to-list 'auto-mode-alist '("~/.ssh/config\\'" . ssh-config-mode))
 
-;; Alist of parameters for special frames. (Sets default Frame Dimensions)
+;; A list of parameters for special frames. (Sets default Frame Dimensions)
 ;; You may have to play with this depending on your total screen size etc...
 (setq default-frame-alist
       '((width . 101)
         (height . 38)
         (menu-bar-lines . 1)))
 
-;; highlight current line
+;; Highlight Current Line
 (global-hl-line-mode +1)
 
-;;turn off highlight long lines
+;; Turn off: Highlight long lines
 (setq whitespace-line-column 10000)
 
-;; change all prompts to y or n
+;; Change All Prompts to: y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Turn on Visual Line Mode for text modes only
+;; Turn On Visual Line Mode for Text Modes Only
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
-;; Toggle imenu-list (and its window) on and off:
+;; Toggle imenu-list (and its window) On and Off:
 (global-set-key (kbd "C-'") #'imenu-list-smart-toggle)
 
-;; Toggle olivetti minor mode (for writing) on and off:
+;; Toggle olivetti minor mode (for writing) On and Off:
 (global-set-key (kbd "C-`") #'olivetti-mode)
 
 
@@ -148,7 +157,7 @@
 (define-key global-map "\C-x\C-j" 'dired-jump)
 (define-key global-map "\C-x4\C-j" 'dired-jump-other-window)
 
-;; Load direx-x.el when dired is first invoked (e.g., when you first type C-x d)
+;; Load dired-x.el when dired is first invoked (e.g., when you first type C-x d)
 (add-hook 'dired-load-hook
           (lambda ()
             (load "dired-x")
@@ -157,7 +166,7 @@
             ;;   (setq dired-guess-shell-gnutar "gtar")
             ;;   (setq dired-x-hands-off-my-keys nil)
             ;;
-            ;; Specify default ls swithes for dired to use:
+            ;; Specify default ls switches for dired to use:
             (setq-default dired-omit-files-p t)
             (setq dired-listing-switches
                   "-laB --ignore='#*' --ignore='.DS_Store' --ignore='Icon*' --group-directories-first")
@@ -198,7 +207,7 @@
   (exec-path-from-shell-initialize))
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; Set F1 key to load man page for keyword at current curson position (woman):
+;; Set F1 key to load man page for keyword at current cursor position (woman):
 ;; This key is universal...  Nice to have it in Emacs for Man Pages! Cool! 
 (global-set-key (kbd "<f1>")
                 (lambda ()
@@ -228,23 +237,23 @@
 ;; Org-Mode Configurations...
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; Org Mode Exporters
+;; Org Mode Exporters:
 (require 'ox-md)
 (require 'ox-latex)
 
-;; speed keys for quick navigation
+;; Speed Keys for Quick Navigation:
 (setq org-use-speed-commands 1)
 
-;; set maximum indentation for org-mode description lists
+;; Set Maximum Indentation for org-mode Description Lists:
 (setq org-list-description-max-indent 5)
 
-;; prevent org-mode demoting heading also shifting text inside sections
+;; Prevent org-mode Demoting Heading also Shifting Text Inside Sections:
 (setq org-adapt-indentation nil)
 
-;; stop inline images being too big
+;; Stop Inline Images from Being Too Big:
 (setq org-image-actual-width '(500))
 
-;; automatically refresh inline images
+;; Automatically Refresh Inline Images:
 ;; http://emacs.stackexchange.com/questions/3302/live-refresh-of-inline-images-with-org-display-inline-images
 (defun shk-fix-inline-images ()
   (when org-inline-image-overlays
@@ -252,22 +261,23 @@
 
 (add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
 
-;; export options
-;; syntax highlight code blocks
+;; Export Options
+
+;; Syntax Highlight Code Blocks:
 (setq org-src-fontify-natively t)
 
-;; put caption below in tables
+;; Put Caption Below in Tables:
 (setq org-export-latex-table-caption-above nil)
 (setq org-latex-table-caption-above nil)
 
-;; don't export tags
+;; Don't Export Tags:
 (setq org-export-with-tags nil)
 
 ;; Org-Bullets Mode:
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; Github flavored Markdown preview minor-mode.
+;; GitHub Flavored Markdown Preview minor-mode:
 (require 'vmd-mode)
 
 ;; Global Keybindings:
@@ -277,27 +287,29 @@
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Spelling:
-;;   Note: I use aspell instead of Hunspell because it
+;;   Note: I use Aspell instead of Hunspell because it
 ;;   is considered by may to be better for code...
 ;;   I also am a writer however... We will see if it is also
 ;;   good for that... (given some time using it)
 ;;   Currently I do not have Hunspell installed so the function
-;;   Below will follow the aspel conditions only...
+;;   Below will follow the Aspell conditions only...
 ;;
 ;; Ref: http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; Function: flyspell-detect-ispell-args()
-;; if (aspell installed) { use aspell}
-;; else if (hunspell installed) { use hunspell }
-;; whatever spell checker I use, I always use English dictionary
-;; I prefer use aspell because:
-;; 1. aspell is older
-;; 2. looks Kevin Atkinson still get some road map for aspell:
-;; @see http://lists.gnu.org/archive/html/aspell-announce/2011-09/msg00000.html
+;; Function: flyspell-detect-ispell-args() {
+;;   if (Aspell installed) {
+;;      use Aspell
+::   }
+;;   else if (Hunspell installed) {
+;;      use Hunspell
+::   }
+;;
+;;   Always use English dictionary either case
+;; }
 
 (defun flyspell-detect-ispell-args (&optional run-together)
-  "If RUN-TOGETHER is true, spell check the CamelCase words.
+  "If RUN-TOGETHER is true, spell check the camelCase words.
 Please note RUN-TOGETHER will make aspell less capable. So it should only be used in prog-mode-hook."
   (let* (args)
     (when ispell-program-name
@@ -314,13 +326,13 @@ Please note RUN-TOGETHER will make aspell less capable. So it should only be use
         (setq args nil))))
     args))
 
-;; Don't bother testing for aspel or Hunspell, Just set the variable... Just make sure
-;; to install aspell globally on the OS!
-;; Important Note!: Realize this breaks if you don't have aspell installed in this environment!
+;; Don't bother testing for Aspell or Hunspell, Just set the variable... Just make sure
+;; to install Aspell globally on the OS!
+;; Important Note!: Realize this breaks if you don't have Aspell installed in this environment!
 ;; Note to self: Add warning in the README.md file!  Don't forget. ;-)
 (setq ispell-program-name "aspell")
 
-;; Set dictionarys...
+;; Set dictionaries...
 (setq ispell-local-dictionary "en_US")
 (setq ispell-local-dictionary-alist
 '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
@@ -332,7 +344,7 @@ Please note RUN-TOGETHER will make aspell less capable. So it should only be use
 ;; On the other hand, ispell-extra-args are the command arguments which
 ;; will *always* be used when we start the ispell process...
 ;;
-;; Please Note: When you use hunspell, ispell-extra-args will NOT be used.
+;; Please Note: When you use Hunspell, ispell-extra-args will NOT be used.
 ;;
 ;; OK Got that?... Lets Hack ispell-local-dictionary-alist instead:
 
@@ -419,7 +431,7 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; Magit Customisation Section:
+;; Magit Customization Section:
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;; So far I only set a global key for git status: (more may come)
@@ -427,7 +439,7 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; Ediff Customizations:
+;; Ediff Customization:
 ;; From: https://oremacs.com/2015/01/17/setting-up-ediff/
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -466,13 +478,13 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 
 ;; Print Welcome With Computed Emacs Load Time this configuration took:
 (princ (cl-concatenate 'string
-                       "Startup completed in "
-                       (number-to-string (cadr (time-subtract (current-time)
-                                                              config-start-time)))
-                       " seconds\n\n"
-                       "Welcome to [Your Machine Name] Emacs!!!\n\n"
-                       "Today's date: "
-                       (format-time-string "%Y %B %d"))
+                       ";; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+                       ";; Welcome to [Your-Machine-Name-Here]: Super Emacs [Q1 2019] v0.5\n"
+                       ";; \n"
+                       ";; Today's date: " (format-time-string "%Y %B %d") "\n"
+                       ";; Evaluate lisp expressions below: \n"
+                       ";; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+                       )
        (get-buffer-create (current-buffer)))
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
