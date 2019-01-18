@@ -1,58 +1,78 @@
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; File:   $HOME/.gitconfig (global git config file)
-;; Ref:    https://git-scm.com/docs/git-config
-;; Note:   ('#' or ';' are both comments)
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; ~~~~~~~ [USER@MACHINE]: Global Git Configurations ~~~~~~~~
+;; File:           [user@machine]:$HOME/.gitconfig
+;; Current User:   user@Mmachine
+;; Git Username:   username
+;; Environment:    [Machine/OS] type
+;; Last Updated:   2019-001-17 (manually)
+;; Repository:     Github.com/harmonicalchemy/dotfiles
+;; Note:           ('#' or ';' are both comments)
+;; Ref:            https://git-scm.com/docs/git-config
+;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~
+;; ~~~~~~~~~~~~~~~~~ General Info - ID ~~~~~~~~~~~~~~~~~~~~~~
+
 [user]
 	name = <your-name>
 	email = <your-email@example.com>
 	signingkey = 0x05AF05AF05AF05AF05AF05AF05AF05AF0        
+;;                   (fingerprint of signing subkey [S]) 
+
+;; Secret key fingerprint:     0x05AF05AF05AF05AF05AF05AF05AF05AF0
+;; Encript subkey fingerprint: 0x05AF05AF05AF05AF05AF05AF05AF05AF0
+;; Sign subkey fingerprint:    0x05AF05AF05AF05AF05AF05AF05AF05AF0
+;; Auth subkey finterprint:    0x05AF05AF05AF05AF05AF05AF05AF05AF0
 
 ;; ~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~
-[color]
-  branch = auto
-  diff = auto
-  status = auto
-  interactive = auto
-  ui = auto
 
-; Explicit colors below are commented out...
-; (Uncomment the ones you want to customize)
-;
-;[color "branch"]
-;  current = yellow bold
-;  local = green bold
-;  remote = cyan bold
+[color]
+	ui = auto
+;	interactive = auto
+;	diff = auto
+
+[color "branch"]
+	current = cyan
+	local = green
+	remote = magenta
+	
+[color "status"]
+	header = normal
+	added = green
+	changed = red
+	untracked = cyan
+	nobranch = red
+
+;; Other Explicit colors below are commented out...
+;; (Uncomment any below you need to customize)
+
 ;[color "diff"]
 ;  meta = yellow bold
 ;  frag = magenta bold
 ;  old = red bold
 ;  new = green bold
 ;  whitespace = red reverse
-;[color "status"]
-;  added = green bold
-;  changed = yellow bold
-;  untracked = red bold
 
-;Cleanup unnecessary files and optimize local repo:
+;	
+; Cleanup unnecessary files and optimize local repo:
+;
+	
 [gc]
    auto=1
 
 ;; ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
+
 [core]
    editor = emacs
    excludesfile = ~/.gitignore_global
    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 ;; ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
+
 [sendemail]
-smtpencryption = tls
-	smtpserver = <mail-server.example.com>
-	smtpuser = <your-email@example.com>
-	smtppass = <password>
-	smtpserverport = <smtp-port>
+	smtpencryption = tls
+; smtpserver = <mail-server.example.com>
+; smtpuser = <your-email@example.com>
+; smtppass = <password>
+; smtpserverport = <smtp-port>
 
 [web]
 	browser = firefox
@@ -60,32 +80,44 @@ smtpencryption = tls
 ;; ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
 
 ;; Configure Git with kdiff3: (best open-source diff/merge GUI)
+
 [difftool "kdiff3"]
     path = /usr/bin/kdiff3
     trustExitCode = false
+
 [difftool]
     prompt = false
+
 [diff]
     tool = kdiff3
+
 [mergetool "kdiff3"]
     path = /usr/bin/kdiff3
     trustExitCode = false
+
 [mergetool]
     keepBackup = false
+
 [merge]
     tool = kdiff3
 
+;;
 ;; GnuPG:
+;;
 ;; Note:  If you have a version of GnuPG between ~V2.1.1
 ;;        and V2.2, you may have gpg -AND- gpg2 binaries installed.
 ;;        This is a heads up for you to get the command below correct
 ;;        for your intended purposes.  Will it be gpg or gpg2?
 ;;        For all other versions (earlier and later) the binary is
 ;;        always "gpg".
+	
+;; Configure GPG for Git on Qubes OS:
+
 [gpg]
-	program = gpg
+	program = qubes-gpg-client-wrapper
+
 [commit]
 	gpgsign = true
-
+	
 ;; ~~~~~~~~~~~~~~~~ END: ~/.gitconfig ~~~~~~~~~~~~~~~~~~
 
