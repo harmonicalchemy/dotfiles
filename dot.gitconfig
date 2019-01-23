@@ -26,6 +26,7 @@
 ;; ~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~
 
 [color]
+
    ui = auto
 ;   interactive = auto
 ;   diff = auto
@@ -52,7 +53,6 @@
 ;  new = green bold
 ;  whitespace = red reverse
 
-
 ;; Cleanup unnecessary files and optimize local repo:
 
 [gc]
@@ -68,7 +68,7 @@
 ;; ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
 
 [sendemail]
-smtpencryption = tls
+   smtpencryption = tls
 ;   smtpserver = <mail-server.example.com>
 ;   smtpuser = <your-email@example.com>
 ;   smtppass = <password>
