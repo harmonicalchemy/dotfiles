@@ -1,0 +1,135 @@
+# -*- mode: gitconfig; -*-
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  File:          $TOOLS/dotfiles/MacOS/GIT/dot.gitconfig (Template)
+#                 Global git configurations for Mac OS Environments.
+#  Created:       2019-002-21
+#  Version:       V1.0 RC2  [Q1-2019]
+#  Author:        Alisha Awen Sheppard - Siren1@disroot.org
+#  Git Username:  harmonicalchemy
+#  Ref:           https://git-scm.com/docs/git-config
+#  Repo:          Github.com:harmonicalchemy/dotfiles.git
+#  Environment:   Mac OS only... (not for hosted VPS or Qubes environments)
+#  Note:          ('#' or ';' are both comments)
+#
+#  Actually there is not much difference between this spcific Mac OS .gitconfig
+#  and the master dotfiles/GIT/dot.gitconfig Template... Only paths to apps
+#  are different.  Pretty much everything else is identical...
+#
+#  This .gitconfig file assumes Emacs as your default editor... Change that
+#  below to your preferred editor along with other obvious things like your public
+#  key fingerprint, etc..  Anything else you see below can be changed to your
+#  particular needs.
+#
+#  Usage:         Symlink this file from your $HOME directory:
+#
+#           $> ln -s $TOOLS/pDotfiles/MacOS/GIT/dot.gitconfig $HOME/.gitconfig
+#
+#  Change Log: (descending chronological order)
+#
+#    2019-002-21 - Alisha Awen siren1@disroot.org
+#      Revamped this file to work on my iMac which does not use Qubes Split GPG.
+#      This file is NOT used in my Qubes 4 environment or any remote hosted VPS
+#      environments.  I use different .gitconfig files for those use-cases...
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+## ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~~
+
+[user]
+	name = <Put Your PGP UID name here>
+	email = <your-email-address@example.com>
+	signingkey = 0x00005555AAAAFFFF00005555AAAAFFFF00005555
+##                  (fingerprint of your PGP signing subkey [S])
+
+## ~~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~~
+
+[color]
+   ui = auto
+;   interactive = auto
+;   diff = auto
+
+[color "branch"]
+   current = cyan
+   local = green
+   remote = magenta
+	
+[color "status"]
+   header = normal
+   added = green
+   changed = red
+   untracked = cyan
+   nobranch = red
+
+[color "diff"]
+   meta = yellow bold
+   frag = magenta bold
+   old = red bold
+   new = green bold
+   whitespace = red reverse
+	
+## Cleanup unnecessary files and optimize local repo:
+
+[gc]
+   auto=1
+
+## ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
+
+[core]
+   editor = emacs
+   excludesfile = ~/.gitignore_global
+   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+## ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
+
+[sendemail]
+        smtpencryption = tls
+;	smtpserver = <mail-server.example.com>
+;	smtpuser = <your-email@example.com>
+;	smtppass = <password>
+;	smtpserverport = <smtp-port>
+
+[web]
+	browser = firefox
+
+## ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
+
+## Configure Git with kdiff3: (best open-source diff/merge GUI)
+
+[difftool "kdiff3"]
+;    path = /usr/local/bin/kdiff3
+    trustExitCode = false
+
+[difftool]
+    prompt = false
+
+[diff]
+    tool = kdiff3
+
+[mergetool "kdiff3"]
+;    path =  /usr/local/bin/kdiff3
+    trustExitCode = false
+
+[mergetool]
+    keepBackup = false
+
+[merge]
+    tool = kdiff3
+
+## Configure GPG for Git on Mac OS:
+#  Note1: If you have a version of GnuPG between ~V2.1.1
+#         and V2.2, you may have gpg -AND- gpg2 binaries installed.
+#         This is a heads up for you to get the command below correct
+#         for your intended purposes.  Will it be gpg or gpg2?
+#         For all other versions (earlier and later) the binary is
+#         always "gpg".
+#  Note2: On my iMac I am up to GnuPG version 2.2.13 as of this edit...
+#	  Therefore I am back to the simple gpg now...  No more gpg2...
+
+[gpg]
+   program = gpg2
+
+[commit]
+   gpgsign = true
+
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  END: $TOOLS/dotfiles/MacOS/GIT/dot.gitconfig
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

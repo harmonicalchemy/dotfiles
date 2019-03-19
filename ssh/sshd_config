@@ -1,13 +1,19 @@
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# /etc/ssh/sshd_config - SSH Daemon Configurations...
-# Last Modified: 2018-003-11 - Alisha Awen Siren1@disroot.org
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  File:          /etc/ssh/sshd_config - SSH Server Daemon Conf - TEMPLATE
+#  Created:       2018-003-11
+#  Version:       V1.0 RC2  [Q1-2019]
+#  Author:        Alisha Awen Sheppard
+#  Git Username:  harmonicalchemy
+#  Ref:           https://www.openssh.com/manual.html
+#  Repo:          GitHub.com:harmonicalchemy/dotfiles.git
+#  Environment:   Any server machine that supports Open SSH (recent versions)...
 #
-# This is my Master SSH Daemon configuration file Template for my own VPSs
-# (currently running Ubuntu 16.04 with latest up-to-date SSH packages installed)
+#  This is my Master SSH Daemon configuration file Template for my own VPSs
+#  (currently running Ubuntu 16.04 with latest up-to-date SSH packages installed)
 #
-# Use this template when configuring a new SSH droplet on Digital Ocean or other
-# hosting provider.
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  Use this template when configuring a new SSH droplet on Digital Ocean or other
+#  VPS hosting provider.
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Use the stronger protocol 2. (If set to 1, change it!!)...
 Protocol 2
@@ -15,12 +21,8 @@ Protocol 2
 # Use public key authentication instead... 
 PubkeyAuthentication yes
 
-# Host Keys:
-# Note: Add host keys to user specific host sections
-# in ~/.ssh/config rather than here... Most likely you will
-# have one key for each different service to be more secure
-# through compartmentalizaton...
-# Enable ONLY the two Server Host Keys below default operations:
+# Server Host Keys:
+# Enable ONLY one of the two Server Host Keys below default operations:
 #HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
 
@@ -32,24 +34,17 @@ HostKey /etc/ssh/ssh_host_ed25519_key
 #   and only exported and loaded into the ssh-agent if needed... They
 #   are shreaded/deleted immediately after I am done using them...
 #   Good management of server host keys is critical and paramont!!!
-    IdentitiesOnly yes
+IdentitiesOnly yes
 
 # KexAlgorithms:
 # Default to single curve25519-sha256 for normal opearations on my own
-# servers.  You may need diffie-hellman-group-exchange-sah256
-# to connect to Github and/or Bitbucket with git for deploy-hooks...
-# if you use diffie-hellman group exchange you must also do the following:
-#   awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
-#   wc -l "${HOME}/moduli" # make sure there is something left
-#   mv "${HOME}/moduli" /etc/ssh/moduli
-# Then edit /etc/ssh/moduli     (you may have to create this file)
+# servers.
 KexAlgorithms curve25519-sha256@libssh.org
 #             ,diffie-hellman-group-exchange-sah256
 
 # HostKeyAlgotithms:
-#   Limit Default Host Key algorithms to ssh-ed22519.
-#   Some hosts may only accept ssh-rsa...
-    HostKeyAlgorithms ssh-ed25519
+#   Limit Default Host Key algorithms to ssh-ed22519 only on your own VPS.
+HostKeyAlgorithms ssh-ed25519
 
 # Cyphers: Since I am the only one connecting to this VPS, 
 # I am limiting this list to the single: chacha20-poly1305 cipher
@@ -75,18 +70,18 @@ PasswordAuthentication no
 # or Timed One Time Password (TOPT), e.g., yubikey, google auth, etc.  
 ChallengeResponseAuthentication no
 
-#   Hash names and addresses within ~/.ssh/known_hosts
-#   so they can only be read by ssh & sshd, but not 3rd parties.
-#   (This directive may only be for clients... need to verify)
+# Hash names and addresses within ~/.ssh/known_hosts
+# so they can only be read by ssh & sshd, but not 3rd parties.
+# (This directive may only be for clients... need to verify)
 #HashKnownHosts yes
 
 # The rest of these should all be disabled... (also may only be for clients)
-#    ForwardAgent no
-#    ForwardX11 no
+#ForwardAgent no
+#ForwardX11 no
 
 # NOTE: I have added more configurations to this file on my servers to increase
-# security hardening... I may add those here in this template a well later...
+# security hardening... I may add those here in this template as well, later...
 
-# END /etc/ssh/sshd_config
+# END: /etc/ssh/sshd_config
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

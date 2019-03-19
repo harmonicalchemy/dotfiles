@@ -1,0 +1,126 @@
+# -*- mode: gitignore; -*-
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  File:          $TOOLS/dotfiles/GIT/dot.gitignore_global
+#                 Global Git Ignore Template for all unix like Environments.
+#                 Listed below will be globally ignored by git for all local
+#                 repositories... This file is defined within global .gitconfig
+#  Created:       2019-002-21
+#  Version:       V1.0 RC2  [Q1-2019]
+#  Author:        Alisha Awen Sheppard
+#  Git Username:  harmonicalchemy
+#  Ref:           https://github.com/github/gitignore
+#  Repo:          Github.com:harmonicalchemy/dotfiles.git
+#  Environment:   Pretty much anywhere git can run... ;-)
+#
+#  Usage:         Symlink this file from your $HOME directory:
+#
+#    $> ln -s $TOOLS/dotfiles/GIT/dot.gitignore_global $HOME/.gitignore_global
+#
+#  Change Log: (descending chronological order)
+#
+#    2019-002-21 - Alisha Awen siren1@disroot.org
+#      Revamped this file to be part of my new dotfiles git repository.
+#      Also added a Blender related backup file to ignore...
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+
+# Packages #
+############
+# it's bette to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+
+# Password Files #
+##################
+*.vault_pass
+
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+
+# Emacs #
+#########
+*~
+\#*\#
+\#.*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+
+# directory configuration
+.dir-locals.el
+
+# network security
+/network-security.data
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Misc. files        #
+######################
+*.blend1

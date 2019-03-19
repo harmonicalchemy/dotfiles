@@ -1,13 +1,30 @@
-# List of allowed ssh keys.  Only keys present in this file are used
-# in the SSH protocol.  The ssh-add tool may add new entries to this
-# file to enable them; you may also add them manually.  Comment
-# lines, like this one, as well as empty lines are ignored.  Lines do
-# have a certain length limit but this is not serious limitation as
-# the format of the entries is fixed and checked by gpg-agent. A
-# non-comment line starts with optional white spaces, followed by the
-# keygrip of the key given as 40 hex digits, optionally followed by a
-# caching TTL in seconds, and another optional field for arbitrary
-# flags.   Prepend the keygrip with an '!' mark to disable it.
+# -*- mode: conf -*-
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+#  File:          $HOME/.gnupg/gpg-agent.conf - TEMPLATE
+#  Created:       2017-004-10 
+#  Version:       V1.0 RC2  [Q1-2019]
+#  Author:        Alisha Awen Sheppard - Siren1@disroot.org
+#  Git Username:  harmonicalchemy
+#  Ref:           https://www.gnupg.org/software/index.html
+#  Repo:          Github.com:harmonicalchemy/dotfiles.git
+#  Environment:   GnuPG Version 2 on Mac OS only
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+
+# List of allowed ssh keys.  Only keys present in this file are used in the SSH
+# protocol.  The ssh-add tool may add new entries to this file to enable them...
+# You may also add them manually.  Comment lines, like this one, as well as empty
+# lines are ignored.  Lines do have a certain length limit but this is not serious
+# limitation as the format of the entries is fixed and checked by gpg-agent. A
+# non-comment line starts with optional white spaces, followed by the keygrip of
+# the key given as 40 hex digits, optionally followed by a caching TTL in seconds,
+# and another optional field for arbitrary flags.  Prepend the keygrip with an '!'
+# mark to disable it.
 #
-# Authentication subkey keygrip:
+# 1. Authentication subkey keygrip:
 00005555AAAAFFFF00005555AAAAFFFF00005555
+# 2. (add keys as needed)
+!00005555AAAAFFFF00005555AAAAFFFF00005555
+# 3. (add keys as needed)
+!00005555AAAAFFFF00005555AAAAFFFF00005555
+# 4. (etc...)
+!00005555AAAAFFFF00005555AAAAFFFF00005555

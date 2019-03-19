@@ -4,7 +4,7 @@
 
 This directory contains example **SSH config** files which reflect the best practice methods from top security experts in the field.  In particular, [**Stribika's: The secure shell**](https://stribika.github.io/2015/01/04/secure-secure-shell.html), and his [**Github wiki**](https://github.com/stribika/stribika.github.io/wiki/Secure-Secure-Shell) where many other experts have contributed results of their own independent research.
 
-I have written and continually update a document titled: **OpenSSH Configuration & Management** a `PDF` file which may also be included within this directory once I have a good draft for publishing.  Currently I am using it while I get my own configurations debugged and ready for real-world use.  All of these files are actually not ready for real-world use yet.  When they are ready, this file as well as: **dotfiles** project's main `README.md` will be updated to reflect that status.
+I have written and continually update a document titled: **OpenSSH Configuration & Management** a `PDF` file which may also be included within this directory once I have a good draft for publishing. That may be a while because I keep updating that document as I find new things to include there.  Many of these files are actually not ready for public use yet. This project is currently in beta.
 
 **The configuration files:** `ssh_config` _(system wide configuration file: `/etc/ssh/ssh_config`)_ & `config` _(user's home directory configuration file: `$HOME/.ssh/config`)_ are used to separate Global `SSH` configurations from special-case configurations.
 
@@ -44,11 +44,11 @@ If you only have a few hosts that don't match these restrictive global settings,
 Other possible settings are also listed _(ordered by decreasing security strength)_ within the comments above each `ssh-keyword~directive` to make it easier for you to choose from if you need to.  These alternate settings are also fine to use _(with a bit lesser strength)_.  Non of the suggested settings listed within the comments of `ssh_config` are considered unsafe to use. 
 
 >     
-**Warning:** There are many Articles/Tutorials on the web showing configuration examples that are known to be unsafe!  Most of those were written before 2013 and the **_Snowden files_**.  But many are current articles _(written by authors who don't care about security all that much, or are just **unaware**)_ .  Beware!
+**Warning:** There are many Articles/Tutorials on the web showing configuration examples that are known to be unsafe!  Most of those were written before 2013 and the **_Snowden files_**.  But many are current articles _(written by authors who don't care about security all that much, or are just **unaware**)_ .  Beware! As time goes on and more dangerous exploits hit the news, this lazy cultural attitude about security issues will most likely change... (and already is since the beginning of 2018)
 
 Try limiting your global configuration for ALL hosts to the single most secure algorithms first...  Then only if absolutely necessary, add other less strong algorithms one by one until you get things connecting successfully.
 
 If you have to enable `diffie-hellman-group-exchange-sha256`, that also requires the creation of another configuration file...  See the comments under `KexAlgotithms:` in the example `sshd_config` file within this directory for instructions...  This same instruction can be found near the top of the example `config` file as well...
 
-Happy con-fog-uring and debugging! _(use `ssh -v` option a lot until you get it workng perfectly)_...  Then go celebrate the fruits of your hard work!!! <3 <3 <3 Alisha ;-)
+Happy con-fog-uring and debugging! _(use `ssh -v` option a lot until you get it working perfectly)_...  Then go celebrate the fruits of your hard work!!! :purple_heart: Alisha 
 

@@ -1,29 +1,38 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# /etc/ssh/ssh_config - Generic System Wide client SSH Configurations...
-# Last Modified: 2018-March-02 - Alisha Awen Siren1@disroot.org
+#  File:          /etc/ssh/ssh_config - TEMPLATE
+#  Created:       2018-003-02
+#  Version:       V1.0 RC2  [Q1-2019]
+#  Author:        Alisha Awen Sheppard
+#  Git Username:  harmonicalchemy
+#  Ref:           https://www.openssh.com/manual.html
+#  Repo:          GitHub.com:harmonicalchemy/dotfiles.git
+#  Environment:   Any machine that supports Open SSH (recent versions)...
 #
-# This file could be added to a template that sets up the root files on
-# any unix/bsd/Linux compatable OS you need to build for either local
-# development, Personal Computer, or web server...  In addition you could
-# simply add everything below to the bottom of your $HOME/.ssh/config file.
+#  Generic System Wide client SSH Configurations...
+#
+#  This file could be used as your system wide SSH config file on
+#  any unix/bsd/Linux compatible OS you need to build on a PC for local
+#  development, etc...  In addition you could simply copy everything below to
+#  the bottom of your $HOME/.ssh/config file.  Open SSH does not care as long
+#  as it is contained in one of the files that Open SSH parses by default...
 # 
-# Note: The OpenSSH configuration parsor takes the first value for any
-# directive it finds: (first: from the command line, second: from local
-# $HOME/.ssh/config, and third: from this system wide /etc/ssh/ssh_config file
-# which is used by ALL local user accounts intended for the OS your are building.
+#  Note: The Open SSH configuration parser takes the first value for any
+#  directive it finds: (first: from the command line, second: from local
+#  $HOME/.ssh/config, and third: from this system wide /etc/ssh/ssh_config file
+#  which is used by ALL local user accounts intended for the OS your are building.
 #
-# If the configuration parsor finds a duplicate keyword configuration directive
-# set later it will ignore it... Keep this in mind when you use these examples
-# to set up your own configurations. This generic section should be put last in
-# your chain allowing you to set directives for a single host specific purpose,
-# beforehand. Your specific HOST directives set earlier, will override any
-# generic settings made here for default connections... 
+#  If the configuration parser finds a duplicate keyword configuration directive
+#  set later it will ignore it... Keep this in mind when you use these examples
+#  to set up your own configurations. This generic section should be put last in
+#  your chain allowing you to set directives for a single host specific purpose,
+#  beforehand. Your specific HOST directives set earlier, will override any
+#  generic settings made here for default connections... 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#####
+##
 # BEGIN Default Generic Host Section:
 # (copy this as the last section of ~/.ssh/config if you are doing this for
-# your home or work computer and have only one user account ont it besides root.
+# your home or work computer and have only one user account on it besides root.
 # Note: These will NOT override any duplicates set earlier, a behavior which may
 # be your intention.  If not, watch out, could be a bug! (read info in header)
 #
