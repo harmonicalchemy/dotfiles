@@ -93,8 +93,29 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     #####
 
     ##
-    # Top Level Machine Specific Exports:
+    # Export Linux specific $PATH:
+    #   NOTE1:  Update the single line Path definitions below, from other lines
+    #           that are sometimes programmatically added to the bottom of other
+    #           shell init files after installing things!  Don't let them get all
+    #           tangled up in different places! Keep them all here in one place!
+    #
+    #   NOTE2:  Make sure all /bin directory paths under `/user/local` occur BEFORE
+    #           `/usr/bin` directory paths within the export directive below.
+    #
+    #   NOTE3:  You may need to make adjustments to the default path exports below
+    #           depending on your flavor of unix, and whether you have some of the
+    #           packages/plugins/binaries/libraries installed in a different place.
+    #           But for most cases, the exports already defined below are the default
+    #           paths on Linux and Mac OS.  The .rbenv paths assume you installed
+    #           .rbenv and used it to install ruby. (change it if you don't want it)
+    ##
+
+    # Export Linux executable $PATH:
+    export PATH="$HOME/.bin:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:$PATH"
     
+    ##
+    # Top Level Machine Specific Exports:
+
     # Define Main GIT Home directory: (for all or most of your cloned git projects)
     export GIT=$HOME/000-GIT
 
@@ -126,11 +147,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     #export SFING="0x00005555AAAAFFFF00005555AAAAFFFF00005555"
     
     ##
-    # Setup Linux Specific Environment Paths: (both MANPATH and PATH)
-
-    # Export Linux executable $PATH:
-    export PATH="$HOME/.bin:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:$PATH"
-
     # Export Linux Manual $PATH:
     # TODO: Add this in later...
     
@@ -145,6 +161,28 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     #####
 
     ##
+    # Export Mac OS specific $PATH:
+    #   NOTE1:  Update the single line Path definitions below, from other lines
+    #           that are sometimes programmatically added to the bottom of other
+    #           shell init files after installing things!  Don't let them get all
+    #           tangled up in different places! Keep them all here in one place!
+    #
+    #   NOTE2:  Make sure all /bin directory paths under `/user/local` occur BEFORE
+    #           `/usr/bin` directory paths within the export directive below.  This
+    #           is mostly for the sake of Homebrew on Mac OS...
+    #
+    #   NOTE3:  You may need to make adjustments to the default path exports below
+    #           depending on your flavor of unix, and whether you have some of the
+    #           packages/plugins/binaries/libraries installed in a different place.
+    #           But for most cases, the exports already defined below are the default
+    #           paths on Linux and Mac OS.  The .rbenv paths assume you installed
+    #           .rbenv and used it to install ruby. (change it if you don't want it)
+    ##
+
+    # Export Mac OS specific $PATH: (This may be different for older versions of Mac OS)
+    export PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:/usr/X11/bin:/usr/local/opt/php@7.2/bin:/usr/local/opt/php@7.2/sbin:$PATH"
+    
+    ##
     # Top Level Machine Specific Exports:
     
     # Define Main GIT Home directory: (for all or most of your cloned git projects)
@@ -154,7 +192,23 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     export WWW=$HOME/Documents/DATA/WWW
 
     ##
+    # Define Path to Jack2 Repo:
+    export JACK='/Users/alisha/Documents/001-Harmonic-Alchemy-Productions/Resources/003-Music-Apps/Audio-Loop-Back-Apps/Jack-2/github.src.repo'
+
+    ##
     # Set Homebrew Cask app directory to user's: $HOME/Applications (not system apps)
+    export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+    
+    ##
+    # Setup Mac OS Environment Paths: (both MANPATH and PATH)    
+
+    # Export GNU Info Path: (This may be different for older versions of Mac OS)
+    export INFOPATH="/usr/share/info:/usr/share/man:/usr/local/opt/gpg/share/info:/usr/local/opt/gpg/share/man:/usr/local/opt/coreutils/libexec/gnuman"
+
+    # Export Manual Path: (This may be different for older versions of Mac OS)
+    export MANPATH="/usr/local/opt/coreutils/libexec/gnuman"
+
+    # Set Homebrew Cask app dir to ~/Applications (not system)
     export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
     ##
@@ -171,26 +225,11 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     gpg-connect-agent /bye
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     
-    ##
-    # Setup Mac OS Environment Paths: (both MANPATH and PATH)    
-
-    # Export Mac OS specific $PATH: (This may be different for older versions of Mac OS)
-    export PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:/usr/X11/bin:/usr/local/opt/php@7.2/bin:/usr/local/opt/php@7.2/sbin:$PATH"
-
-    # Export GNU Info Path: (This may be different for older versions of Mac OS)
-    export INFOPATH="/usr/share/info:/usr/share/man:/usr/local/opt/gpg/share/info:/usr/local/opt/gpg/share/man:/usr/local/opt/coreutils/libexec/gnuman"
-
-    # Export Manual Path: (This may be different for older versions of Mac OS)
-    export MANPATH="/usr/local/opt/coreutils/libexec/gnuman"
-
-    # Set Homebrew Cask app dir to ~/Applications (not system)
-    export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
-    
     #####
     # END: Mac OS Specific Configs...
     #####
     
-else
+#else
 
     ##### 
     # Unknown OS? Huh? LOL! No harm done as the rest will stick... ;-)
@@ -229,6 +268,83 @@ export PD=$GIT/Gen-Dat/personal-docs
 
 # Define Global Path to your "Personal Templates" home Directory:
 export PT=$GIT/Doc-Templates/Personal-templates
+
+# Define MWM WWW home directory:
+export MWM=$WWW/MWM
+
+# Define MWM-Clients WWW home directory:
+export MWMC=$WWW/MWM-Clients
+
+# Define MWM devOps home directory:
+export MWMD=$WWW/00.devOps
+
+# Define Sustainable Orcas Island (SOI) home directory:
+export SOI=$MWM/SustainableOrcasIsland.org
+
+# Define Global Path to HAP WWW home directory:
+export HAP=$WWW/HAP
+
+# Define Global Path to Open Media Arts Network (OMAN) WWW home directory:
+export OMAN=$HAP/OpenMediaArtsNetwork.org
+
+# Define Global Path to Grav Base Parent Directory: (contains all required Grav repos)
+export GB=$MWMD/00.Grav/grav-base
+
+# Define Global Path to my fork of: getgrav/grav on Github:harmonicalchemy
+export GRAV=$GB/grav
+
+# Define Global Path to Grav/Gantry 5 website Skeleton (YAGGS) home Directory:
+export YAGGS=$MWMD/00.Grav/YAGGS
+
+# Define Global Path to Roots WP R&D Project home Directory: (Trellis, Bedrock, Sage)
+export RWP=$MWMD/01.Roots-WP-Projects
+
+# Define Global Path to Private .pDotfiles (Bitbucket)
+export PDF=$TOOLS/pDotfiles
+
+# Define Global Path to HAP-Research home Directory:
+export HAPR=$GIT/Scriv-Exports/HAP-Research
+
+# Define Global Path to MCM-Research home Directory:
+export MCMR=$GIT/Scriv-Exports/MCM-Research
+
+# Define Global Path to MWM-Research home Directory:
+export MWMR=$GIT/Scriv-Exports/MWM-Research
+
+# Define Global Path to Personal-Docs home Directory:
+export PDOC=$GIT/Scriv-Exports/Personal-Docs
+
+# Define Global Path to HAP-templates home Directory:
+export HAPT=$GIT/Doc-Templates/HAP-templates
+
+# Define Global Path to MCM-templates home Directory:
+export MCMT=$GIT/Doc-Templates/MCM-templates
+
+# Define Global Path to MWM-templates home Directory:
+export MWMT=$GIT/Doc-Templates/MWM-templates
+
+# Create New Grav Website Project Skeleton:
+# Usage:  $ makegrav $WWW/your-website-.com/public/
+#    This command alias only works when you are within:
+#    $GRAV.  (i.e., grav-base/grav/.)
+#    Provide the required path to your website's project
+#    directory with /public/ added to the end ('public' should
+#    be the directory name that your web server config uses for
+#    an Apache style "web-root" folder.  My VPS use "public"
+#    You could also for example: Generate side projects locally
+#    within one web project folder and call them: public1,
+#    public2, public3, (for testing etc.)
+# Results:
+#    The /public/ directory will be created within your web
+#    site's project folder and it will hold all the files
+#    needed to start up a bsre bones Grav website running
+#    the default Grav theme... (all ready for your next steps)
+alias makegrav='$GRAV/bin/grav new-project -s'
+
+# Start Grav Website server on "localhost" using System Router
+# mini php web server:  (this saves you from having to config your
+# local develop machine with Apache/Ngnix etc.)
+alias rung='php -S localhost:8000 system/router.php'
 
 ##
 # Load NVM: (Node.js, NPM) etc...

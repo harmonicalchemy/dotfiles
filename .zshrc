@@ -169,7 +169,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # END: Mac OS Specific Configs...
     #####
     
-else
+#else
 
     ##### 
     # Unknown OS? Huh? LOL! No harm done the rest will stick... ;-)
@@ -195,7 +195,7 @@ fi
 antigen bundle git
 antigen bundle git-extras
 antigen bundle git-flow
-antigen bundle heroku
+#antigen bundle heroku
 
 antigen bundle ssh-agent
 antigen bundle gpg-agent
@@ -286,7 +286,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # END Mac OS Specific Configs
     #####
     
-else
+#else
 
     ##### 
     # Unknown OS? Huh? LOL! No harm done the rest will stick... ;-)

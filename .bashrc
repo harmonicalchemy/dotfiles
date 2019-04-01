@@ -52,6 +52,14 @@ if [ -f /etc/bashrc ]; then
 fi
 
 ##
+# Source $HOME/.bash_common:
+# (common elements for both interactive & non-interactive bash shell sessions)
+# This file also loads $PATH for all platforms...
+if [ -f ~/.bash_common ]; then
+	. ~/.bash_common
+fi
+
+##
 # Set architecture flags to X86 64bit (all platforms):
 export ARCHFLAGS="-arch x86_64"
 ##
@@ -128,7 +136,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # END: Mac OS Specific Configs...
     #####
 
-else
+#else
 
     ##### 
     # Unknown OS? Huh? LOL! No harm done as the rest will stick... ;-)
@@ -157,14 +165,6 @@ alias cl="clear"
 
 # Use Emacs: (All you "vi" users feel free to change this... lol)
 export EDITOR='emacs'
-
-##
-# Source $HOME/.bash_common:
-# (common elements for both interactive & non-interactive bash shell sessions)
-# This file also loads $PATH for all platforms...
-if [ -f ~/.bash_common ]; then
-	. ~/.bash_common
-fi
 
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  END $HOME/.bashrc
