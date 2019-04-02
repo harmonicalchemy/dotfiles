@@ -67,25 +67,6 @@ export ARCHFLAGS="-arch x86_64"
 #  BEGIN: OS Specific Definitions Section
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-##                 **** Info about Managing Path Definitions ****
-#
-#  NOTE1: Update the single line Path definitions below, from other lines that
-#         are sometimes programmatically added to the bottom of other shell init
-#         files after installing things!  Don't let them get all tangled up in
-#         different places! Keep them all here in one place!
-#
-#  NOTE2: Make sure all /bin directory paths under `/user/local` occur BEFORE
-#         `/usr/bin` directory paths within the export directive below.  This
-#         is mostly for the sake of Homebrew on Mac OS...
-#
-#  NOTE3: You may need to make adjustments to the default path exports below
-#         depending on your flavor of unix, and whether you have some of the
-#         packages/plugins/binaries/libraries installed in a different place.
-#         But for most cases, the exports already defined below are the default
-#         paths on Linux and Mac OS.  The .rbenv paths assume you installed
-#         .rbenv and used it to install ruby. (change it if you don't want it)
-##
-
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
     #####
