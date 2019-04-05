@@ -3,12 +3,11 @@
 #  File:          $TOOLS/dotfiles/GIT/dot.gitconfig (Template)
 #                 Global git configurations for Linux Environments.
 #  Created:       2019-002-21
-#  Version:       V1.0 RC2  [Q1-2019]
 #  Author:        Alisha Awen Sheppard
 #  Git Username:  harmonicalchemy
 #  Ref:           https://git-scm.com/docs/git-config
 #  Repo:          Github.com:harmonicalchemy/dotfiles.git
-#  Environment:   Linux only... (not hosted VPS or Mac OS)
+#  Environment:   Linux, BSD only... (not Mac OS or hosted VPS)
 #  Note:          ('#' or ';' are both comments)
 #
 #  This config file assumes Emacs as your default editor... Change that
@@ -19,9 +18,9 @@
 #  configurations).  This gitconfig file is intended for non server Linux or
 #  possibly BSD based (not Mac OS) machines only.
 #
-#  Usage:         Symlink this file from your $HOME directory:
+#  Usage: Symlink this file from your $HOME directory:
 #
-#                 $HOME> ln -s $TOOLS/dotfiles/GIT/dot.gitconfig $HOME/.gitconfig
+#    $HOME> ln -s $TOOLS/dotfiles/GIT/dot.gitconfig $HOME/.gitconfig
 #
 #  Change Log: (descending chronological order)
 #

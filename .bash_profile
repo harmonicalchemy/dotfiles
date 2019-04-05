@@ -1,25 +1,29 @@
 # -*- mode: sh -*-
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  $HOME/.bash_profile - Multiplatform Bash Configurations for Login (interactive)
-#                        _AND_ Non Interactive Shells.
+#  File:          $HOME/.bash_profile
+#                 Multiplatform Bash Configurations for Non Interactive Shells,
+#                 _AND_ Login (interactive) Shells.
+#  Created:       2019-002-16
+#  Author:        Alisha Awen Sheppard
+#  Git Username:  harmonicalchemy
+#  Ref:           https://www.gnu.org/software/bash/
+#  Repo:          Github.com:harmonicalchemy/dotfiles.git
+#  Environment:   Linux, BSD, (Qubes 4.0 App VMs) and Mac OS
+#                 (not for hosted VPS or bare metal servers)
 #
-#  Author:   Alisha Awen Sheppard - siren1@disroot.org
-#  Created:  2019-002-16
+#  This config file is only sourced by BASH when your session is non-interactive
+#  (e.g., shell script invoked, etc.) _OR_ it is a human interactive login
+#  session, either remotely from another machine or locally, by using something
+#  like an X11 virtual terminal or web-client which is basically the same thing
+#  as a remote login, from outside (above) the "shell" layer of the OS.  Because
+#  of this "Born Again Satanic-Hell rule" (lol ;-), I created $HOME/.bash_common
+#  which is sourced from both $HOME./bashrc & this $HOME/.bash_profile.  Using
+#  your own $HOME/.bash_common is the preferred best-practice method.  An
+#  alternate method that "a-lot-of-guys" (including me in the past) do of
+#  sourcing $HOME/.bashrc from $HOME/.bash_profile can cause many problems!
+#  I learned the "hard" way...
 #
-#  Note1:    This file is only read in (sourced) by Bash when your session is
-#            non-interactive (sh script invoked etc.) or a human interactive
-#            login session.  (i.e., you are logging in, either remotely from
-#            another machine or using something like an X11 virtual terminal etc.
-#            which is basically the same thing as a remote login, from outside
-#            (above) the "shell" layer of the OS.  Because of this "Born
-#            Again Satanic-Hell rule" (lol ;-), I created $HOME/.bash_common
-#            which is sourced from both $HOME./bashrc & this $HOME/.bash_profile.
-#            Using your own $HOME/.bash_common is the preferred best-practice
-#            method.  An alternate method that "a-lot-of-guys" (including me in
-#            the past) do of sourcing $HOME/.bashrc from $HOME/.bash_profile
-#            can cause many problems!  I learned the "hard" way...
-#
-#  Note2:    If you have a legacy .profile file in your $HOME directory,
+#  Note1:    If you have a legacy .profile file in your $HOME directory,
 #            BASH will source it if it does not find any such .bash_profile in
 #            there! ".profile" comes from the "wicked-old-days" I remember ;-)  
 #            It's still around only because BASH includes it for backward

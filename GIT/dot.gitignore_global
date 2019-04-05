@@ -5,16 +5,15 @@
 #                 Listed below will be globally ignored by git for all local
 #                 repositories... This file is defined within global .gitconfig
 #  Created:       2019-002-21
-#  Version:       V1.0 RC2  [Q1-2019]
 #  Author:        Alisha Awen Sheppard
 #  Git Username:  harmonicalchemy
 #  Ref:           https://github.com/github/gitignore
 #  Repo:          Github.com:harmonicalchemy/dotfiles.git
 #  Environment:   Pretty much anywhere git can run... ;-)
 #
-#  Usage:         Symlink this file from your $HOME directory:
+#  Usage: Symlink this file from your $HOME directory:
 #
-#    $> ln -s $TOOLS/dotfiles/GIT/dot.gitignore_global $HOME/.gitignore_global
+#    $HOME> ln -s $TOOLS/dotfiles/GIT/dot.gitignore_global $HOME/.gitignore_global
 #
 #  Change Log: (descending chronological order)
 #

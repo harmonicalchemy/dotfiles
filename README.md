@@ -1,4 +1,4 @@
-# Harmonic Alchemy .dotfiles - V1.0 RC2  [Q1-2019]
+# Harmonic Alchemy .dotfiles - V1.0 RC3  [Q2-2019]
 
 (`.dotfiles` & `.conf` files for `MacOS` & other `nx` environments)
 

@@ -1,23 +1,32 @@
 # -*- mode: sh -*-
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  $HOME/.bash_common - Common definitions for both ~/.bash_profile and ~/.bashrc
+#  File:          $HOME/.bash_common
+#                 Common definitions for both ~/.bash_profile and ~/.bashrc        
+#  Created:       2019-002-16
+#  Author:        Alisha Awen Sheppard
+#  Git Username:  harmonicalchemy
+#  Ref:           https://www.gnu.org/software/bash/
+#  Repo:          Github.com:harmonicalchemy/dotfiles.git
+#  Environment:   Linux, BSD, (Qubes 4.0 App VMs) and Mac OS
+#                 (not for hosted VPS or bare metal servers)
 #
-#  Author:   Alisha Awen Sheppard - siren1@disroot.org
-#  Created:  2019-002-16
+#  This config file is sourced by both $HOME/.bashrc & $HOME/.bash_profile.
+#  Using a single file to source common configurations across all environments
+#  represents the best-practice method to get proper definitions defined and
+#  exported within Interactive, Non-interactive, and Login shell sessions alike.
+#  Other methods are not recommended and could cause problems.  On Stackoverflow,
+#  I know "a-lot-of-guys" are sourcing $HOME/.bashrc within: $HOME/.bash_profile,
+#  (and I have done so as well in the past) but experts and the Bash manual all
+#  warn that this can cause problems with unwanted output to stdout...  Doing it 
+#  that way will break the non-interactivity of rsync as well as many other
+#  things! You will need non-interactive rsync to automate the deployment/updates
+#  of your websites!
 #
-#  Note1:    This file is sourced by both $HOME/.bashrc & $HOME/.bash_profile.
-#            This is the best-practice method to to get common definitions
-#            defined and exported within Interactive, Non-interactive, and Login     
-#            shell sessions.  Other methods are not recommended and could cause 
-#            problems.  On Stackoverflow, I know "a-lot-of-guys" are sourcing
-#            $HOME/.bashrc within: $HOME/.bash_profile, (and I have done so as
-#            well in the past) but experts and the Bash manual all warn that this
-#            can cause problems with unwanted output to stdout...  Doing it that
-#            way will break the non-interactivity of rsync as well as many other
-#            things! You will need non-interactive rsync to automate the
-#            deployment/updates of your websites!
+#  Usage:  Symlink this file from your $HOME directory:
 #
-#  Note2:    If you have a legacy .profile file in your $HOME directory,
+#          $HOME> ln -s $TOOLS/dotfiles/.bash_common $HOME/.bash_common
+#
+#  Note1:    If you have a legacy .profile file in your $HOME directory,
 #            BASH will source it if it does not find any such .bash_profile in
 #            there! ".profile" comes from the "wicked-old-days" I remember ;-)  
 #            It's still around only because BASH includes it for backward
@@ -28,10 +37,11 @@
 #            purpose!  The objective is to sail your merchant ship as fast as she
 #            can go...
 #
-#  Note3:    Adjust: "Top Level Machine Specific Exports:" sections below to fit
+#  Note2:    Adjust: "Top Level Machine Specific Exports:" sections below to fit
 #            your specific environment. ($HOME is universal by default). If $HOME
 #            is NOT defined by the system already (can't imagine that on unix)
 #            then you will have to define $HOME at the top here as well...
+#
 #
 #  Change Log: (descending chronological order)
 #
@@ -138,24 +148,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Top Level Machine Specific Exports:
         
     # Define Main GIT Home:
-    export GIT=$HOME/Documents/000-Alisha/000-GIT
+    export GIT=$HOME/000-GIT
 
     # Define Main WWW directory
-    export WWW=$HOME/Documents/DATA/WWW
-        
-    ##
-    # Define Path to Jack2 Repo:
-    export JACK='/Users/alisha/Documents/001-Harmonic-Alchemy-Productions/Resources/003-Music-Apps/Audio-Loop-Back-Apps/Jack-2/github.src.repo'
+    export WWW=$HOME/WWW
 
     ##
     # Set Homebrew Cask app dir to ~/Applications (not system)
     export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
-    ##
-    # Set Mono to use the assemblies from other Homebrew formulae
-    # (This was for running Windows based Games... I may not be using this.)
-    export MONO_GAC_PREFIX="/usr/local"
-    
     ##
     # Ensure GnuPG gets the output of the 'tty' command.
     GPG_TTY=$(tty)
@@ -211,89 +212,6 @@ export DF=$TOOLS/dotfiles
 # Define Global Path to your "Personal Docs" home Directory:
 export PD=$GIT/Gen-Dat/personal-docs
 
-# Define Global Path to your "Personal Templates" home Directory:
-export PT=$GIT/Doc-Templates/Personal-templates
-
-# Define MWM WWW home directory:
-export MWM=$WWW/MWM
-
-# Define MWM-Clients WWW home directory:
-export MWMC=$WWW/MWM-Clients
-
-# Define MWM devOps home directory:
-export MWMD=$WWW/00.devOps
-
-# Define Sustainable Orcas Island (SOI) home directory:
-export SOI=$MWM/SustainableOrcasIsland.org
-
-# Define Global Path to HAP WWW home directory:
-export HAP=$WWW/HAP
-
-# Define Global Path to Open Media Arts Network (OMAN) WWW home directory:
-export OMAN=$HAP/OpenMediaArtsNetwork.org
-
-# Define Global Path to Grav Base Parent Directory: (contains all required Grav repos)
-export GB=$MWMD/00.Grav/grav-base
-
-# Define Global Path to my fork of: getgrav/grav on Github:harmonicalchemy
-export GRAV=$GB/grav
-
-# Define Global Path to Grav/Gantry 5 website Skeleton (YAGGS) home Directory:
-export YAGGS=$MWMD/00.Grav/YAGGS
-
-# Define Global Path to Roots WP R&D Project home Directory: (Trellis, Bedrock, Sage)
-export RWP=$MWMD/01.Roots-WP-Projects
-
-# Define Global Path to Tools Presets home directory:
-export TOOLS=$GIT/Gen-Dat/tools-presets
-
-# Define Global Path to Private .pDotfiles (Bitbucket)
-export PDF=$TOOLS/pDotfiles
-
-# Define Global Path to HAP-Research home Directory:
-export HAPR=$GIT/Scriv-Exports/HAP-Research
-
-# Define Global Path to MCM-Research home Directory:
-export MCMR=$GIT/Scriv-Exports/MCM-Research
-
-# Define Global Path to MWM-Research home Directory:
-export MWMR=$GIT/Scriv-Exports/MWM-Research
-
-# Define Global Path to Personal-Docs home Directory:
-export PDOC=$GIT/Scriv-Exports/Personal-Docs
-
-# Define Global Path to HAP-templates home Directory:
-export HAPT=$GIT/Doc-Templates/HAP-templates
-
-# Define Global Path to MCM-templates home Directory:
-export MCMT=$GIT/Doc-Templates/MCM-templates
-
-# Define Global Path to MWM-templates home Directory:
-export MWMT=$GIT/Doc-Templates/MWM-templates
-
-# Create New Grav Website Project Skeleton:
-# Usage:  $ makegrav $WWW/your-website-.com/public/
-#    This command alias only works when you are within:
-#    $GRAV.  (i.e., grav-base/grav/.)
-#    Provide the required path to your website's project
-#    directory with /public/ added to the end ('public' should
-#    be the directory name that your web server config uses for
-#    an Apache style "web-root" folder.  My VPS use "public"
-#    You could also for example: Generate side projects locally
-#    within one web project folder and call them: public1,
-#    public2, public3, (for testing etc.)
-# Results:
-#    The /public/ directory will be created within your web
-#    site's project folder and it will hold all the files
-#    needed to start up a bsre bones Grav website running
-#    the default Grav theme... (all ready for your next steps)
-alias makegrav='$GRAV/bin/grav new-project -s'
-
-# Start Grav Website server on "localhost" using System Router
-# mini php web server:  (this saves you from having to config your
-# local develop machine with Apache/Ngnix etc.)
-alias rung='php -S localhost:8000 system/router.php'
-
 ##
 # Load NVM: (Node.js, NPM) etc...
 # NOTE: This assumes you cloned or installed 'creationix/nvm' from Github locally
@@ -304,7 +222,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 # Load NVM bash_completion:
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 
 ##
 # Load rbenv Ruby Version Management Tool:

@@ -1,15 +1,15 @@
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  File:          /etc/ssh/sshd_config - SSH Server Daemon Conf - TEMPLATE
+#  File:          /etc/ssh/sshd_config
+#                 SSH Server Daemon Configurations - TEMPLATE
 #  Created:       2018-003-11
-#  Version:       V1.0 RC2  [Q1-2019]
 #  Author:        Alisha Awen Sheppard
 #  Git Username:  harmonicalchemy
 #  Ref:           https://www.openssh.com/manual.html
 #  Repo:          GitHub.com:harmonicalchemy/dotfiles.git
 #  Environment:   Any server machine that supports Open SSH (recent versions)...
 #
-#  This is my Master SSH Daemon configuration file Template for my own VPSs
-#  (currently running Ubuntu 16.04 with latest up-to-date SSH packages installed)
+#  This is the Master SSH Daemon configuration file Template for personal VPSs
+#  (currently tested with Ubuntu 16.04 with latest up-to-date SSH packages installed)
 #
 #  Use this template when configuring a new SSH droplet on Digital Ocean or other
 #  VPS hosting provider.

@@ -1,7 +1,7 @@
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  File:          $HOME/.ssh/config - TEMPLATE
+#                 Local User's $HOME SSH Configurations...
 #  Created:       2018-003-11 
-#  Version:       V1.0 RC2  [Q1-2019]
 #  Author:        Alisha Awen Sheppard
 #  Git Username:  harmonicalchemy
 #  Ref:           https://www.openssh.com/manual.html
@@ -37,28 +37,30 @@
 #  configuration directive set later during it's parsig journey, it will ignore
 #  it... Keep this in mind when you use these examples to set up your own
 #  configurations.  Happy con-fog-uring and debugging! - Alisha ;-)
-#
-#  Specific Host Sections:
-#
-#  Note: For any HOST section below, if you have to set KexAlgorithms to:
-#        diffie-hellman-group-exchange-sha256, (custom DH with SHA2) you also
-#        need to do the following:
-#
-#    Open /etc/ssh/moduli if exists, and delete lines where the 5th column is
-#    less than 2000 as follows:
-#       $> awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
-#       $> wc -l "${HOME}/moduli"
-#           (make sure there is something left! if not forget this
-#            and skip below to create a new /etc/ssh/moduli)
-#       $> mv "${HOME}/moduli" /etc/ssh/moduli
-#
-#     If /etc/ssh/moduli does not exist, create it as follows:
-#       $> ssh-keygen -G /etc/ssh/moduli.all -b 4096
-#       $> ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
-#       $> mv /etc/ssh/moduli.safe /etc/ssh/moduli
-#       $> rm /etc/ssh/moduli.all
-#     This will take a while as it runs intensive calculations of rounds...
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+##
+# Specific Host Sections:
+#
+# Note: For any HOST section below, if you have to set KexAlgorithms to:
+#       diffie-hellman-group-exchange-sha256, (custom DH with SHA2) you also
+#       need to do the following:
+#
+#   Open /etc/ssh/moduli if exists, and delete lines where the 5th column is
+#   less than 2000 as follows:
+#      $> awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
+#      $> wc -l "${HOME}/moduli"
+#          (make sure there is something left! if not forget this
+#           and skip below to create a new /etc/ssh/moduli)
+#      $> mv "${HOME}/moduli" /etc/ssh/moduli
+#
+#    If /etc/ssh/moduli does not exist, create it as follows:
+#      $> ssh-keygen -G /etc/ssh/moduli.all -b 4096
+#      $> ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
+#      $> mv /etc/ssh/moduli.safe /etc/ssh/moduli
+#      $> rm /etc/ssh/moduli.all
+#    This will take a while as it runs intensive calculations of rounds...
+##
 
 #####
 # HOST Github.com:

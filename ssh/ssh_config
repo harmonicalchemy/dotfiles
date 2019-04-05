@@ -1,7 +1,6 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  File:          /etc/ssh/ssh_config - TEMPLATE
 #  Created:       2018-003-02
-#  Version:       V1.0 RC2  [Q1-2019]
 #  Author:        Alisha Awen Sheppard
 #  Git Username:  harmonicalchemy
 #  Ref:           https://www.openssh.com/manual.html
@@ -35,52 +34,46 @@
 # your home or work computer and have only one user account on it besides root.
 # Note: These will NOT override any duplicates set earlier, a behavior which may
 # be your intention.  If not, watch out, could be a bug! (read info in header)
-#
-# NOTE: Connection to my own VPS machines is set to as narrow and secure attack
-# surface as possible.  The default settings below reflect this strict nature.
-# Connection to other services may require overrides within their respective
-# HOST sections in order to negotiate a matching configuration with those
-# services.  Specific HOST sections are usually NOT set in /etc/ssh/ssh_config.
 ##
 HOST *
 
 # ALWAYS Use the stronger protocol 2!
-    Protocol 2
+  Protocol 2
 
 # Enable Public Key Authentication...
-    PubkeyAuthentication yes
+  PubkeyAuthentication yes
 
 # Key eXchange Algorithms:
 # Limit Key Exchange to: curve22519-sha256 only within this default HOST *
 # section...
-    KexAlgorithms curve25519-sha256@libssh.org
+  KexAlgorithms curve25519-sha256@libssh.org
 
 # Host Key Algorithms:
 # Limit HostKeyAlgorithms to: ssh-ed25519 only within this default HOST *
 # section...
-    HostKeyAlgorithms ssh-ed25519
+  HostKeyAlgorithms ssh-ed25519
 
 # Cyphers:
 # Limit Cyphers to: chacha20-poly1305@openssh.com only within this default
 # HOST * section...
-    Ciphers  chacha20-poly1305@openssh.com
+  Ciphers  chacha20-poly1305@openssh.com
 
 # Message Authentication Codes (MACs):
 # Limit MACs to: hmac-sha2-512 only within this default HOST * section...
-    MACs  hmac-sha2-512
+  MACs  hmac-sha2-512
 
 # IdentitiesOnly:
-    IdentitiesOnly yes
+  IdentitiesOnly yes
 
 # Challenge Response Authentication:
 # Enable Challenge Response Authentication only if you need to use One Time
 # Password (OTP), or Timed One Time Password (TOPT), e.g., yubikey, google auth,
 # etc.
-    ChallengeResponseAuthentication no
+  ChallengeResponseAuthentication no
 
 # General SSH configurations for tuning performance etc...
-    ServerAliveInterval 60
-    ServerAliveCountMax 30
+  ServerAliveInterval 60
+  ServerAliveCountMax 30
     
 # Display random—ASCII-art representation of remote host key fingerprint at
 # login & for unknown host keys to make it easier to recognize...
@@ -88,29 +81,31 @@ HOST *
 # connect to...  It would be better if the images were a real graphic rather
 # than ASCII art which is almost as difficult as recognizing the code itself.
 # Security at the expense of usability comes at the expense of security.
-    VisualHostKey yes
+  VisualHostKey yes
 
 # Hash names & addresses within ~/.ssh/known_hosts so they can only be read by
 # ssh & sshd, (no 3rd parties can read)
-    HashKnownHosts yes
+  HashKnownHosts yes
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # The rest of these should all be disabled...  They may be depreciated as well.
 # Use the -v (verbose) option when you connect to find out.  if you see a line
 # saying the option is depreciated, you can remove it from here to get rid of
-# that message.  UseRoaming has been depreciated since OpenSSH V7.0.  I keep it
-# here for reference, and also in the rare case I have to set up a machine with
-# an older version of SSH.  I will see it and remember to set it for that older
-# installed version of OpenSSH...
-    PasswordAuthentication no
-#    UseRoaming no
-    ForwardAgent no
-    ForwardX11 no
+# that message.  UseRoaming has been depreciated since OpenSSH V7.0. So you
+# no longer need to set it below to mitigate that famous bug!  I keep it
+# commented out in here for reference, and also in the rare case I might be
+# forced to to set up an older machine with an older version of SSH.
+# In that case,  I will see it and remember to set it to protect that older
+#  version of OpenSSH...
+  PasswordAuthentication no
+#  UseRoaming no
+  ForwardAgent no
+  ForwardX11 no
 
-##
-# END Default Generic Host Section:
 #####
-  
-# END /etc/ssh/ssh_config
+# END: Default Generic Host Section
+#####
+
+# END: /etc/ssh/ssh_config
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

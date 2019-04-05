@@ -3,8 +3,7 @@
 #  File:          $TOOLS/dotfiles/MacOS/GIT/dot.gitconfig (Template)
 #                 Global git configurations for Mac OS Environments.
 #  Created:       2019-002-21
-#  Version:       V1.0 RC2  [Q1-2019]
-#  Author:        Alisha Awen Sheppard - Siren1@disroot.org
+#  Author:        Alisha Awen Sheppard
 #  Git Username:  harmonicalchemy
 #  Ref:           https://git-scm.com/docs/git-config
 #  Repo:          Github.com:harmonicalchemy/dotfiles.git
@@ -20,25 +19,31 @@
 #  key fingerprint, etc..  Anything else you see below can be changed to your
 #  particular needs.
 #
-#  Usage:         Symlink this file from your $HOME directory:
+#  Usage:
+#    Symlink this file from your $HOME directory:
 #
-#           $> ln -s $TOOLS/pDotfiles/MacOS/GIT/dot.gitconfig $HOME/.gitconfig
+#      $HOME> ln -s $TOOLS/pDotfiles/MacOS/GIT/dot.gitconfig $HOME/.gitconfig
 #
 #  Change Log: (descending chronological order)
 #
 #    2019-002-21 - Alisha Awen siren1@disroot.org
-#      Revamped this file to work on my iMac which does not use Qubes Split GPG.
-#      This file is NOT used in my Qubes 4 environment or any remote hosted VPS
-#      environments.  I use different .gitconfig files for those use-cases...
+#      Revamped this file to work on an iMac which does not use Qubes Split GPG.
+#      This file is NOT for use on a Qubes 4 environment or any remote hosted VPS
+#      environments.  I provide different .gitconfig files for those use-cases...
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~~
 
 [user]
 	name = <Put Your PGP UID name here>
-	email = <your-email-address@example.com>
-	signingkey = 0x00005555AAAAFFFF00005555AAAAFFFF00005555
+	email = <Put Your PGP UID email@address here>
+	signingkey = 0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
 ##                  (fingerprint of your PGP signing subkey [S])
+
+;; Secret key fingerprint:      [SC]   0x5555AAAAFFFF00005555AAAAFFFF00005555AAAA
+;; Encript subkey fingerprint:   [E]   0xAAAAFFFF00005555AAAAFFFF00005555AAAAFFFF
+;; Sign subkey fingerprint:      [S]   0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
+;; Auth subkey finterprint:      [A]   0x00005555AAAAFFFF00005555AAAAFFFF00005555
 
 ## ~~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~~
 

@@ -1,31 +1,29 @@
 # -*- mode: sh -*-
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  $HOME/.bashrc - Multiplatform Bash Configurations for Non-Login Interactive
-#                  Shells ONLY...
+#  File:          $HOME/.bashrc
+#                 Multiplatform Bash Configurations for Non-Login Interactive
+#                 Shells ONLY...
+#  Created:       2014-006-09
+#  Author:        Alisha Awen Sheppard
+#  Git Username:  harmonicalchemy
+#  Ref:           https://www.gnu.org/software/bash/
+#  Repo:          Github.com:harmonicalchemy/dotfiles.git
+#  Environment:   Linux, BSD, (Qubes 4.0 App VMs) and Mac OS
+#                 (not for hosted VPS or bare metal servers)
 #
-#  Author:   Alisha Awen Sheppard - siren1@disroot.org
-#  Created:  Before 2014-006-09: I had to re-create this file from my dotfiles
-#            template on 2019-001-24. I used this a few years ago when I was
-#            still using the Bash shell but not sure of the exact creation
-#            date...  It's now multiplatform for Linux and Mac OS and possibly
-#            BSD flavors with a few tweaks.  Windows Cygwin support is not yet
-#            planned but could come later if there is a strong need...
+#  This config file is only sourced by BASH when your session is both "human
+#  interactive" and also non-login (i.e., you are invoking manually from the
+#  system's default Terminal.  It is not sourced when logging in, either remotely
+#  from another machine, or even locally from something like an X11 virtual
+#  terminal, browser, etc. which is basically the same thing as a remote login
+#  coming from the outside (above) the "shell" layer of the OS.  Because of this
+#  "Born Again Satanic-Hell rule" (lol ;-), I created $HOME/.bash_common which
+#  is sourced from both $HOME/.bash_profile & this $HOME./bashrc. Using your own
+#  $HOME/.bash_common is the preferred best-practice method.  An alternate method
+#  that "a-lot-of-guys" (including me in the past) do of sourcing $HOME/.bashrc
+#  from $HOME/.bash_profile can cause many problems!  I learned the "hard" way...
 #
-#  Note1:    This file is only read in (sourced) by BASH when your session is
-#            both "human interactive" and also non-login (i.e., you are invoking
-#            manually from the system's default Terminal.  It is not sourced
-#            when logging in, either remotely from another machine, or even 
-#            locally from something like an X11 virtual terminal, browser, etc.
-#            which is basically the same thing as a remote login coming from the
-#            outside (above) the "shell" layer of the OS.  Because of this "Born
-#            Again Satanic-Hell rule" (lol ;-), I created $HOME/.bash_common
-#            which is sourced from both $HOME/.bash_profile & this $HOME./bashrc.
-#            Using your own $HOME/.bash_common is the preferred best-practice
-#            method.  An alternate method that "a-lot-of-guys" (including me in
-#            the past) do of sourcing $HOME/.bashrc from $HOME/.bash_profile
-#            can cause many problems!  I learned the "hard" way...
-#
-#  Note2:    If you have a legacy .profile file in your $HOME directory,
+#  Note1:    If you have a legacy .profile file in your $HOME directory,
 #            BASH will source it if it does not find any such .bash_profile in
 #            there! ".profile" comes from the "wicked-old-days" I remember ;-)  
 #            It's still around only because BASH includes it for backward
@@ -39,11 +37,22 @@
 #  Change Log: (descending chronological order)
 #
 #    2019-002-14 - Alisha Awen siren1@disroot.org
-#       At this point this file is completely new. Most everthing was changed
-#       taken from .zshrc...  Then many things were removed and placed into:
+#       At this point this file is completely new again.  Most everthing was taken
+#       from .zshrc...  Then many things were removed and placed into:
 #       $HOME/.bash_common. I should probably change the creation date as well...
-#       Now I know why I as experiencing so many shell related problems on my
-#       old MacBook Pro from many years ago resulting in switching to Zsh. OMG!
+#       Now I know why I as experiencing so many shell related problems on
+#       my old MacBook Pro from many years ago resulting in switching to Zsh. OMG!
+#       This file is now  multiplatform for Linux and Mac OS and possibly other
+#       BSD flavors with a few tweaks.  Windows Cygwin support is not yet planned
+#       but could come later if there is a strong need...
+#
+#    2018-002-26 - Alisha Awen siren1@disroot.org
+#      Made this file generic and added it to my Github .dotfiles repository...
+#
+#    2014-006-09 - Alisha Awen siren1@disroot.org
+#       I copied this file from my old MacBook Pro when I was still using the
+#       Bash shell.  I was not sure of the exact creation date when I added
+#       this header to the top of this file...  
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Source System Wide Global Definitions bashrc (if it is present).

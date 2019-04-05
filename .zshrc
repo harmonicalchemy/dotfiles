@@ -1,12 +1,14 @@
 # -*- mode: sh -*-
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  $HOME/.zshrc - Multiplatform ZSH Configuration for Interactive Shells...
-#
-#  Author:     Alisha Awen Sheppard - siren1@disroot.org
-#  Created:    Before 2014-006-09: Note: Recently I had to re-create this file 
-#              from scratch so that creation date is more of a history date...
-#              My dotfiles version on Github will be replaced with this file once
-#              I get this running smoothly on all-platforms.
+#  File:          $HOME/.zshrc
+#                 Multiplatform ZSH Configuration for Interactive Shells...
+#  Created:       2017-004-23
+#  Author:        Alisha Awen Sheppard
+#  Git Username:  harmonicalchemy
+#  Ref:           https://www.zsh.org/
+#  Repo:          Github.com:harmonicalchemy/dotfiles.git
+#  Environment:   Linux, BSD, (Qubes 4.0 App VMs) and Mac OS
+#                 (not for hosted VPS or bare metal servers)
 #
 #  $HOME/.zshrc is sourced by ZSH at the start of an interactive shell session.  It 
 #  contains commands to set up aliases, functions, options, key bindings, etc.
@@ -42,7 +44,7 @@
 #      for making music back around 1995) ;-)
 #
 #    2019-002-14 - Alisha Awen siren1@disroot.org
-#      I have been troubleshooting Zsh problems on Mac OS for a wile... 
+#      I have been troubleshooting Zsh problems on Mac OS for a while... 
 #      First environment variables and now ZSH is not loading correctly...
 #      However, I believe I have a working Mac OS solution running now 
 #      (with band-aid).  Mac OS it will work fine as long as you start Emacs 
@@ -64,6 +66,14 @@
 #      (see below under Load Antigen Zsh Plugin Manager heading) Once all that
 #      has been updated, upgraded, if this is working well on Mac OS, I will
 #      then update my dotfiles repository (get all this working privately first)
+#
+#    2018-002-26 - Alisha Awen siren1@disroot.org
+#      Made this file generic and added it to my Github .dotfiles repository...
+#
+#    2017-004-23 - Alisha Awen siren1@disroot.org
+#      This file was created by first copying my existing .bashrc file from my
+#      old MacBook Pro configuration and then modifying that for my newly
+#      installed ZSH environment on my new iMac.
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -317,5 +327,5 @@ alias cl="clear"
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  END ~/.zshrc
+#  END $HOME/.zshrc
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
