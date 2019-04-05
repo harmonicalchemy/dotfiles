@@ -110,30 +110,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
     # Define Main WWW directory: (for all or most of your web site and web app projects)
     export WWW=$HOME/WWW
-    
-    ##
-    # Qubes Split SSH:
-    # NOTE: This section is only used for Qubes OS machines that use Qubes App
-    #       Split SSH schemes...  If you do that, un-comment the lines in this
-    #       secton...
-    #
-    # Set next line to the ssh key vault you use:
-    #SSH_VAULT_VM="ssh-vault"
-    #
-    #if [ "$SSH_VAULT_VM" != "" ]; then
-    #  export SSH_AUTH_SOCK=~user/.SSH_AGENT_$SSH_VAULT_VM
-    #fi
-
-    ##
-    # Qubes Split GPG tweaks...
-    # NOTE: This section is only used for Qubes OS machines that use Qubes
-    #       Split GPG schemes...  If you do that, un-comment the lines below
-    #       within this secton and add your public key fingerprint:
-    #alias gpg="/usr/bin/gpg2"
-    #alias qgpg="qubes-gpg-client"
-    #export QUBES_GPG_DOMAIN="vault-pgp"
-    #export QUBES_GPG_AUTOACCEPT=86400
-    #export SFING="0x00005555AAAAFFFF00005555AAAAFFFF00005555"
         
     #####
     # END: Linux Specific Definitions...

@@ -121,12 +121,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     #antigen theme bira
     #antigen theme bureau
     #antigen theme miloshadzic
-
-    # Mimic Mac OS pbcopy functions:
-    # NOTE: First install xclip Package from your Linux distro to get this
-    #       feature...
-    alias pbcopy='xclip -sel clip'
-    alias pbpaste='xclip -o -sel clip'
     
     #####
     # END: Linux Specific Configs...
@@ -264,7 +258,13 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     #####
     # BEGIN Linux Specific Configs...
     #####
-    
+
+    # Mimic Mac OS pbcopy functions:
+    # NOTE: First install xclip Package from your Linux distro to get this
+    #       feature...
+    alias pbcopy='xclip -sel clip'
+    alias pbpaste='xclip -o -sel clip'
+        
     ## Custom Linux directory listings:
     #  I had to break this out of the global section.  Mac OS is different!
     ## On Mac you have to prefix ls with "g" (i.e. $ gls)
@@ -272,6 +272,30 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias ll="ls -l"
     alias la="ls -A"
 
+    ##
+    # Qubes Split SSH:
+    # NOTE: This section is only used for Qubes OS machines that use Qubes App
+    #       Split SSH schemes...  If you do that, un-comment the lines in this
+    #       secton...
+    
+    # Set next line to the ssh key vault you use:
+    #SSH_VAULT_VM="vault-ssh"
+
+    #if [ "$SSH_VAULT_VM" != "" ]; then
+    #	export SSH_AUTH_SOCK=~user/.SSH_AGENT_$SSH_VAULT_VM
+    #fi
+
+    ##
+    # Qubes Split GPG tweaks...
+    # NOTE: This section is only used for Qubes OS machines that use Qubes
+    #       Split GPG schemes...  If you do that, un-comment the lines below
+    #       within this secton and add your public key fingerprint:
+    #alias gpg="/usr/bin/gpg2"
+    #alias qgpg="qubes-gpg-client"
+    #export QUBES_GPG_DOMAIN="vault-pgp"
+    #export QUBES_GPG_AUTOACCEPT=86400
+    #export SFING="<Your-PGP-Primary-Key-Fingerprint>"
+    
     #####
     # END Linux Specific Configs
     #####

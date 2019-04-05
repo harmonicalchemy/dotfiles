@@ -55,6 +55,11 @@
 #       this header to the top of this file...  
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+##
+# Set architecture flags to X86 64bit (all platforms):
+export ARCHFLAGS="-arch x86_64"
+##
+
 # Source System Wide Global Definitions bashrc (if it is present).
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -67,11 +72,6 @@ fi
 if [ -f ~/.bash_common ]; then
 	. ~/.bash_common
 fi
-
-##
-# Set architecture flags to X86 64bit (all platforms):
-export ARCHFLAGS="-arch x86_64"
-##
 
 # Uncomment the following line if you DO NOT Want systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
