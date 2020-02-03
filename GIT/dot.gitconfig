@@ -1,51 +1,61 @@
 # -*- mode: gitconfig; -*-
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  File:          $TOOLS/dotfiles/GIT/dot.gitconfig (Template)
-#                 Global git configurations for Linux Environments.
-#  Created:       2019-002-21
-#  Author:        Alisha Awen Sheppard
-#  Git Username:  harmonicalchemy
-#  Ref:           https://git-scm.com/docs/git-config
-#  Repo:          Github.com:harmonicalchemy/dotfiles.git
-#  Environment:   Linux, BSD only... (not Mac OS or hosted VPS)
-#  Note:          ('#' or ';' are both comments)
-#
-#  This config file assumes Emacs as your default editor... Change that
-#  below to your preferred editor along with other obvious things like your public
-#  key fingerprint, etc..  Anything else you see below can be changed to your
-#  particular needs.  Also take a look at the other gitconfig files (currently
-#  for Mac OS, and later I will be adding a folder for remote server
-#  configurations).  This gitconfig file is intended for non server Linux or
-#  possibly BSD based (not Mac OS) machines only.
-#
-#  Usage: Symlink this file from your $HOME directory:
-#
-#    $HOME> ln -s $TOOLS/dotfiles/GIT/dot.gitconfig $HOME/.gitconfig
-#
-#  Change Log: (descending chronological order)
-#
-#    2019-002-21 - Alisha Awen Sheppard - siren1@disroot.org
-#      Revamped this file to work on any (non server) Linux machine where you 
-#      need to use git.  This file is NOT used in Mac OS or remote hosted VPS
-#      environments.  Those other environments have their own folders within
-#      this dotfiles project containing specific configurations for those
-#      platforms independently...
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## File:          $TOOLS/dotfiles/GIT/dot.gitconfig - TEMPLATE
+##                Global git configurations for Linux Environments.
+## Created:       2019-002-21
+## Modified:      2020-002-02
+## Author:        Alisha Awen - Siren1@HarmonicAlchemy.productions
+## Github User:   harmonicalchemy
+## Ref:           https://git-scm.com/docs/git-config
+## Repo:          Github.com:harmonicalchemy/dotfiles.git
+## Environment:   Linux, BSD or Qubes 4.0 App VMs only...
+##                (not hosted VPS or Mac OS)
+## Note:          ('#' or ';' are both comments)
+##
+## This config file assumes Emacs as your default editor... Change that
+## below to your preferred editor along with other obvious things like your public
+## key fingerprint, etc..  Anything else you see below can be changed to your
+## particular needs.  Also take a look at the other gitconfig files (currently
+## for Mac OS, and later I will be adding a folder for remote server
+## configurations).  This gitconfig file is intended for non server Linux or
+## possibly BSD based (not Mac OS) machines only.
+##
+## Usage: Symlink this file from your $HOME directory:
+##
+##   $HOME> ln -s $TOOLS/dotfiles/GIT/dot.gitconfig $HOME/.gitconfig
+##
+## Change Log: (descending chronological order)
+##
+##   2020-002-02 - Alisha Awen - Siren1@HarmonicAlchemy.productions
+##      Refreshed this file from my private .DOTFILES repo...
+##
+##   2019-011-09 - Alisha Awen - siren1@disroot.org
+##      Reviewed, and updated this file for posible security changes since the
+##      beginning of 2019, in prep for Harmonic Alchemy DOTFILES V2.0 Q4-2019.
+##
+##   2019-002-21 - Alisha Awen Sheppard - siren1@disroot.org
+##     Revamped this file to work on any (non server) Linux machine where you 
+##     need to use git.  This file is NOT used in Mac OS or remote hosted VPS
+##     environments.  Those other environments have their own folders within
+##     this dotfiles project containing specific configurations for those
+##     platforms independently...
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~~
+
+##            (fingerprint of your PGP signing subkey [S])
+## Secret key fingerprint:      [SC]   0x5555AAAAFFFF00005555AAAAFFFF00005555AAAA
+## Encript subkey fingerprint:   [E]   0xAAAAFFFF00005555AAAAFFFF00005555AAAAFFFF
+## Sign subkey fingerprint:      [S]   0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
+## Auth subkey finterprint:      [A]   0x00005555AAAAFFFF00005555AAAAFFFF00005555
 
 [user]
 	name = <Put Your PGP UID name here>
 	email = <Put Your PGP UID email@address here>
 	signingkey = 0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
-##                  (fingerprint of your PGP signing subkey [S])
 
-;; Secret key fingerprint:      [SC]   0x5555AAAAFFFF00005555AAAAFFFF00005555AAAA
-;; Encript subkey fingerprint:   [E]   0xAAAAFFFF00005555AAAAFFFF00005555AAAAFFFF
-;; Sign subkey fingerprint:      [S]   0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
-;; Auth subkey finterprint:      [A]   0x00005555AAAAFFFF00005555AAAAFFFF00005555
 
-## ~~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~~
 
 [color]
    ui = auto
@@ -55,14 +65,14 @@
 [color "branch"]
    current = cyan
    local = green
-   remote = magenta
-	
+   remote = yellow
+
 [color "status"]
    header = normal
    added = green
-   changed = red
-   untracked = cyan
-   nobranch = red
+   changed = yellow
+   untracked = red bold
+   nobranch = red reverse
 
 [color "diff"]
    meta = yellow bold
@@ -76,14 +86,14 @@
 [gc]
    auto=1
 
-## ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
 
 [core]
    editor = emacs
    excludesfile = ~/.gitignore_global
    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
-## ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
 
 [sendemail]
         smtpencryption = tls
@@ -95,64 +105,76 @@
 [web]
 	browser = firefox
 
-## ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
 
-## Configure Git with kdiff3: (best open-source diff/merge GUI)
-#  This assumes you have installed kdiff3 on your machine
-#  and it can be found on your $PATH...
-#  If you don't like kdiff3 change this to something else...
+###
+## Configure Git with kdiff3:
+## In my opinion, "Kdiff3 Is the best multiplatform open-source GUI based
+## diff/merge tool" in my opinion.. I tried them all! It looks and works the same
+## on all platforms. Normally for git I configure Emacs to use eDiff for
+## convienence. Having Ediff here allows me a plan B in-case Emacs gets hosed for
+## some reason... It's also nice to use if Emacs is not currently running,
+## (hardly ever lol). This file assumes you have installed kdiff3 on your machine
+## and it can be found on your $PATH... If you don't like kdiff3 change this to
+## something else...
 
 [difftool "kdiff3"]
-;    path = /usr/bin/kdiff3
-    trustExitCode = false
+;	path = /usr/bin/kdiff3
+	trustExitCode = false
 
 [difftool]
-    prompt = false
+	prompt = false
 
 [diff]
-    tool = kdiff3
+	tool = kdiff3
 
 [mergetool "kdiff3"]
-;    path =  /usr/bin/kdiff3
-    trustExitCode = false
+;	path =  /usr/bin/kdiff3
+	trustExitCode = false
 
 [mergetool]
-    keepBackup = false
+	keepBackup = false
 
 [merge]
-    tool = kdiff3
+	tool = kdiff3
 
+###
 ## Configure GPG for Git:
-#
-#  NOTE1: Geek Alert!  This section includes a configuration for anyone using
-#         the "Reasonably Secure" Qubes OS (the OS that Snowden currently uses ;-).
-#         If you are a Qubes user and would like to integrate git with Qubes Split GPG
-#         Enable "program = qubes-gpg-client-wrapper" instead of "gpg2" below...
-#         (you need to install Qubes Split GPG firt of course... ;-)
-#
-#  NOTE2: If you have a version of GnuPG between ~V2.1.1
-#         and V2.2, you may have gpg -AND- gpg2 binaries installed.
-#         This is a heads up for you to get the command below correct
-#         for your intended purposes.  Will it be gpg or gpg2?
-#         For all other versions (earlier and later) the binary is
-#         always "gpg".
-#
-#                       ****Security Warning!****
-#        Dont use GPG < V2.2 anymore...  When it comes to security
-#        all software needs to be as up to date as possible.  That rule applies
-#        most importantly to any security related software!  Stay up to date!
-#        Don't listen to anyone who says you can still be secure with older 
-#        versions... Maybe you can, but why take such a cheap risk?
-#
+##
+##  NOTE1: Geek Alert! The setting below assumes the configuration for anyone
+##         using the "Reasonably Secure" Qubes OS (the OS that Snowden currently
+##         uses ;-). If you are a Qubes user and would like to integrate git with
+##         Qubes Split GPG, Enable "program = qubes-gpg-client-wrapper" instead
+##         of "gpg" (or gpg2)below...
+##         (you need to install and configure Qubes Split GPG firt of course ;-)
+##
+##  NOTE2: If you have a version of GnuPG between ~V2.1.1
+##         and V2.2, you may have gpg -AND- gpg2 binaries installed.
+##         This is a heads up for you to get the command below correct
+##         for your intended purposes.  Will it be gpg or gpg2?
+##         For all other versions (earlier and later) the binary is
+##         always "gpg".
+##
+##  IMPORTANT NOTE!: **** New Security Warning Q4 2019 ****
+##        Dont use GPG < V2.2 anymore...  When it comes to security
+##        all software needs to be as up to date as possible.  That rule applies
+##        most importantly to any security related software!  Stay up to date!
+##        Don't listen to anyone who says you can still be secure with older 
+##        versions... Maybe you can, but why take such a cheap risk?
+##        That is my advise... After saying that, I believe Harmonic Alchemy
+##        DOTFILES will work with GnuPG v2.1.11 and later... If you can upgrade
+##        easily, I strongly recommend it!  You hvae been warned...
+##
+## For Qubes OS use qubes-gpg-client-wrapper...
+## Otherwise, change to this one below instead...
 
 [gpg]
-   program = gpg2
-;   program = qubes-gpg-client-wrapper
-;   For Qubes OS use qubes-gpg-client-wrapper instead...
+;	program = qubes-gpg-client-wrapper
+	program = gpg2
 	
 [commit]
-   gpgsign = true
+	gpgsign = true
 	
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  END: $TOOLS/pDotfiles/GIT/dot.gitconfig
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## END: $TOOLS/dotfiles/GIT/dot.gitconfig - TEMPLATE
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

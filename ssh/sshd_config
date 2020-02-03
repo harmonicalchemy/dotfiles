@@ -1,87 +1,170 @@
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  File:          /etc/ssh/sshd_config
-#                 SSH Server Daemon Configurations - TEMPLATE
-#  Created:       2018-003-11
-#  Author:        Alisha Awen Sheppard
-#  Git Username:  harmonicalchemy
-#  Ref:           https://www.openssh.com/manual.html
-#  Repo:          GitHub.com:harmonicalchemy/dotfiles.git
-#  Environment:   Any server machine that supports Open SSH (recent versions)...
-#
-#  This is the Master SSH Daemon configuration file Template for personal VPSs
-#  (currently tested with Ubuntu 16.04 with latest up-to-date SSH packages installed)
-#
-#  Use this template when configuring a new SSH droplet on Digital Ocean or other
-#  VPS hosting provider.
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# -*- mode: ssh-config -*-
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## File:          /etc/ssh/sshd_config - TEMPLATE
+##                SSH Server Daemon Configurations
+## Created:       2018-003-11
+## Updated:       2020-002-02 
+## Author:        Alisha Awen - siren1@disroot.org
+## GitHub User:   harmonicalchemy
+## Ref:           https://www.openssh.com/manual.html
+## Spec Sheet:    https://www.openssh.com/specs.html
+## Repo:          GitHub.com:harmonicalchemy/dotfiles.git
+## Environment:   Any up-to-date bare metal Server or VPS that supports Open SSH
+##
+## This is the Master SSH Daemon configuration file Template for hosted apps,  
+## web & media services, email servers, git servers, you name it... Anywhere SSH
+## is needed ;-)
+##
+## Currently tested on Ubuntu 16.04 (latest up-to-date SSH packages installed)
+##
+## UPDATE Q4-2019 - I will be testing and adjusting this on various other hosted
+## OSs in 2020 and will document the results within the Docs folder of this
+## repository. Stay tuned...
+##
+## Example Use-Case: Use this template to help with SSH tasks while provisioning
+## a new droplet on Digital Ocean or other similar VPS infrastructure hosting
+## provider. Good for setting up your back end Dev channels for a considerably
+## more secure web site project... ;-)
+##
+##                  *** OpenSSH CURRENT STATUS Q4-2019 ***
+##
+##     The latest version of OpenSSH V8.1 was released on 2019-10-09.
+##     Read the release file here: https://www.openssh.com/txt/release-8.1
+##     This release is generably availble from various package managers.
+##     It's Always Time to UPDATE your security infrastructure & tools!!!
+##     Don't be lazy when it comes to infoSec!  It's like a Jungle Sometimes,
+##     It makes me wonder how I keep from going under!  Ah-huh-huh-huh-huh ;-)
+##
+## As of Q4-2019 the following algorithms are still the strongest. They don't
+## depend on any suspicious Government tweaks, constants, etc. that can 
+## compromise the integrity of your OpenSSH configuration...
+##
+## Cyphers, Algorighms, key-exchange, etc...
+##
+##      Use ED25519 if at all possible, and when you cant, fall back on
+##      the traditional RSA 4096 method alone...  Don't use any ECDSA curve
+##      keys!!!
+##
+##      If you can avoid DH (Diffie-Hellman) alltogether, that is the easiest
+##      and smartest policy to follow in 2020 forward...  DH is easily
+##      compromized if not set up correctly... (as you can see in my previous
+##      notes sprinkled about... ;-)
+##
+##      Just Use Curve25519 and save your self a lot of pain, bait/switch, oops!
+##      moments... You will get this cloak and dagger game soon enough...
+##      All settings below have been updated for Q4-2019... Harmonic Alchemy
+##      .DOTFILES V2.0
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Use the stronger protocol 2. (If set to 1, change it!!)...
+###
+## Use the stronger protocol 2. (If set to 1, you are in big trouble! change it!)
+## I believe this may be the default now... but I get no warnings... so leave it.
+
 Protocol 2
 
-# Use public key authentication instead... 
+### Use public key authentication instead... 
+
 PubkeyAuthentication yes
 
-# Server Host Keys:
-# Enable ONLY one of the two Server Host Keys below default operations:
-#HostKey /etc/ssh/ssh_host_rsa_key
+###
+## Server Host Keys:
+##   Note: Add host keys to user specific host sections
+##   in ~/.ssh/config rather than here... Most likely you will
+##   have at least one key for each different service you use...
+##   This assumes you are following a more secure compartmentalizaton scheme...
+##   Enable ONLY the single Server Host Key listed below for default operations:
+
 HostKey /etc/ssh/ssh_host_ed25519_key
 
-# IdentitiesOnly:
-#   Set this to yes so that only the ID specified above will be used...
-#   ssh-agent may have others in memory, however I am also tuning my
-#   server to only load a single key into memory and sticking with the
-#   one that works... The rest will be safely stored in a keepass db,
-#   and only exported and loaded into the ssh-agent if needed... They
-#   are shreaded/deleted immediately after I am done using them...
-#   Good management of server host keys is critical and paramont!!!
+##   If you absolutely cannot use the above key for something, then only enable
+##   this second older option. (provided you created this key with the strongest
+##   options...
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+
+###
+## IdentitiesOnly:
+##   Set this to yes so that only the ID specified above will be used...
+##   ssh-agent may have others in memory, however I am also tuning my
+##   server to only load a single key into memory and sticking with the
+##   one that works... The rest will be safely stored in a keepass db,
+##   and only exported and loaded into the ssh-agent if needed... They
+##   are shreaded/deleted immediately after I am done using them...
+##   Good management of server host keys is critical and paramont!!!
+
 IdentitiesOnly yes
 
-# KexAlgorithms:
-# Default to single curve25519-sha256 for normal opearations on my own
-# servers.
-KexAlgorithms curve25519-sha256@libssh.org
-#             ,diffie-hellman-group-exchange-sah256
+###
+## KexAlgorithms:
+##   Default to single curve25519-sha256 for normal opearations on your
+##   servers.  You may need diffie-hellman-group-exchange-sah256
+##   to connect to Github and/or Bitbucket with git for deploy-hooks...
+##   if you use diffie-hellman group exchange you must also do the following:
+##   awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
+##   wc -l "${HOME}/moduli" ## make sure there is something left
+##   mv "${HOME}/moduli" /etc/ssh/moduli
+##   Then edit /etc/ssh/moduli     (you may have to create this file)
+##   But don't...  Find a better way or switch to a service with stronger
+##   security policies implemented...
 
-# HostKeyAlgotithms:
-#   Limit Default Host Key algorithms to ssh-ed22519 only on your own VPS.
+KexAlgorithms curve25519-sha256@libssh.org
+
+###
+## HostKeyAlgotithms:
+##   Limit Default Host Key algorithms to ssh-ed22519.
+##   Some hosts may only accept ssh-rsa...
+
 HostKeyAlgorithms ssh-ed25519
 
-# Cyphers: Since I am the only one connecting to this VPS, 
-# I am limiting this list to the single: chacha20-poly1305 cipher
-# Which is the strongest to date.  These two others are pretty 
-# strong and may be used optionally if needed (but see Update below!)
-#    aes256-gcm@openssh.com 
-#    aes256-ctr 
-# Update: According to Stribika: “SSH doesn’t encrypt packet sizes 
-# with any EtM algorithms. There is no way around this unless you 
-# can live with chacha20-poly1305 only.” So... I have no problem
-# Restricting my own VPS and connections to what's below... Fine ;-)
+###
+## Cyphers:
+##   Since I am the only one connecting to this VPS, 
+##   I am limiting this list to the single: chacha20-poly1305 cipher
+##   Which is the strongest to date.  These two others are pretty 
+##   strong and may be used optionally if needed (but see Update below!)
+##     aes256-gcm@openssh.com 
+##     aes256-ctr 
+## Update: According to Stribika: “SSH doesn’t encrypt packet sizes 
+##   with any EtM algorithms. There is no way around this unless you 
+##   can live with chacha20-poly1305 only.” So... I have no problem
+##   Restricting my own VPS and connections to what's below... Fine ;-)
+
 Ciphers chacha20-poly1305@openssh.com
 
-# Message Authentication Codes: (these will provide best integrity)
-MACs hmac-sha2-512
-#    Start with the above, add sha2-256 later if needed...
+###
+## Message Authentication Codes: (these will provide best integrity)
+## Start with the above, add sha2-256 later if needed...
 
-# Disable password authentication... The ultimate first step!
-# Don’t do this without a working SSH keypair all ready. DOH! %~)
+MACs hmac-sha2-512
+
+###
+## Disable password authentication... The ultimate first step!
+## Don’t do this without a working SSH keypair all ready. DOH! %~)
+
 PasswordAuthentication no
 
-# Enable this next option only if you need to use One Time Password (OTP), 
-# or Timed One Time Password (TOPT), e.g., yubikey, google auth, etc.  
+###
+## Enable this next option only if you need to use One Time Password (OTP), 
+## or Timed One Time Password (TOPT), e.g., yubikey, google auth, etc.  
+
 ChallengeResponseAuthentication no
 
-# Hash names and addresses within ~/.ssh/known_hosts
-# so they can only be read by ssh & sshd, but not 3rd parties.
-# (This directive may only be for clients... need to verify)
+###
+## Hash names and addresses within ~/.ssh/known_hosts
+## so they can only be read by ssh & sshd, but not 3rd parties.
+## (This directive may only be for clients... need to verify)
+
 #HashKnownHosts yes
 
-# The rest of these should all be disabled... (also may only be for clients)
-#ForwardAgent no
-#ForwardX11 no
+###
+## The rest of these should all be disabled... (also may only be for clients)
+##    ForwardAgent no
+##    ForwardX11 no
 
-# NOTE: I have added more configurations to this file on my servers to increase
-# security hardening... I may add those here in this template as well, later...
+###
+## NOTE: I have added more configurations to this file on my servers to increase
+##       security hardening... I may add those here in this template later...
 
-# END: /etc/ssh/sshd_config
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## END: /etc/ssh/sshd_config - TEMPLATE
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

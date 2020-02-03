@@ -1,30 +1,42 @@
 # -*- mode: conf -*-
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
-#  File:          $HOME/.gnupg/sshcontrol - TEMPLATE
-#                 List of PGP keys allowed for SSH use...
-#  Created:       2017-004-10 
-#  Author:        Alisha Awen Sheppard
-#  Git Username:  harmonicalchemy
-#  Ref:           gnupg.org/documentation/manuals/gnupg/Agent-Configuration.html
-#  Repo:          Github.com:harmonicalchemy/dotfiles.git
-#  Environment:   GnuPG Version 2 on Mac OS only
-#
-#  This file is used when support for the secure shell agent protocol has been
-#  enabled (see option --enable-ssh-support in gpg-agent.conf). Only keys present
-#  within this file are used in the SSH protocol. (keys witin key-cards will also
-#  be used within SSH protocol if you are also using a key card)...
-#
-#  The ssh-add tool may be used to add new entries to this file; you may also add
-#  them manually below.  Comment lines, indicated by a leading hash mark, as well
-#  as empty lines are ignored. 
-#
-#  The only flag support is confirm. If this flag is found for a key, each use of
-#  the key will pop up a pinentry to confirm the use of that key. The flag is
-#  automatically set if a new key was loaded into gpg-agent using the option -c
-#  of the ssh-add command.
-#
-#  The keygrip may be prefixed with a ! to disable an entry. (as shown below)
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##  File:          $DOTFILES/MacOS/GnuPG/sshcontrol - TEMPLATE
+##                 List of PGP keys allowed for SSH use...
+##  Created:       2017-004-10 
+##  Updated:       2020-002-02 
+##  Author:        Alisha Awen - Siren1@HarmonicAlchemy.productions
+##  GitHub User:   harmonicalchemy
+##  Ref:           gnupg.org/documentation/manuals/gnupg/Agent-Configuration.html
+##  Repo:          Github.com:harmonicalchemy/dotfiles.git
+##  Environment:   GnuPG Version 2.1.11+ on Mac OS only...
+##
+##               **** IMPORTANT SECURITY NOTE Q4-2019! ****
+##
+##    Dont use GPG < V2.2 anymore...  When it comes to security
+##    all software needs to be as up to date as possible.  That rule applies
+##    most importantly to any security related software!  Stay up to date!
+##    Don't listen to anyone who says you can still be secure with older 
+##    versions... Maybe you can, but why take such a cheap risk?
+##    That is my advise... After saying that, I believe Harmonic Alchemy DOTFILES
+##    will still work with GnuPG v2.1.11 and later... However, if you can upgrade
+##    with out too much pain, I strongly recommend it!  You hvae been warned...
+##
+##  This file is used when support for the secure shell agent protocol has been
+##  enabled (see option --enable-ssh-support in gpg-agent.conf). Only keys present
+##  within this file are used in the SSH protocol. (keys witin key-cards will also
+##  be used within SSH protocol if you are also using a key card)...
+##
+##  The ssh-add tool may be used to add new entries to this file; you may also add
+##  them manually below.  Comment lines, indicated by a leading hash mark, as well
+##  as empty lines are ignored. 
+##
+##  The only flag support is confirm. If this flag is found for a key, each use of
+##  the key will pop up a pinentry to confirm the use of that key. The flag is
+##  automatically set if a new key was loaded into gpg-agent using the option -c
+##  of the ssh-add command.
+##
+##  The keygrip may be prefixed with a ! to disable an entry. (as shown below)
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ##
 # List of allowed ssh keys:

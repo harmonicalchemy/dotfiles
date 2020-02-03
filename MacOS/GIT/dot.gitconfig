@@ -1,92 +1,105 @@
 # -*- mode: gitconfig; -*-
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  File:          $TOOLS/dotfiles/MacOS/GIT/dot.gitconfig (Template)
-#                 Global git configurations for Mac OS Environments.
-#  Created:       2019-002-21
-#  Author:        Alisha Awen Sheppard
-#  Git Username:  harmonicalchemy
-#  Ref:           https://git-scm.com/docs/git-config
-#  Repo:          Github.com:harmonicalchemy/dotfiles.git
-#  Environment:   Mac OS only... (not for hosted VPS or Qubes environments)
-#  Note:          ('#' or ';' are both comments)
-#
-#  Actually there is not much difference between this spcific Mac OS .gitconfig
-#  and the master dotfiles/GIT/dot.gitconfig Template... Only paths to apps
-#  are different.  Pretty much everything else is identical...
-#
-#  This .gitconfig file assumes Emacs as your default editor... Change that
-#  below to your preferred editor along with other obvious things like your public
-#  key fingerprint, etc..  Anything else you see below can be changed to your
-#  particular needs.
-#
-#  Usage:
-#    Symlink this file from your $HOME directory:
-#
-#      $HOME> ln -s $TOOLS/pDotfiles/MacOS/GIT/dot.gitconfig $HOME/.gitconfig
-#
-#  Change Log: (descending chronological order)
-#
-#    2019-002-21 - Alisha Awen siren1@disroot.org
-#      Revamped this file to work on an iMac which does not use Qubes Split GPG.
-#      This file is NOT for use on a Qubes 4 environment or any remote hosted VPS
-#      environments.  I provide different .gitconfig files for those use-cases...
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## File:          $TOOLS/dotfiles/MacOS/GIT/dot.gitconfig - TEMPLATE
+##                Global git configurations for Mac OS Environments.
+## Created:       2019-002-21
+## Modified:      2020-002-02 
+## Author:        Alisha Awen - Siren1@HarmonicAlchemy.productions
+## GitHub User:   harmonicalchemy
+## Ref:           https://git-scm.com/docs/git-config
+## Repo:          Github.com:harmonicalchemy/dotfiles.git
+## Environment:   Mac OS only... (not for hosted VPS or Qubes environments)
+## Note:          ('#' or ';' are both comments)
+##
+## Actually there is not much difference between this spcific Mac OS .gitconfig
+## and the master dotfiles/GIT/dot.gitconfig Template... Only paths to apps
+## are different.  Pretty much everything else is identical...
+##
+## This .gitconfig file assumes Emacs as your default editor... Change that
+## below to your preferred editor along with other obvious things like your public
+## key fingerprint, etc..  Anything else you see below can be changed to your
+## particular needs. Fork the entire repo into a private local branch first...
+## I am working on a way so you won't have to fork in the future...
+## Scratching my head on the best way to do that...   Stay tuned...
+##
+## Usage:
+##    Symlink this file from your $HOME directory on your MacOS based machine:
+##    Do not do this on Linux or other OS!!! use the other one instead...
+##
+##      $HOME> ln -s $DOTFILES/MacOS/GIT/dot.gitconfig ~/.gitconfig
+##
+## Change Log: (descending chronological order)
+##
+## 2020-002-02 - Alisha Awen - siren1@HarmonicAlchemy.productions
+##     Refreshed this file from changes made to my private .DOTFILES repo
+##     Security DueDiligence up to Q1 2020 now...
+##
+## 2019-011-09 - Alisha Awen - siren1@disroot.org
+##     Reviewed, and updated this file for posible security changes since the
+##     beginning of 2019, in prep for Harmonic Alchemy DOTFILES V2.0 Q4-2019.
+##
+## 2019-002-21 - Alisha Awen siren1@disroot.org
+##     Revamped this file to work on an iMac which does not use Qubes Split GPG.
+##     This file is NOT for use on a Qubes 4 environment or any remote hosted VPS
+##     environments.  I provide different .gitconfig files for those use-cases...
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~~~ Identity ~~~~~~~~~~~~~~~~~~~~~~
+
+###            (Use fingerprint of your PGP signing subkey [S])
+## Secret key fingerprint:      [SC]   0x5555AAAAFFFF00005555AAAAFFFF00005555AAAA
+## Encript subkey fingerprint:   [E]   0xAAAAFFFF00005555AAAAFFFF00005555AAAAFFFF
+## Sign subkey fingerprint:      [S]   0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
+## Auth subkey finterprint:      [A]   0x00005555AAAAFFFF00005555AAAAFFFF00005555
 
 [user]
 	name = <Put Your PGP UID name here>
 	email = <Put Your PGP UID email@address here>
 	signingkey = 0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
-##                  (fingerprint of your PGP signing subkey [S])
 
-;; Secret key fingerprint:      [SC]   0x5555AAAAFFFF00005555AAAAFFFF00005555AAAA
-;; Encript subkey fingerprint:   [E]   0xAAAAFFFF00005555AAAAFFFF00005555AAAAFFFF
-;; Sign subkey fingerprint:      [S]   0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
-;; Auth subkey finterprint:      [A]   0x00005555AAAAFFFF00005555AAAAFFFF00005555
 
-## ~~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~~
 
 [color]
-   ui = auto
-;   interactive = auto
-;   diff = auto
+	ui = auto
+;	interactive = auto
+;	diff = auto
 
 [color "branch"]
-   current = cyan
-   local = green
-   remote = magenta
+	current = cyan
+	local = green
+	remote = magenta
 	
 [color "status"]
-   header = normal
-   added = green
-   changed = red
-   untracked = cyan
-   nobranch = red
+	header = normal
+	added = green
+	changed = red
+	untracked = cyan
+	nobranch = red
 
 [color "diff"]
-   meta = yellow bold
-   frag = magenta bold
-   old = red bold
-   new = green bold
-   whitespace = red reverse
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 	
 ## Cleanup unnecessary files and optimize local repo:
 
 [gc]
-   auto=1
+	auto=1
 
-## ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
 
 [core]
-   editor = emacs
-   excludesfile = ~/.gitignore_global
-   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	editor = emacs
+	excludesfile = ~/.gitignore_global
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
-## ~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
+###~~~~~~~~~~~~~~~~~~~~ Email and Web ~~~~~~~~~~~~~~~~~~
 
 [sendemail]
-        smtpencryption = tls
+	smtpencryption = tls
 ;	smtpserver = <mail-server.example.com>
 ;	smtpuser = <your-email@example.com>
 ;	smtppass = <password>
@@ -95,46 +108,63 @@
 [web]
 	browser = firefox
 
-## ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
+### ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
 
+###
 ## Configure Git with kdiff3: (best open-source diff/merge GUI)
 
+## This assumes you installed Kdiff3 via MacPorts...
+## If you used HomeBrew, uncomment the first path=/usr/...
+## and comment out the second path=/opt.,,
+
 [difftool "kdiff3"]
-;    path = /usr/local/bin/kdiff3
-    trustExitCode = false
+;	path = /usr/local/bin/kdiff3
+	path = /opt/local/bin/kdiff3
+	trustExitCode = false
 
 [difftool]
-    prompt = false
+	prompt = false
 
 [diff]
-    tool = kdiff3
+	tool = kdiff3
+	submodule = log
+
+## This assumes you installed Kdiff3 via MacPorts...
+## If you used HomeBrew, uncomment the first path=/usr/...
+## and comment out the second path=/opt.,,
 
 [mergetool "kdiff3"]
-;    path =  /usr/local/bin/kdiff3
-    trustExitCode = false
+;	path = /usr/local/bin/kdiff3
+	path = /opt/local/bin/kdiff3
+	trustExitCode = false
 
 [mergetool]
-    keepBackup = false
+	keepBackup = false
 
 [merge]
-    tool = kdiff3
+	tool = kdiff3
 
+###
 ## Configure GPG for Git on Mac OS:
-#  Note1: If you have a version of GnuPG between ~V2.1.1
-#         and V2.2, you may have gpg -AND- gpg2 binaries installed.
-#         This is a heads up for you to get the command below correct
-#         for your intended purposes.  Will it be gpg or gpg2?
-#         For all other versions (earlier and later) the binary is
-#         always "gpg".
-#  Note2: On my iMac I am up to GnuPG version 2.2.13 as of this edit...
-#	  Therefore I am back to the simple gpg now...  No more gpg2...
+## Note1: If you have a version of GnuPG between ~V2.1.1
+##        and V2.2, you may have gpg -AND- gpg2 binaries installed.
+##        This is a heads up for you to get the command below correct
+##        for your intended purposes.  Will it be gpg or gpg2?
+##        For all other versions (earlier and later) the binary is
+##        always "gpg".
+##
+## Note2: On my iMac I am up to GnuPG version 2.2.19 as of this edit...
+##	  Therefore I am back to the simple gpg now...  No more gpg2...
+##        I don't have any GnuPG 1 or older versions of GnuPG 2 installed.
+##        If you never intend to use gpg old versions anymore simply set an
+##        alias gpg="/path/to/latest-version/on/your/OS" and be done wiht it.
 
 [gpg]
-   program = gpg2
+	program = gpg
 
 [commit]
-   gpgsign = true
+	gpgsign = true
 
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+###~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  END: $TOOLS/dotfiles/MacOS/GIT/dot.gitconfig
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+###~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

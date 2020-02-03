@@ -1,29 +1,39 @@
 # -*- mode: gitignore; -*-
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  File:          $TOOLS/dotfiles/GIT/dot.gitignore_global
-#                 Global Git Ignore Template for all unix like Environments.
-#                 Listed below will be globally ignored by git for all local
-#                 repositories... This file is defined within global .gitconfig
-#  Created:       2019-002-21
-#  Author:        Alisha Awen Sheppard
-#  Git Username:  harmonicalchemy
-#  Ref:           https://github.com/github/gitignore
-#  Repo:          Github.com:harmonicalchemy/dotfiles.git
-#  Environment:   Pretty much anywhere git can run... ;-)
-#
-#  Usage: Symlink this file from your $HOME directory:
-#
-#    $HOME> ln -s $TOOLS/dotfiles/GIT/dot.gitignore_global $HOME/.gitignore_global
-#
-#  Change Log: (descending chronological order)
-#
-#    2019-002-21 - Alisha Awen siren1@disroot.org
-#      Revamped this file to be part of my new dotfiles git repository.
-#      Also added a Blender related backup file to ignore...
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## File:          $TOOLS/dotfiles/GIT/dot.gitignore_global
+##                Global Git Ignore Template for all unix like Environments.
+##                Listed below will be globally ignored by git for all local
+##                repositories... This file is defined within global .gitconfig
+## Created:       2019-002-21
+## Modified:      2020-002-02
+## Author:        Alisha Awen - Siren1@HarmonicAlchemy.productions
+## Github User:   harmonicalchemy
+## Ref:           https://github.com/github/gitignore
+## Repo:          Github.com:harmonicalchemy/dotfiles.git
+## Environment:   Pretty much anywhere git can run... ;-)
+##
+## Usage: Symlink this file from your $HOME directory:
+##
+##   $HOME> ln -s $TOOLS/dotfiles/GIT/dot.gitignore_global $HOME/.gitignore_global
+##
+## Change Log: (descending chronological order)
+##
+##   2020-002-02 - Alisha Awen - siren1@HarmonicAlchemy.productions
+##     Refreshed this file with changes from my private DOTFILES version.., 
+##
+##   2019-011-09 - Alisha Awen - siren1@disroot.org
+##     Reviewed, and updated this file for posible security changes since the
+##     beginning of 2019, in prep for Harmonic Alchemy DOTFILES V2.0 Q4-2019.
+##
+##   2019-002-21 - Alisha Awen siren1@disroot.org
+##     Revamped this file to be part of my new dotfiles git repository.
+##     Also added a Blender related backup file to ignore...
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+###################
 # Compiled source #
 ###################
+
 *.com
 *.class
 *.dll
@@ -32,10 +42,12 @@
 *.so
 
 
+############
 # Packages #
 ############
-# it's bette to unpack these files and commit the raw source
-# git has its own built in compression methods
+
+## It's better to unpack these files and commit the raw source git has its own
+## built in compression methods...
 *.7z
 *.dmg
 *.gz
@@ -46,20 +58,27 @@
 *.zip
 
 
+##################
 # Password Files #
 ##################
+
 *.vault_pass
 
 
-# Logs and databases #
-######################
+################################
+# Logs, databases & Temp files #
+################################
+
 *.log
 *.sql
 *.sqlite
+*.temp
 
 
+#########
 # Emacs #
 #########
+
 *~
 \#*\#
 \#.*\#
@@ -70,48 +89,57 @@ auto-save-list
 tramp
 .\#*
 
-# Org-mode
+## Emacs Packages contain git repositories!
+## Exclude entire elpa directory and it's contents.
+elpa/*
+
+## Auto Generated Org-mode artifacts:
 .org-id-locations
 *_archive
+org-clock-save.el
 
-# flymake-mode
+## flymake-mode
 *_flymake.*
 
-# eshell files
+## eshell files
 /eshell/history
 /eshell/lastdir
 
-# elpa packages
-/elpa/
-
-# reftex files
+## reftex files
 *.rel
 
-# AUCTeX auto folder
+## AUCTeX auto folder
 /auto/
 
-# cask packages
+## cask packages
 .cask/
 dist/
 
-# Flycheck
+## Flycheck
 flycheck_*.el
 
-# server auth directory
+
+###########
+# SERVERS #
+###########
+
+## server auth directory
 /server/
 
-# projectiles files
+## projectiles files
 .projectile
 
-# directory configuration
+## directory configuration
 .dir-locals.el
 
-# network security
+## network security
 /network-security.data
 
 
+######################
 # OS generated files #
 ######################
+
 .DS_Store
 .DS_Store?
 ._*
@@ -120,6 +148,13 @@ flycheck_*.el
 ehthumbs.db
 Thumbs.db
 
-# Misc. files        #
-######################
+
+###################
+# Misc. dot files #
+###################
+
 *.blend1
+
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## END: $TOOLS/dotfiles/GIT/dot.gitignore_global
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
