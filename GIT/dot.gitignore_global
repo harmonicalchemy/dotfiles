@@ -58,6 +58,37 @@
 *.zip
 
 
+###########################################################
+# Ignore Local Configs Directory - for Your Pirvate Stuff #
+###########################################################
+
+##
+# A universal [local-configs] folder for private things in any git repo...
+# Anything you keep inside a directory of the above name will not be added or
+# staged for commits, and will remain untouched...  The .gitkeep file is the
+# exception to the rule so git keeps the folder containing this empty file...
+# Remove .gitkeep if you don't need to keep the folder itself in revision...
+# It's simply a mechinism to allow you to keep empty directory trees in revision.
+# all other files/folders you put in there will be ignored...
+
+# WARNING! Because of the above... Note that if you have an existing directory 
+# with the same name: "local-configs" in one of your existing git repos, once you
+# enable this feature within your global .gitignore file and it will become
+# active for git on your local machine, you will loose the ability to include git
+# revisions of those files contained within your local-configs directory. You
+# won't loose the files but git will no longer pay attention to them...
+#
+# Note to self: Put above warning in the README file...
+#
+# After reading the warning above if you wish to enable this feature,
+# simply remove the comments from the next two items... Then you can
+# create a local-configs dir inside any of your git repos to store
+# things you don't want included in revision.  Like passwords etc...
+
+#local-configs/*
+#!local-configs/.gitkeep
+
+
 ##################
 # Password Files #
 ##################
@@ -78,6 +109,34 @@
 #########
 # Emacs #
 #########
+
+##
+# A universal [local-configs] folder for private things in any git repo...
+# Anything you keep inside a directory of the above name will not be added or
+# staged for commits, and will remain untouched...  The .gitkeep file is the
+# exception to the rule so git keeps the folder containing this empty file...
+# all other files/folders you put in there will be ignored...
+
+# WARNING! Because of the above... Note that if you have an existing directory 
+# with the same name: "local-configs" in one of your existing git repos, once you
+# enable this global .gitignore file and it becomes active for git on your local
+# machine, you will loose the ability to include git revisions of those files
+# contained within your local-configs directory. You won't loose the files but
+# git will no longer pay attention to them...
+#
+# Note to self: Put this warning in the README file...
+#
+# After reading the warning above if you wish to enable this feature,
+# simply remove the comments from the next two items... Then you can
+# create a local-configs dir inside any of your git repos to store
+# things you don't want included in revision.  Like passwords etc...
+
+#local-configs/*
+#!local-configs/.gitkeep
+
+##
+# Various trashy files that Emacs uses to do house keeping...
+# You don't want these cluttering your repos!
 
 *~
 \#*\#

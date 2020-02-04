@@ -1,0 +1,25 @@
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## File:  $DOTFILES/.gitignore
+##        Git Ignore file for Harmonic Alchemy .DOTFILES
+##
+## Ref:   https://github.com/harmonicalchemy/dotfiles.git
+##
+## The following will be globally ignored by git for this
+## repository... You can keep some files in here like personal
+## spelling dictionaries etc.  They won't clutter your commits!
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# exclude entire local-configs directory and it's contents...
+# Keep your private local docs & configurations in this folder
+# so they won't propigate to other platforms via git...
+# Each platform may have its own set of excluded files in:
+# 'local-configs'. I use it to keep my different spelling
+# dictionaries on different platforms seporate from each other.
+# I then merge them occasionally with a universal spelling dict kept
+# in revision... This saves me a lot of unnessary daily commit madness!
+
+local-configs/*
+
+# exception to the rule so git keeps the folder containing this empty file...
+
+!local-configs/.gitkeep

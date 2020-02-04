@@ -223,18 +223,23 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias emacs="/Path/to-your/built-from-source/Emacs-27.app/Contents/MacOS/Emacs"
     alias Emacs="/Path/to-your/built-from-source/Emacs-27.app/Contents/MacOS/Emacs"
 
-    ##
-    # For some reason ls command on Mac OS is different than on Linux.
-    # Both platforms use GNU coreutils now so this may still be different
-    # because of iTerm2 vs Gnome Terminal, or maybe other configs outside of my
-    # zsh that are different on Linux than on Mac OS.. I have not figured out
-    # where the difference is but the platform adjusted ls alias defs below are
-    # working fine for now...
+    ###
+    ## For some reason ls command on Mac OS is different than on Linux.
+    ## Both platforms use GNU coreutils now so this may still be different
+    ## because of iTerm2 vs Gnome Terminal, or maybe other configs outside of my
+    ## zsh that are different on Linux than on Mac OS.. I have not figured out
+    ## where the difference is but the platform adjusted ls alias defs below are
+    ## working fine for now... I am using the alias 'lll' for trying new things...
+    ## I haven't really paid much attention to changing colours etc., but it looks
+    ## Pretty nice on my 27" retina screen using only the defaults below and possibly
+    ## some tweaking to iTerm2 that I must have done a year or so ago... Your milage
+    ## and colour whims may/should vary of course. %^)
 
-    alias l="ls -lhFB --color --ignore='.#*' --ignore='#*' --group-directories-first"
-    alias ll="ls -alhFB --color --ignore='.#*' --ignore='#*' --group-directories-first"
+    alias l="ls -lhFB --color --ignore='Icon?' --ignore='.#*' --ignore='#*' --group-directories-first"
+    alias ll="ls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
+#    alias lll="ls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
     alias lll="ls -alhF --color --group-directories-first"
-    alias la="ls -A --color --group-directories-first"
+    alias la="ls -A --color --ignore='.DS_Store' --ignore='Icon?' --group-directories-first"
 
     ### ~~~~~~~~~~~~~~~~~~~~
     ## END: Mac OS Specific Configs...
