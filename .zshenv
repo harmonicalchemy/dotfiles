@@ -263,10 +263,6 @@ export SFING="0xFFFFAAAA55550000FFFFAAAA55550000FFFFAAAA"
 
 export GPG_TTY=$(tty)
 
-## Define TEXINPUTS for Emacs LaTeX org-mode configurations:
-
-export TEXINPUTS=$HOME/.emacs.d/elpa/auctex-12.2.0/latex
-
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Platform Independent Global Directory Definitions:
 # NOTE: These are suggested defaults... Adjust these
