@@ -265,7 +265,7 @@ export GPG_TTY=$(tty)
 
 ## Define TEXINPUTS for Emacs LaTeX org-mode configurations:
 
-export TEXINPUTS=.:$HOME/.emacs.d/elpa/auctex-12.2.0/latex
+export TEXINPUTS=$HOME/.emacs.d/elpa/auctex-12.2.0/latex
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Platform Independent Global Directory Definitions:
