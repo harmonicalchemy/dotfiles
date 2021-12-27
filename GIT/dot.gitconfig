@@ -1,15 +1,17 @@
 # -*- mode: gitconfig; -*-
 #### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## File:          $TOOLS/dotfiles/GIT/dot.gitconfig - TEMPLATE
+## File:          $DOTFILES/GIT/dot.gitconfig - TEMPLATE
 ##                Global git configurations for Linux Environments.
 ## Created:       2019-002-21
-## Modified:      2020-002-02
-## Author:        Alisha Awen - Siren1@HarmonicAlchemy.productions
+## Modified:      2021-012-24
+## Author:        Alisha Awen - Siren1@disroot.org
+## Copyright:     (© 2019 - 2022 by Alisha Awen, Siren1@disroot.org, all rights reserved)
 ## Github User:   harmonicalchemy
 ## Ref:           https://git-scm.com/docs/git-config
-## Repo:          Github.com:harmonicalchemy/dotfiles.git
-## Environment:   Linux, BSD or Qubes 4.0 App VMs only...
-##                (not hosted VPS or Mac OS)
+## Repo:          https://github.com/harmonicalchemy/dotfiles.git
+## Licence:       GNU General Public License v3.0
+## Environment:   Linux, BSD, (Qubes 4.0 nx App VMs) and Mac OS
+##                (not for hosted servers)
 ## Note:          ('#' or ';' are both comments)
 ##
 ## This config file assumes Emacs as your default editor... Change that
@@ -22,18 +24,35 @@
 ##
 ## Usage: Symlink this file from your $HOME directory:
 ##
-##   $HOME> ln -s $TOOLS/dotfiles/GIT/dot.gitconfig $HOME/.gitconfig
-##
+##    e.g., ln -s $DOTFILES/GIT/dot.gitconfig ~/.gitconfig
+
+###
 ## Change Log: (descending chronological order)
-##
-##   2020-002-02 - Alisha Awen - Siren1@HarmonicAlchemy.productions
+
+## 2021-012-26 - Alisha Awen - Siren1@disroot.org
+##     This file is only here for reference now.  It is completely up to date
+##     as of today's date however.  From now on I am using a script to generate
+##     this file within the user's $HOME directory which gets refreshed every
+##     time a new shell session is invoked... To make changes to .gitconfig file
+##     edit the script: $DOTFILES/.bin/generate_gitconfig.sh This file may
+##     eventually go away!
+
+## 2021-012-24 - Alisha Awen - Siren1@disroot.org
+##     This file was completely replaced by ths same version of it found
+##     within my private DOTFILES directory which was much more up to date...
+
+##   2021-012-22 - Alisha Awen - Siren1@disroot.org
+##      Changed difftool to ediff.  No longer using
+##      Kdiff.  Also changed some comments, etc.
+
+##   2020-002-02 - Alisha Awen - Siren1@disroot.org
 ##      Refreshed this file from my private .DOTFILES repo...
-##
+
 ##   2019-011-09 - Alisha Awen - siren1@disroot.org
 ##      Reviewed, and updated this file for posible security changes since the
 ##      beginning of 2019, in prep for Harmonic Alchemy DOTFILES V2.0 Q4-2019.
-##
-##   2019-002-21 - Alisha Awen Sheppard - siren1@disroot.org
+
+##   2019-002-21 - Alisha Awen - siren1@disroot.org
 ##     Revamped this file to work on any (non server) Linux machine where you 
 ##     need to use git.  This file is NOT used in Mac OS or remote hosted VPS
 ##     environments.  Those other environments have their own folders within
@@ -46,14 +65,23 @@
 ##            (fingerprint of your PGP signing subkey [S])
 ## Secret key fingerprint:      [SC]   0x5555AAAAFFFF00005555AAAAFFFF00005555AAAA
 ## Encript subkey fingerprint:   [E]   0xAAAAFFFF00005555AAAAFFFF00005555AAAAFFFF
-## Sign subkey fingerprint:      [S]   0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
+## Sign subkey fingerprint:      [S]   0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000!
 ## Auth subkey finterprint:      [A]   0x00005555AAAAFFFF00005555AAAAFFFF00005555
+##
+##  Use your signing subkey [S]  (if you don't have one create it and leave your
+##                                Secret keys locked up in a vault! This is the
+##                                safest way to do it) If the sub-keys get
+##                                compromized you can reoke them and use your
+##                                safe and sound secret key to create new ones
+##                                and then lock Secret key back in the vault...
+##
+##  Sub-key fingerprints must be appended with a bang "!" for below to work
+##  correctly - Ref:  https://stackoverflow.com/questions/48230336/
 
 [user]
 	name = <Put Your PGP UID name here>
 	email = <Put Your PGP UID email@address here>
 	signingkey = 0xFFFF00005555AAAAFFFF00005555AAAAFFFF0000
-
 
 ### ~~~~~~~~~~~~~~~~~~~~~~ Appearance ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -89,7 +117,7 @@
 ### ~~~~~~~~~~~~~~~~~~~~~ Core Vars ~~~~~~~~~~~~~~~~~~~~~
 
 [core]
-   editor = emacs
+   editor = $EMACS
    excludesfile = ~/.gitignore_global
    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
@@ -108,52 +136,48 @@
 ### ~~~~~~~~~~~~~~~~~~~~ External Apps ~~~~~~~~~~~~~~~~~~
 
 ###
-## Configure Git with kdiff3:
-## In my opinion, "Kdiff3 Is the best multiplatform open-source GUI based
-## diff/merge tool" in my opinion.. I tried them all! It looks and works the same
-## on all platforms. Normally for git I configure Emacs to use eDiff for
-## convienence. Having Ediff here allows me a plan B in-case Emacs gets hosed for
-## some reason... It's also nice to use if Emacs is not currently running,
-## (hardly ever lol). This file assumes you have installed kdiff3 on your machine
-## and it can be found on your $PATH... If you don't like kdiff3 change this to
-## something else...
-
-[difftool "kdiff3"]
-;	path = /usr/bin/kdiff3
-	trustExitCode = false
-
-[difftool]
-	prompt = false
+## Configure Git with Emacs eDiff:
+##
+## Update 2020: I got tired of configuring Kdiff3 for git and instead now I
+## have GIT configured to use Emacs eDiff mode for diffing and merging,
+## everything...  I will only use Kdiff3 now as a stand alone gui tool
+## when I am not using emacs...  There are some use cases for that...
+## "Kdiff3 Is the best multiplatform open-source GUI based alternative
+## my opinion.. So it stays in the tool chest... %^)
+##
+## This configuration requires you to have a wrapper scropt: ediff.sh
+## in your local ~/.bin dir.  To get that script clone or download:
+##	https://github.com/paulotome/emacstool.git
+## Read the README.md and then copy ediff.sh it to your local ~/.bin directory.
+##
+## Note: Create: ~/.bin and make sure it is on your executible path if it does
+## not exist yet).
+## Make sure ediff.sh is set as executable by you, the person running git
+## commands...
 
 [diff]
-	tool = kdiff3
+        tool = ediff
+        guitool = ediff
 
-[mergetool "kdiff3"]
-;	path =  /usr/bin/kdiff3
-	trustExitCode = false
-
-[mergetool]
-	keepBackup = false
+[difftool "ediff"]
+        cmd = ~/.bin/ediff.sh $LOCAL $REMOTE $MERGED
 
 [merge]
-	tool = kdiff3
+        tool = ediff
+
+[mergetool "ediff"]
+        cmd = ~/bin/ediff.sh $LOCAL $REMOTE $MERGED $BASE
+        trustExitCode = true
 
 ###
 ## Configure GPG for Git:
 ##
-##  NOTE1: Geek Alert! The setting below assumes the configuration for anyone
-##         using the "Reasonably Secure" Qubes OS (the OS that Snowden currently
-##         uses ;-). If you are a Qubes user and would like to integrate git with
-##         Qubes Split GPG, Enable "program = qubes-gpg-client-wrapper" instead
-##         of "gpg" (or gpg2)below...
-##         (you need to install and configure Qubes Split GPG firt of course ;-)
-##
-##  NOTE2: If you have a version of GnuPG between ~V2.1.1
-##         and V2.2, you may have gpg -AND- gpg2 binaries installed.
-##         This is a heads up for you to get the command below correct
-##         for your intended purposes.  Will it be gpg or gpg2?
-##         For all other versions (earlier and later) the binary is
-##         always "gpg".
+##  NOTE: If you have a version of GnuPG between ~V2.1.1
+##        and V2.2, you may have gpg -AND- gpg2 binaries installed.
+##        This is a heads up for you to get the command below correct
+##        for your intended purposes.  Will it be gpg or gpg2?
+##        For all other versions (earlier and later) the binary is
+##        always "gpg".
 ##
 ##  IMPORTANT NOTE!: **** New Security Warning Q4 2019 ****
 ##        Dont use GPG < V2.2 anymore...  When it comes to security
@@ -164,14 +188,10 @@
 ##        That is my advise... After saying that, I believe Harmonic Alchemy
 ##        DOTFILES will work with GnuPG v2.1.11 and later... If you can upgrade
 ##        easily, I strongly recommend it!  You hvae been warned...
-##
-## For Qubes OS use qubes-gpg-client-wrapper...
-## Otherwise, change to this one below instead...
 
 [gpg]
-;	program = qubes-gpg-client-wrapper
-	program = gpg2
-	
+	program = $GPG_PROG
+
 [commit]
 	gpgsign = true
 	

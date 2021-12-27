@@ -3,51 +3,70 @@
 ## File:          $HOME/.zshrc
 ##                Multiplatform ZSH Configuration for Interactive Shells...
 ## Created:       2017-004-23
-## Modified:      2020-002-02
-## Author:        Alisha Awen - Siren1@HarmonicAlchemy.productions
+## Modified:      2021-012-24
+## Author:        Alisha Awen - Siren1disroot.org
+## Copyright:     (© 2019 - 2022 by Alisha Awen, Siren1@disroot.org, all rights reserved)
 ## Git Username:  harmonicalchemy
 ## Ref:           https://www.zsh.org/
-## Repo:          Github.com:harmonicalchemy/pDotfiles.git
-## Environment:   Linux, BSD, (Qubes 4.0 App VMs) and Mac OS
-##                (not for hosted VPS or bare metal servers)
-##
+## Repo:          https://github.com/harmonicalchemy/dotfiles.git
+## Licence:       GNU General Public License v3.0
+## Environment:   Linux, BSD, (Qubes 4.0 nx App VMs) and Mac OS
+##                (not for hosted servers)
+
 ## $HOME/.zshrc is sourced by ZSH at the start of an interactive shell session.  It
 ## contains commands to set up aliases, functions, options, key bindings, etc.
 ## for interactive use only.  Here is where the Antigen ZSH package manager,
 ## fancy bullet train prompts, and any variables that are only used in the
 ## interactive shell like colors etc.
-##
+
 ## This simple version of Harmonic Alchemy "Dotfiles" does not need to do
 ## anything fancy like define $ZDOTDIR. Also there is no current need for a
 ## .zlogin, .zlogout, or .zprofile.  _yet_  There are no current plans for these
 ## extra config files until I reach a more automated dotfiles stage with auto configs
 ## for remote VPS host environments folded in...  First lets get this all working
 ## great manually...
-##
+
 ## Please do add/remove definitions depending on your particular machine
 ## environment(s) but please try to keep the structure and sections below the
 ## same as they are now... There is a reason for that!  Add your custom mods
 ## within the sections that they belong in.  Please don't try to move sections
 ## around etc.  You may break some things!  Be careful...  Sections are well
 ## defined below with comment banners for us dumb humans to be able to read...
-##
+
+###
 ## Change Log: (descending chronological order)
-##
-## 2020-002-02 - Alisha Awen - Siren1@HarmonicAlchemy.productions
+
+## 2021-012-24 - Alisha Awen - siren1disroot.org
+##     Updated this file with mods made to my private DOTFILES version of this
+##     file... Minor changes to PATH, etc... Major reformatting of comments to
+##     match the style within my Private DOTFILES version of this file...
+##     Headings were changed to aid with this public version. Some settings
+##     previously set here were put into: .zshenv (to match what I did with
+##     .bashrc and .bash_common... Performed security due diligence work for 2022
+
+## 2020-002-02 - Alisha Awen - Siren1disroot.org
+##     Finally got all that "ls" stuff sorted out between Linux and Mac,
+##     but still unsure why I have to do this...  Maybe I have to do
+##     something in MacPorts that is changing things around...
+##     Anyway, this file is all up to date now and ready to sync
+##     with my Public DOTFILES repository on GitHub...
+##     Security DueDiligence done up to: Q4 2021 now...
+
+## 2020-002-02 - Alisha Awen - Siren1disroot.org
 ##     Copied this file from my Private .DOTFILES repo,
 ##     Performed security Due Diligence in the process... Up to date
 ##     for 2020 now...
-##
-## 2019-010-27 - Alisha Awen Sheppard - siren1@disroot.org
-##     Made changes to accomodate for switching from HomeBrew to MacPorts on
+
+## 2019-010-27 - Alisha Awen - siren1@disroot.org
+##     Made changes to accommodate for switching from HomeBrew to MacPorts on
 ##     Mac OS...  All refs to /usr/local are gone... /opt/local is now the
 ##     default global place for MacPorts...  /usr/local is lonely!
-##
-## 2019-006-26 - Alisha Awen Sheppard - siren1@disroot.org
+
+## 2019-006-26 - Alisha Awen - siren1@disroot.org
 ##     HUGE OVERHAUL for Mac OS mostly...  Also added debug print
 ##     statements... (that will be commented out when not debugging)...
-##
-## 2019-005-16 - Alisha Awen Sheppard -  siren1@disroot.org
+
+## 2019-005-16 - Alisha Awen - siren1@disroot.org
 ##     This file needed an overhaul after all the troubleshooting over several
 ##     months (both Mac OS and Linux).  I cleaned this up and also added some
 ##     settings copied from [vault-pgp] .bashrc which may fix some issues I am
@@ -55,8 +74,8 @@
 ##     now simpler...     I hope I did not break anything!
 ##     I am on [MWM-work] now.  I will have to test this on Rodrigo next...
 ##     Still no fix for Emacs environment vars problem... Boot from shell works.
-##
-## 2019-003-16 - Alisha Awen Sheppard -  siren1@disroot.org
+
+## 2019-003-16 - Alisha Awen - siren1@disroot.org
 ##     While I am troubleshooting Mac OS problems, I am now trying this on my
 ##     older Macbook Pro to see how things go with Mac OS El Capitan, which is
 ##     no longer supported by Apple or Homebrew.  If I can get this working there
@@ -66,29 +85,29 @@
 ##     Mac IIx (that was a long time ago)...  It was still considered pretty
 ##     powerful when I got it. (it was my first Digital Audio Workstation (DAW)
 ##     for making music back around 1995) ;-)
-##
-## 2019-002-15 - Alisha Awen siren1@disroot.org
+
+## 2019-002-15 - Alisha Awen - siren1@disroot.org
 ##     I am now testing this over on [MWM-work] and things are broken! SSH no
 ##     longer works!  It may be an Antigen plugin...
 ##     Maybe one related to SSH?  I am first trying to fix ssh by moving all
 ##     that to sections after the "antigen apply" line... This file has been
 ##     restructured significantly!  I hope it still works on Mac OS! ;-)
-##
-## 2019-002-14 - Alisha Awen siren1@disroot.org
+
+## 2019-002-14 - Alisha Awen - siren1@disroot.org
 ##     I have been troubleshooting Zsh problems on Mac OS for a while...
 ##     First environment variables and now ZSH is not loading correctly...
 ##     However, I believe I have a working Mac OS solution running now
 ##     (with band-aid).  Mac OS it will work fine as long as you start Emacs
 ##     from the shell. Linux (Fedora 29, Debian 9). work nicely now...
-##
-## 2019-002-02 - Alisha Awen siren1@disroot.org
+
+## 2019-002-02 - Alisha Awen - siren1@disroot.org
 ##     I am testing re-configuring this on Fedora now on a new branch
 ##     within my private dotfiles Repository.  I had to branch because
 ##     I started changes on the Mac as well.  I will sort all this out later.
 ##     For now I need to get Linux back in operation.  Then I will be able
 ##     to sync with remotes again and update Github!
-##
-## 2019-001-24 - Alisha Awen siren1@disroot.org
+
+## 2019-001-24 - Alisha Awen - siren1@disroot.org
 ##     I had to re-create this file from my .zshrc template in my `dotfiles`
 ##     git repository yesterday!  The original got hosed while I was attempting
 ##     to fix an environment sync problem in my new Modular Emacs upgrade on
@@ -99,7 +118,7 @@
 ##     now:  `.zshrc`, `.zshenv`, & `.profile`.  I hope the redundant exports
 ##     do not create a problem... I may not have the correct solution for
 ##     Syncing my environment with Emacs yet...  More troubleshooting needed...
-##
+
 ##     In addition to above, this file is being restructured to be multiplatform.
 ##     During this process I discovered my Zsh/Antigen/Oh-My-Zsh setup was all
 ##     messed up and out of date.  (probably the reason behind all my other
@@ -108,18 +127,18 @@
 ##     has been updated, upgraded, if this is working well on Mac OS, I will
 ##     then update my dotfiles repository (change it to private on Bitbucket
 ##     first!)...  Then it will be available to try out in my Qubes Environment.
-##
-## 2018-002-26 - Alisha Awen siren1@disroot.org
+
+## 2018-002-26 - Alisha Awen - siren1@disroot.org
 ##     Made this file generic and added it to my Github .dotfiles repository...
-##
-## 2017-004-23 - Alisha Awen siren1@disroot.org
+
+## 2017-004-23 - Alisha Awen - siren1@disroot.org
 ##     This file was created by first copying my existing .bashrc file and then
 ##     modifying that for my newly installed ZSH environment on my new iMac.
 ####~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #### ~~~~~~~~~~~~~~~~~~~~
 ## BEGIN: .zshrc Evaluation - Oh-My-Zsh SETUP
-# DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
 if [ "$SH_DBG" = true ] ; then
     echo "ZSH INTERACTIVE - Entering & Evaluating:   \$DOTFILES/.zshrc"
 fi
@@ -215,13 +234,13 @@ ZSH_THEME="theunraveler"
 
 plugins=(
     git
-    zsh-syntax-highlighting
     zsh-autosuggestions
+    zsh-syntax-highlighting
     )
 
 #### ~~~~~~~~~~~~~~~~~~~~
 ## BEGIN: Oh-My-Zsh SETUP
-## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
 if [ "$SH_DBG" = true ] ; then
     echo "\$DOTFILES/.zshrc - BEGIN:  Prepairing to Source: Oh-My-Zsh!"
 fi
@@ -231,7 +250,7 @@ source $ZSH/oh-my-zsh.sh
 
 #### ~~~~~~~~~~~~~~~~~~~~
 ## END: Oh-My-Zsh SETUP
-## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
 if [ "$SH_DBG" = true ] ; then
     echo "\$DOTFILES/.zshrc - END:    Oh-My-Zsh SETUP"
 fi
@@ -239,7 +258,7 @@ fi
 
 #### ~~~~~~~~~~~~~~~~~~~~
 ## BEGIN: Interactive OS Specific Section
-## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
 if [ "$SH_DBG" = true ] ; then
     echo "\$DOTFILES/.zshrc - BEGIN:  OS Specific Section"
 fi
@@ -249,7 +268,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
     #### ~~~~~~~~~~~~~~~~~~~~
     ## BEGIN: Linux Specific Configs...
-    ## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+    ## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
     if [ "$SH_DBG" = true ] ; then
         echo "\$DOTFILES/.zshrc - BEGIN:   LINUX CASE"
     fi
@@ -287,41 +306,18 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 #    xinput set-button-map 6 1 1 3
 
-    ####
-    ## Qubes Split SSH:
-    ## NOTE: This section is only used for Qubes OS machines that use Qubes App
-    ##       Split SSH schemes...  If you do that, un-comment the lines in this
-    ##       secton...
-
-    ## Set next line to the ssh key vault you want to use
-
-#    SSH_VAULT_VM="ssh_vault"
-
-#    if [ "$SSH_VAULT_VM" != "" ]; then
-#        export SSH_AUTH_SOCK=~user/.SSH_AGENT_$SSH_VAULT_VM
-#    fi
-
-    ####
-    ## Qubes Split GPG tweaks... If you don't use Qubes or Split GPG
-    ## you can ignore these... or comment them out.  I did not comment
-    ## them out because they won't hurt anything if you are not using them...
-
-    alias gpg="/usr/bin/gpg2"
-    alias gpq="qubes-gpg-client"
-    alias gpw="qubes-gpg-client-wrapper"
-
-    ####
-    ### ls command on Linux is different than on Mac OS for some reason!
+    ###
+    ## The ls command on Linux is different than on Mac OS for some reason!
     ## Both platforms use GNU coreutils now so this may still be different
     ## because of iTerm2 vs Gnome Terminal, or maybe other configs outside of my
     ## zsh that are different on Linux than on Mac OS.. I have not figured out
     ## where the difference is but the platform adjusted ls alias defs below are
-    ## working fine for now... If you don't like these settings change them...
+    ## working fine for now... Use: the alias 'lll' to see EVERYTHING...
 
-    alias l="ls -lhFB --ignore='.#*' --ignore='#*' --group-directories-first"
-    alias ll="ls -alhFB --ignore='.#*' --ignore='#*' --group-directories-first"
-    alias lll="ls -alhF --group-directories-first"
-    alias la="ls -A --group-directories-first"
+    alias l="ls -lhFB --color --ignore='Icon?' --ignore='.#*' --ignore='#*' --group-directories-first"
+    alias ll="ls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
+    alias lll="ls -alhF --color --group-directories-first"
+    alias la="ls -A --color --ignore='.DS_Store' --ignore='Icon?' --group-directories-first"
 
     ####
     ## Mimic Mac OS pbcopy functions:
@@ -331,89 +327,104 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias pbcopy='xclip -sel clip'
     alias pbpaste='xclip -o -sel clip'
 
+    ####
+    ## qmake on Fedora is called qmake-qt5!
+    ## If you are installing this on Fedora Linux, Un-comment (enable) the alias
+    ## to stop confusion %^)
+
+#    alias qmake='qmake-qt5'
+
     #### ~~~~~~~~~~~~~~~~~~~~
     ## END: Linux Specific Configs...
-    ## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+    ## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
     if [ "$SH_DBG" = true ] ; then
         echo "\$DOTFILES/.zshrc - END:    LINUX CASE"
     fi
     #### ~~~~~~~~~~~~~~~~~~~~
 
+## END: IF [[ "$OSTYPE" == "LINUX-GNU" ]]; THEN
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     #### ~~~~~~~~~~~~~~~~~~~~
     ## BEGIN: Mac OS Specific Configs...
-    ## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+    ## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
     if [ "$SH_DBG" = true ] ; then
         echo "\$DOTFILES/.zshrc - BEGIN:  MAC OS CASE"
     fi
     #### ~~~~~~~~~~~~~~~~~~~~
 
     ###
-    ## Use the latest Emacs 27 built from source on [Rodrigo] OMG! The emacs that
-    ## ships standard with MacOS is wicked old!!! Wat??? Note you have to do this
-    ## trick to Both upper case "Emacs" and lower case "emacs" to catch all cases
-    ## of programs trying to invoke it... If you do not build your own Emacs
-    ## ignore the two lines below... Othewise enable the and adjust the path...
+    ## On Mac OS GNU coreutils is configured to use "gls" prefix to get around
+    ## Apple's own (crippled) "ls" command...  go figure??? Both platforms use
+    ## GNU coreutils but on Mac OS things work a bit differently... To get things
+    ## to work nicely on Mac use the prefix "G" in front of the commands,
+    ## i.e. "gls" in place of "ls"  After doing this, I discovered a collision
+    ## with an alias set by the GIT plugin for Oh-My-Zsh that uses "gls" to do a
+    ## modified Git Log... I don't need that because I have my own Git Log
+    ## aliases... Therefore I removed that same alias within my oh-My-Zsh custom
+    ## folder...
 
-#    alias emacs="/Path/To-your/built-from-source/Emacs-27.app"
-#    alias Emacs="/Path/To-your/built-from-source/Emacs-27.app"
-
-    ###
-    ## For some reason ls command on Mac OS is different than on Linux.
-    ## Both platforms use GNU coreutils now so this may still be different
-    ## because of iTerm2 vs Gnome Terminal, or maybe other configs outside of my
-    ## zsh that are different on Linux than on Mac OS.. I have not figured out
-    ## where the difference is but the platform adjusted ls alias defs below are
-    ## working fine for now... I am using the alias 'lll' for trying new things...
-    ## I haven't really paid much attention to changing colours etc., but it looks
-    ## Pretty nice on my 27" retina screen using only the defaults below and possibly
-    ## some tweaking to iTerm2 that I must have done a year or so ago... Your milage
-    ## and colour whims may/should vary of course. %^)
-
-    alias l="ls -lhFB --color --ignore='Icon?' --ignore='.#*' --ignore='#*' --group-directories-first"
-    alias ll="ls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
-#    alias lll="ls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
-    alias lll="ls -alhF --color --group-directories-first"
-    alias la="ls -A --color --ignore='.DS_Store' --ignore='Icon?' --group-directories-first"
+    alias l="gls -lhFB --color --ignore='Icon?' --ignore='.#*' --ignore='#*' --group-directories-first"
+    alias ll="gls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
+    alias lll="gls -alhF --color --group-directories-first"
+    alias la="gls -A --color --ignore='.DS_Store' --ignore='Icon?' --group-directories-first"
 
     #### ~~~~~~~~~~~~~~~~~~~~
     ## END: Mac OS Specific Configs...
-    ## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+    ## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
     if [ "$SH_DBG" = true ] ; then
         echo "\$DOTFILES/.zshrc - END:    MAC OS CASE"
     fi
     #### ~~~~~~~~~~~~~~~~~~~~
 
+fi ## END: ELIF [[ "$OSTYPE" == "DARWIN"* ]]; THEN
+
+### ~~~~~~~~~~~~~~~~~~~~
+## END OS Specific Section:
+## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
+if [ "$SH_DBG" = true ] ; then
+    echo "\$DOTFILES/.zshrc - END:    OS Specific Section"    
 fi
+### ~~~~~~~~~~~~~~~~~~~~
 
 
 #### ~~~~~~~~~~~~~~~~~~~~
 ## BEGIN: Generic Interactive Platform Independent Section
-## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
 if [ "$SH_DBG" = true ] ; then
     echo "\$DOTFILES/.zshrc - BEGIN:  Generic Section"
 fi
 #### ~~~~~~~~~~~~~~~~~~~~
 
 ###
+## Set Aliases for emacs... (upper case is needed for some programs)
+## NOTE: Change "your-user-name" below with your real user name...
+
+alias emacs=$EMACS
+alias Emacs=$EMACS
+alias rmacs="sudo $EMACS --user=your-user-name"
+
+###
 ## Misc custom aliases:
 
 alias cl="clear"
-
-export EDITOR='emacs'
 
 ## colored GCC warnings and errors
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-## Use Python 3 & PIP 3 (this may also be needed by shell scripts)
+## Choose which default Python you want to use below... These have been commented
+## out by default. If you need this, change "Python3" and "pip3" below to the
+## version you want to use and un-comment those lines....
+## (btw, this may be needed by shell scripts - i.e. put in .zshenv instead)
 
-alias python="python3"
+# alias python="python3"
+# alias pip="pip3"
 
 #### ~~~~~~~~~~~~~~~~~~~~
 ## END: Generic Interactive Platform Independent Section
-## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
 if [ "$SH_DBG" = true ] ; then
     echo "\$DOTFILES/.zshrc - END:    Generic Section"
 fi
@@ -421,11 +432,11 @@ fi
 
 #### ~~~~~~~~~~~~~~~~~~~~
 ## END: .zshrc Evaluation - Leaving file...
-## DEBUG Print Statements: (Export SH_DBG in your shell session to enable)
+## DEBUG Print Statements: (Export SH_DBG=true (within .zshenv) to enable)
 if [ "$SH_DBG" = true ] ; then
     echo "ZSH INTERACTIVE - END:    \$DOTFILES/.zshrc - Leaving File"
 fi
 
 #### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## END: $HOME/.zshrc
+##   END: $HOME/.zshrc
 #### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
