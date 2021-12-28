@@ -21,3 +21,11 @@ My Mac OS problems of a year ago are all gone now... Mostly that was from having
 This project is ready for public examination and testing.  You will have to add your specific things to these dotfiles before it will work on your system.  I put generous comments in the code so you should not have too much trouble figuring things out...
 
 **Important Disclamer:** Verify anything you find here with other sources as well.  Be informed about this stuff!  Especially the security things like GnuPG, OpenSSH, and OpenSSL!  I am releasing this for pedagogical purposes only, and assume no responsibility for any problems you may encounter trying to implement what you learned here.  Read the GNU license agreement... "Absolutely No Warranty" Thanks. ;-)  I hate legal stuff... But it is a necessary thing in this current world we live in...
+
+## License:
+
+Copyright: © 2019 - 2022 by Alisha Awen, Siren1@disroot.org, all rights reserved
+
+Harmonic Alchemy .DOTFILES is free software; you can redistribute it and/or modify it under the terms of the GNU GPL license as published by the Free Software Foundation, http://www.gnu.org.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
