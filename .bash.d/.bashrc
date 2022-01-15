@@ -193,19 +193,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
 #    xinput set-button-map 6 1 1 3
 
-    ###
-    ## The ls command on Linux is different than on Mac OS for some reason!
-    ## Both platforms use GNU coreutils now so this may still be different
-    ## because of iTerm2 vs Gnome Terminal, or maybe other configs outside of my
-    ## zsh that are different on Linux than on Mac OS.. I have not figured out
-    ## where the difference is but the platform adjusted ls alias defs below are
-    ## working fine for now... Use: the alias 'lll' to see EVERYTHING...
-
-    alias l="ls -lhFB --color --ignore='Icon?' --ignore='.#*' --ignore='#*' --group-directories-first"
-    alias ll="ls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
-    alias lll="ls -alhF --color --group-directories-first"
-    alias la="ls -A --color --ignore='.DS_Store' --ignore='Icon?' --group-directories-first"
-
     ####
     ## Mimic Mac OS pbcopy functions:
     ##  NOTE: You Must install the xclip Package from your Linux distro
@@ -264,22 +251,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 #        . /usr/share/powerline/bash/powerline.sh
 #    fi
 
-    ###
-    ## On Mac OS GNU coreutils is configured to use "gls" prefix to get around
-    ## Apple's own (crippled) "ls" command...  go figure??? Both platforms use
-    ## GNU coreutils but on Mac OS things work a bit differently... To get things
-    ## to work nicely on Mac use the prefix "G" in front of the commands,
-    ## i.e. "gls" in place of "ls"  After doing this, I discovered a collision
-    ## with an alias set by the GIT plugin for Oh-My-Zsh that uses "gls" to do a
-    ## modified Git Log... I don't need that because I have my own Git Log
-    ## aliases... Therefore I removed that same alias within my oh-My-Zsh custom
-    ## folder...
-
-    alias l="gls -lhFB --color --ignore='Icon?' --ignore='.#*' --ignore='#*' --group-directories-first"
-    alias ll="gls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
-    alias lll="gls -alhF --color --group-directories-first"
-    alias la="gls -A --color --ignore='.DS_Store' --ignore='Icon?' --group-directories-first"
-
     ### ~~~~~~~~~~~~~~~~~~~~
     ## END: Mac OS Specific Configs...
     ## DEBUG Print Statements: (Export SH_DBG=true (top of .bash_common) to enable)
@@ -317,6 +288,11 @@ alias rmacs="sudo $EMACS --user=your-user-name"
 
 ###
 ## Generic Global Alias Definitions:
+
+alias l="ls -lhFB --color --ignore='Icon?' --ignore='.#*' --ignore='#*' --group-directories-first"
+alias ll="ls -AlhFB --ignore='.DS_Store' --ignore='Icon?' --ignore='.#*' --ignore='#*' --color --group-directories-first"
+alias lll="ls -alhF --color --group-directories-first"
+alias la="ls -A --color --ignore='.DS_Store' --ignore='Icon?' --group-directories-first"
 
 alias cl="clear"
 

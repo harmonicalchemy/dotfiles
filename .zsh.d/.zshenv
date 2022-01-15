@@ -113,15 +113,6 @@ fi
 
 export ARCHFLAGS="-arch x86_64"
 
-## Define Local Go Language environment:
-## (This needs to be before bin PATH definitions)
-## If you use Go, un-comment the following and adjust path to your Go environment
-## accordingly... (below is a simlink in home directory)
-## Also: Make sure the Go related path line is defined in your $PATH below, using
-## this ENVIRONMENT VAR here... (set by default)
-
-# export GOPATH="$HOME/gopath"
-
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##  BEGIN: OS Specific Sections
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -135,6 +126,15 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
         echo "\$DOTFILES/.zshenv - BEGIN:  LINUX CASE"
     fi
     #### ~~~~~~~~~~~~~~~~~~~~
+
+    ## Define Local Go Language environment:
+    ## (This needs to be before bin PATH definitions)
+    ## If you use Go, un-comment the following and adjust path to your Go environment
+    ## accordingly... (below is a simlink in home directory)
+    ## Also: Make sure the Go related path line is defined in your $PATH below, using
+    ## this ENVIRONMENT VAR here... (set by default)
+
+    export GOPATH="$HOME/gopath"
 
     ###
     ## Export Linux specific $PATH:
@@ -271,7 +271,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     ## Export Mac OS specific $PATH: (This may be different for older versions of Mac OS)
 
-    export PATH="$HOME/bin:$HOME/.local/bin:$HOME/Qt/5.12.9/clang_64/bin:$GOPATH/bin:/opt/local/libexec/gnubin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Library/TeX/texbin:/usr/X11/bin:$PATH"
+    export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/Qt/5.12.9/clang_64/bin:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:/opt/local/libexec/gnubin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH"
 
     ## Export GNU Info & MAN Paths: (This may be different for older versions of Mac OS)
     ## You probably don't need this unless you have manuals set in other places...
@@ -318,21 +318,13 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     ## (for all or most of your cloned git projects)
     ## Adjust path below as needed...
 
-    export GIT=$HOME/Documents/GIT
+    export GIT=$HOME/.GIT
 
     ## Define Main WWW directory:
     ## (for all or most of your web site and web app projects)
     ## Adjust path below as needed...
     
-    export WWW=$HOME/Documents/WWW
-
-    ###
-    ## Define Path to JACK2 Repo:
-    ## If you use JACK2 (Jack Audio Connection Kit - for Mac based DAW),
-    ## Un-comment the line below and adjust path as needed for your JACK2
-    ## Installation.
-
-#    export JACK='/Path-To-Your/Jack-2/github.src.repo'
+    export WWW=$HOME/.WWW
 
     #### ~~~~~~~~~~~~~~~~~~~~
     ## END: Mac OS Specific Configs...
@@ -452,6 +444,12 @@ export PT=$GIT/Personal-templates
 # if which rbenv > /dev/null; then
 #    eval "$(rbenv init -)";
 # fi
+
+#### ~~~~~~~~~~~~~~~~~~~~
+## Create: $HOME/.gitconfig for the specific platform that this BASH 
+## session is currently running on:
+
+. $PDF/.bin/generate_gitconfig.sh
 
 #### ~~~~~~~~~~~~~~~~~~~~
 ## END: Generic Platform Independent Definitions (all unix flavors):
