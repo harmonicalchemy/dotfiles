@@ -4,7 +4,7 @@
 ##                Multiplatform Bash Configurations for Non-Login Interactive
 ##                Shells ONLY...
 ## Created:       2014-006-09
-## Modified:      2021-012-22
+## Modified:      2022-001-18
 ## Author:        Alisha Awen - Siren1@disroot.org
 ## Copyright:     (© 2019 - 2022 by Alisha Awen, Siren1@disroot.org, all rights reserved)
 ## Git Username:  harmonicalchemy
@@ -39,6 +39,12 @@
 
 ###
 ## Change Log: (descending chronological order)
+
+## 2022-001-18 - Alisha Awen - Siren1@disroot.org
+##     Refreshed (synced) this file to match generic changes made to my private
+##     .DOTFILES repository...  (all docs are up to date as well)
+##     Performed Security DueDiligence for Q1 2022...
+##     This commit marks Harmonic Alchemy .DOTFILES as: Version 2.0
 
 ## 2021-012-22 - Alisha Awen - Siren1@disroot.org
 ##     Updated this file and put it in new .bash.d sub-directory:

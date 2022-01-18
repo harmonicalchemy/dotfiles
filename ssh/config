@@ -1,50 +1,53 @@
 # -*- mode: ssh-config -*-
-#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## File:          $HOME/.ssh/config - TEMPLATE
 ##                Local User's $HOME SSH Configurations...
 ## Created:       2018-003-11 
-## Updated:       2020-002-02 
+## Updated:       2022-001-17
 ## Author:        Alisha Awen - siren1@HarmonicAlchemy.productions
 ## GitHub User:   harmonicalchemy
+## Release:       https://www.openssh.com/releasenotes.html
 ## Ref:           https://www.openssh.com/manual.html
 ## Spec Sheet:    https://www.openssh.com/specs.html
 ## Repo:          GitHub.com:harmonicalchemy/dotfiles.git
 ## Environment:   Any machine that supports Open SSH      (be wise and update!)
-##  
-##                *** OpenSSH CURRENT STATUS Q4-2019 ***
-##
-##    The latest version of OpenSSH V8.1 was released on 2019-10-09.
-##    Read the release file here: https://www.openssh.com/txt/release-8.1
-##    This release is generably availble from various package managers.
-##    It's Always Time to UPDATE your security infrastructure & tools!!!
-##    Don't be lazy when it comes to infoSec!  It's like a Jungle Sometimes,
-##    It makes me wonder how I keep from going under!  Ah-huh-huh-huh-huh ;-)
-##
-## As of Q4-2019 the following algorithms are still the strongest. They don't
-## depend on any suspicious Government tweaks, constants, etc. that can 
-## compromise the integrity of your OpenSSH configuration...
-##
-## HostKeyAlgorithms:
-##
-##     Use ED25519 if at all possible, and when you cant, fall back on
-##     the traditional RSA 4096 method...  Don't use any ECDSA curve keys!!!
-##
+
 ## This example SSH config (for any user's $HOME directory) is for specific HOST
 ## sections created to meet special requirements that the global HOST * section
 ## can't or would'nt be recommended to handle independently.  Conslut the file:
 ## /etc/ssh/ssh_config within this same directory for an example of what the
 ## global HOST * section looks like.
+
+##                *** OpenSSH CURRENT STATUS Q1-2022 ***
 ##
+## See: https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/ChangeLog
+## The latest version of OpenSSH: 8.8/8.8p1 was released on 2021-09-26. 
+## Read the release file here: https://www.openssh.com/txt/release-8.1
+## This release is generably availble from various package managers.
+## It's Always Time to UPDATE your security infrastructure & tools!!!
+## Don't be lazy when it comes to infoSec!  "It's like a Jungle Sometimes,
+## It makes me wonder how I keep from going under!  Ah-huh-huh-huh-huh" -GMF
+
+## As of Q1-2022 the following algorithms are still the strongest. They don't
+## depend on any suspicious Government tweaks, constants, etc. that can 
+## compromise the integrity of your OpenSSH configuration...
+
+## HostKeyAlgorithms:
+##
+##     Use ED25519 if at all possible, and when you cant, fall back on
+##     the traditional RSA 4096 method...
+##                 DON'T USE ANY ECDSA CURVE KEYS!!!
+
 ## Using the examples in this file, copy and/or rename a specific <named> HOST
 ## section below for any host that requres special treatment.  Change its name
 ## to the name of your special host or service requiring special treatment.
 ## (e.g., service1, service2, legacy-host1, uncomplient-host2, etc.).
-##
+
 ## Override keyword directives set within the global HOST * section that do not
 ## match the reqirements of your difficult host or service by setting those same
 ## keyword directives within your special named host section below, using a
 ## different attribute that does match your difficult host's requirements...
-## 
+
 ## Note: This method works well because the OpenSSH configuration parsor takes
 ## the first value for any directive it finds: (first: from the command line,
 ## second: from this local $HOME/.ssh/config, and third: from the system wide
@@ -53,49 +56,63 @@
 ## HOST * section must be placed last within (any) file you put it in (which
 ## could be at the bottom of this file as well, if that is your choosing rather
 ## than using a single system wide: /etc/ssh/ssh_config file.
-##
+
 ## In other words: If the SSH configuration parsor finds a duplicate keyword
 ## configuration directive set later during it's parsing journey, it will ignore
 ## it... Keep this in mind when you use these examples to set up your own
 ## configurations.  Happy con-fog-uring and debugging! - Alisha ;-)
-##
+
+####
 ##                 *** KEYPAIR SECURITY BEST PRACTICE ***
-##
+####
+
 ## While configuring your specific use-case HOST Sections below, It is
 ## IMPORTANT to use a different keypair (hopefully ed25519) for each client
 ## system you use to connect to any remote service or server...
-##
-## The generic examples below show only one Host Section for GitHub, Bitbucket,
-## and one or two examples for private VPS configurations...
-##
+
+## The generic examples below show one Host Section for GitHub, Bitbucket,
+## and one or two example templates for your own private HOST configurations...
+
 ## You will need to duplicate and modify the examples below for each client
 ## machine you use to connect with the same remote service over SSH...
 ## In other words, not only will you be generating different keys for each
 ## Remote Host you connect to, but also you will generate different keys
 ## on each client machine needing to connect to those remote services...
-## You will have to manage a lot of keys... But that will make you safer
-## in the long run like a ship with many air-tight compartments is hard to sink!
-## Your damage controll will be minimied, and your defensive power sustained...
-##
+
+## You will have to manage a lot of keys! But this is how you can divide
+## up and distribute risk so any one breach does not take the entier HOUSE
+## down in one blaze! (so to speak)... This kikd of security policy that will
+## make you safer in the long run like a ship with many air-tight compartments
+## is hard to sink!
+
+## However your daily Damage Control Process must be simple or else your crew,
+## (You if you are a lone sailor) will "mutiny" and you WILL loose all security
+## took so much pain to set up!
+
+## Keep a Tight Ship and your damage controll events will be minimized, your
+## defensive power sustained...
+
 ## Why? - Becasue if one of your keys leaks, you have a better chance of figuring
 ## out which of you client systems got compromized! All your other systems and
 ## keys will be fine!  This approach works well in a compartmentalized Qubes 4.0
 ## based setup. Just like a state of the art battleship Qubes OS is!
 ## Official Website:  https://www.qubes-os.org/
-##
+
 ## Suffice it to say... Protect your private keys at all costs! Don't expose them
 ## if at all possible... Qubes Split SSH is porbably the best way to do this,
 ## (if you use Qubes, fantastic... You most likely know how to do this stuff)
-##
-## The next best thing is to use a YubiKey on an air-gapped OpenBSD based
-## system, in conjunction with a strong Password Vault...
+
+## OK Mate? Now go sail your boat! Arrrr!
+
+## Optional: The next best thing is to use a YubiKey on an air-gapped OpenBSD
+## based system, in conjunction with a strong Password Vault...
 ## See this article: https://fedoramagazine.org/managing-credentials-with-keepassxc/
 ## for more information on how to set that up... Read the sections titled:
 ## "Creating your Wallet", and "SSH agent integration"
-##
+
 ## Note: If you use USB keys, be extra careful using the USB interface and
 ## driver(s) installed on your machine!
-## 
+
 ## USB is volunerable and a prime target of some sophisticated mallware!
 ## Make sure the USB key you use is brand new from a company that is well
 ## known for best security practices...  YubiKey has the best reputation...
@@ -104,59 +121,67 @@
 ## that it is not used for anything else!  (i.e., no other USB devices were ever
 ## plugged into it... Your OpenSSH based machine will use your YubiKey as a
 ## private Vault! Do not to use this device for other things..  Got it? 
-##
+
 ## These are general guidelines requiring research... Your milage and
 ## use-case may vary...  There are good articles on this subject but there
 ## are others that are out-of-date or worse... Misleading Trash! I may
 ## end up writing one myself... See the Docs folder in Harmonic Alchemy
 ## Dotfiles for guides I have already written... I plan on publishing more
 ## in 2020...  Stay tuned...
-#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-##                        *** Specific Host Sections ***
 
-## Update Q4-2019 - Some of the info below may not be necessary anymore...
-##                  I am researching this now... Instructions may change...
-##                  See the current ITEF guidelines for updated info about
-##                  minimum recommended Difffie-Hellman group exchange settings:
-##                         https://tools.ietf.org/html/rfc8270
-##                  Correction... Instructions WILL change below...
-##                  One thing is guaranteed... Change happens with time!
-##
-## Note: For any HOST section below, if you have to set KexAlgorithms to:
-##       diffie-hellman-group-exchange-sha256, (custom DH with SHA2) you also
-##       need to do the following: (Note: see avove link. The instructions below
-##       may need to be updated... I'm working on that.... ;-)
-##
-## Open /etc/ssh/moduli if exists, and delete lines where the 5th column is
-## less than 2000 as follows:
-##     $> awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
-##     $> wc -l "${HOME}/moduli"
-##         (make sure there is something left! if not forget this
-##          and skip below to create a new /etc/ssh/moduli)
-##     $> mv "${HOME}/moduli" /etc/ssh/moduli
-##
-## If /etc/ssh/moduli does not exist, create it as follows:
-##     $> ssh-keygen -G /etc/ssh/moduli.all -b 4096
-##     $> ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
-##     $> mv /etc/ssh/moduli.safe /etc/ssh/moduli
-##     $> rm /etc/ssh/moduli.all
-## This will take a while as it runs intensive calculations of rounds...
-#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## BEGIN Specific Host Section:
 
-####
+## Update 2022-001-17:
+##    Some of the info below may not be necessary anymore... 
+##    Instructions may change soon!  The ITEF item below was porposed in 2017!
+##    See the current ITEF guidelines for updated info about minimum recommended
+##    Difffie-Hellman group exchange settings:
+##       https://tools.ietf.org/html/rfc8270
+##
+## Correction:
+##    Instructions Below WILL change soon...
+##    One thing is guaranteed... Change happens with time!
+##    Verify Instructions against new ITEF standards before blindly
+##    following them... I wrote this back in 2019
+
+## Note:
+##    For any HOST section below, if you have to set KexAlgorithms to:
+##    diffie-hellman-group-exchange-sha256, (custom DH with SHA2) you also
+##    need to do the following: (Note: see avove link. The instructions below
+##    may need to be updated... I'm NOT working on that as I don't need it. ;-)
+##    Your milage may vary...
+
+##    Open /etc/ssh/moduli if exists, and delete lines where the 5th column is
+##    less than 2000 as follows:
+##       $> awk '$5 > 2000' /etc/ssh/moduli > "${HOME}/moduli"
+##       $> wc -l "${HOME}/moduli"
+##           (make sure there is something left! if not forget this
+##            and skip below to create a new /etc/ssh/moduli)
+##       $> mv "${HOME}/moduli" /etc/ssh/moduli
+
+##    If /etc/ssh/moduli does not exist, create it as follows:
+##       $> ssh-keygen -G /etc/ssh/moduli.all -b 4096
+##       $> ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all
+##       $> mv /etc/ssh/moduli.safe /etc/ssh/moduli
+##       $> rm /etc/ssh/moduli.all
+##    This will take a while as it runs intensive calculations of rounds...
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### ~~~~~~~~~~~~~~~~~
 ## HOST Github.com:
 ## Try this limited configuration set "as-is" here first, (wihch is considedred
 ## to be the best reasonably secure configuration for GIthub).
-##
+
 ## If you run into probelms connecting, (and you have debugged to make sure you
 ## have not done something elsewhere incorrectly) try adding some of the other
 ## suggested settings within this comment (one at a time) until you get things
 ## connecting successfully. Using the -v (verbose) option with your SSH
 ## command gives more info while debugging.  Adding more than one -v options to
 ## the SSH command line will increase the amout of info that gets displayed...
-##
+
 ## NOTE: According to Stribika (and other security experts):
 ## (https://github.com/stribika/stribika.github.io/wiki/Secure-Secure-Shell)
 ## Github needs KexAlgorithms: diffie-hellman-group-exchange-sha1 some of the
@@ -166,12 +191,12 @@
 ## will work for you as well...  I believe you could use the directives set
 ## within this Github section for Heroku as well...
 ## (with possibly a few minor adjustments)
-##
+
 ## The following are the only SSH config options still considerd reasonably
 ## secure that ARE known to be supported by Github if you run into problems
 ## you could try some of these.  They are listed in decending order from
 ## strongest to weakest security...
-##
+
 ## KexAlgorithms:
 ##  My first choice:
 ##    curve25519-sha256@libssh.org
@@ -186,17 +211,17 @@
 ##  Only try this last option as a last resort for Github (after trying
 ##  everything else you can think of - it is not secure. (see Note: above):
 ##    diffie-hellman-group-exchange-sha1
-##
+
 ## Chiphers:
 ##    chacha20-poly1305@openssh.com  (this one is best and my first choice)
 ##    aes256-ctr
 ##    aes192-ctr
 ##    aes128-ctr
-##
+
 ## MACs:
 ##    hmac-sha2-512  (this one is best and my first choice)
 ##    hmac-sha2-256
-##
+
 ## IdentityFile:
 ##    (I could not get ed25519 to be accepted so I created a 4096 rsa key)
 ##    This may change in the future hopefully...
@@ -211,36 +236,34 @@ HOST github.com
   user git
 
   ## Host Key Algorithms:
-  ##   Currently in 2019 - 2020 there is only one option I am willing to
-  ##   use... ssh-ed25519 period...
-  ##   If Github does not accept ssh-ed25519,
-  ##   uncomment HostKeyAlgorithms ssh-rsa here:
+  ##   Since 2019 I prefer to use ssh-ed25519 exclusively...
+  ##   But RSA 4096 is fine if I can't have that...
+  ##   (all of this is going to be mute in another 5 to 10 years however!)
+  ##   If Github finally decides to implement ssh-ed25519,
+  ##   switch to that one below for HostKeyAlgorithms:
 
-  #HostKeyAlgorithms ssh-rsa
-
-  ## Q4-2019 UPDATE: GitHub must be accepting ED25519 keys by now...
-  ## If they still don't, uncomment the HostKeyAlgorithm ssh-rsa above to override
-  ## my later default global * Hosts section setting (ssh-ed25519)...
+  HostKeyAlgorithms ssh-rsa
+  #HostKeyAlgorithms ssh-ed25519
 
   ## Identity File:
-  ##   There is currently only one option I am willing to use: ed25519...
-  ##   Falling back to RSA is only temporary... I will be updating soon!
-  ##   Last year, I tried ed25519, but it was not accepted by GitHub...
-  ##   so I used a 4096 rsa key instead.  That will soon be changing!
+  ##   Since 2019 I prefer to use: ed25519 exclusively... 
+  ##   But RSA 4096 is fine if I can't have that...
+  ##   (all of this is going to be mute in another 5 to 10 years however!)
+  ##   In 2020, I tried ed25519, but it was not accepted by GitHub...
+  ##   so I used a 4096 rsa key instead.  That may soon be changing!
 
-  #IdentityFile /home/user/.ssh/<put-4096-RSA-public-key-file-here>
+  IdentityFile /home/user/.ssh/<put-4096-RSA-public-key-file-here>
+  #IdentityFile /home/user/.ssh/<put-ED25519-public-key-file-here>
 
 ## END HOST Github.com
-#####
+### ~~~~~~~~~~~~~~~~~
 
-
-
-#####
+### ~~~~~~~~~~~~~~~~~
 ## HOST Bitbucket.org: (Lets hope Bitbucket is up to date as well)
-##  (Lets hope Bitbucket is up to date as well)
-##  Old Update: Bitbucket did not support our defaults...
-##  See: https://jira.atlassian.com/browse/BSERV-10175
-##  I made changes below to reflect Bitbucket's limitations for OpenSSH...
+## (Lets hope Bitbucket is up to date as well)
+## Old Update: Bitbucket did not support our defaults...
+## See: https://jira.atlassian.com/browse/BSERV-10175
+## I made changes below to reflect Bitbucket's limitations for OpenSSH...
 
 HOST bitbucket.org
 
@@ -252,16 +275,14 @@ HOST bitbucket.org
   user git
 
   ## Host Key Algorithms:
-  ##   Currently in 2019 - 2020 there is only one option I am willing to
-  ##   use... ssh-ed25519 period...
-  ##   If Bitbucket does not accept ssh-ed25519,
-  ##   uncomment HostKeyAlgorithms ssh-rsa here:
+  ##   Since 2019 I prefer to use ssh-ed25519 exclusively...
+  ##   But RSA 4096 is fine if I can't have that...
+  ##   (all of this is going to be mute in another 5 to 10 years however!)
+  ##   If Bitbucket finally decides to implement ssh-ed25519,
+  ##   switch to that one below for HostKeyAlgorithms:
 
-  #HostKeyAlgorithms ssh-rsa
-
-  ## Q4-2019 UPDATE: Bitbucket must be accepting ED25519 keys by now...
-  ## If they still don't, uncomment the HostKeyAlgorithm ssh-rsa above to override
-  ## my later default global * Hosts section setting (ssh-ed25519)...
+  HostKeyAlgorithms ssh-rsa
+  #HostKeyAlgorithms ssh-ed25519
 
   ## MACs - Message Authentication Codes:
   ##   From the link in the header above it appears the best Message
@@ -274,20 +295,24 @@ HOST bitbucket.org
   MACs hmac-sha2-256-etm@openssh.com
 
   ## Identity File:
-  ##   There is currently only one option I am willing to use: ed25519...
-  ##   Falling back to RSA is only temporary... I will be updating soon!
-  ##   Last year, I tried ed25519, but it was not accepted by Bitbucket...
-  ##   so I used a 4096 rsa key instead.  That will soon be changing!
+  ##   Since 2019 I prefer to use: ed25519 exclusively... 
+  ##   But RSA 4096 is fine if I can't have that...
+  ##   (all of this is going to be mute in another 5 to 10 years however!)
+  ##   In 2020, I tried ed25519, but it was not accepted by Bitbucket...
+  ##   so I used a 4096 rsa key instead.  That may soon be changing!
 
   IdentityFile /home/user/.ssh/<put-4096-RSA-public-key-file-here>
+#  IdentityFile /home/user/.ssh/<put-ED25519-public-key-file-here>
 
 ## END HOST Bitbucket.org
-#####
+### ~~~~~~~~~~~~~~~~~
 
 
-
-#####
+  ### ~~~~~~~~~~~~~~~~~
 ## HOST SERVER1.example.com (your private server 1)
+## NOTE: create user accounts with names that are not easily guessed!  
+##       If you run a git server you can also change the git username
+##       as well for added security against penetration through git user...   
 
 HOST server1
   HostName server1.example.com  
@@ -297,11 +322,14 @@ HOST server1
   IdentityFile ~/.ssh/server1_id_ed25519
 
 ## END HOST SERVER1
-#####
+### ~~~~~~~~~~~~~~~~~
 
 
-#####
+  ### ~~~~~~~~~~~~~~~~~
 ## HOST SERVER2.example.com (your private server 2)
+## NOTE: create user accounts with names that are not easily guessed!  
+##       If you run a git server you can also change the git username
+##       as well for added security against penetration through git user...   
 
 HOST server2
   HostName server2.example.com  
@@ -311,19 +339,29 @@ HOST server2
   IdentityFile ~/.ssh/server2_id_ed25519
 
 ## END HOST SERVER2
-#####
+### ~~~~~~~~~~~~~~~~~
+
+## END Specific Host Section:
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## Default Generic Host Section:
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## BEGIN Default Generic Host Section:
 ##
-## Important Note: Always Make This The Last Section to be Parsed by OpenSSH.
-##                 These will NOT override any duplicates set above, a behavior
-##                 which may be your intention.  If not, watch out, could be a bug!
+## Important Note:
+##    Always Make This The Last Section to be Parsed by OpenSSH.
+##    THESE WILL NOT OVERRIDE ANY DUPLICATES SET ABOVE. Rather,
+##    the reverse is true... This is the expected behavior for SSH
+##    to run properly... (a scheme to allow exceptions to your
+##    default settings below, for specific HOSTS above...
+##    All your 100% preferred settings are made below and will
+##    NOT change except for HOSTS aboove that may have changed
+##    one or more of them... (OK? Got that? it can be confusing %^)
 
 HOST *
 
-  ## Use the stronger protocol 2!
+  ## ALWAYS Use the stronger protocol 2! By now this is most probably the default
+  ## for latest versions of OPEN SSH... Setting it here is not a bad thing though.
 
   Protocol 2 
 
@@ -331,24 +369,35 @@ HOST *
 
   PubkeyAuthentication yes
 
-  ## Limit Key Exchange to curve22519-sha256 only...
+  ## Key eXchange Algorithms: (Kex)
+  ## Limit Key Exchange to: curve22519-sha256 only within this default HOST *
+  ## section...
 
   KexAlgorithms curve25519-sha256@libssh.org
 
-  ## Limit Host Keys to ed22519 as well...  If you run into issues,
-  ## try enabling (at greater risk) the following algorithms one
-  ## at a time until you are able to connect to a service...
-  ## These algorithms are still relatively safe to use in 2017:
-  ## ssh-rsa-cert-v01@openssh.com, ssh-ed25519, and ssh-rsa
-  
+  ## Host Key Algorithms:
+  ## Limit HostKeyAlgorithms to: ssh-ed25519 only within this default HOST *
+  ## section... To date this algo is strongest...
+  ## NOTE:
+  ##    If you run into issues with a particular host, try setting (one at a thme,
+  ##    with increasing risk each time), one of the following algorithms within
+  ##    the specific host section above where you experienced a problem until you
+  ##    are able to connect to the intended service... You will also undoubtedly
+  ##    need to change your key to RSA as well for these tests... (of course)  
+  ##       ssh-rsa-cert-v01@openssh.com,
+  ##       ssh-rsa
+  ##    These algorithms were still relatively safe to use in 2019: YMMV
+
   HostKeyAlgorithms ssh-ed25519
 
-  ## Limit available cyphers to single chacha256-gcm for strongest 
-  ## security possible.
+  ## Cyphers:
+  ## Limit Cyphers to: chacha20-poly1305@openssh.com only within this default
+  ## HOST * section...
 
   Ciphers   chacha20-poly1305@openssh.com
 
-  ## Message Authentication Codes:
+  ## Message Authentication Codes (MACs):
+  ## Limit MACs to: hmac-sha2-512 only within this default HOST * section...
 
   MACs hmac-sha2-512
 
@@ -356,8 +405,10 @@ HOST *
 
   IdentitiesOnly yes
 
-  ## Enable this only if you need to use One Time Password (OTP), 
-  ## or Timed One Time Password (TOPT), e.g., yubikey, google auth, etc.  
+  ## Challenge Response Authentication:
+  ## Enable Challenge Response Authentication only if you need to use One Time
+  ## Password (OTP), or Timed One Time Password (TOPT), e.g., yubikey, google auth,
+  ## etc.
 
   ChallengeResponseAuthentication no
 
@@ -367,24 +418,33 @@ HOST *
   ServerAliveCountMax 30
 
   ## Display Visual Host Key ascii-art:  
+  ## Display random—ASCII-art representation of remote host key fingerprint at
+  ## login & for unknown host keys to make it easier to recognize...
+  ## Enable this if you think it will help you verify host you are trying to
+  ## connect to...  It would be better if the images were a real graphic rather
+  ## than ASCII art which is almost as difficult as recognizing the code itself.
+  ## "Security at the expense of usability comes at the expense of security..."
 
   VisualHostKey yes
 
   ## Hash Names:
 
-  HostKnownHosts yes
+  HashKnownHosts yes
 
-  ## The rest of these should all be disabled...
-
-  PasswordAuthentication no
+  ###
+  ## The rest of these should all be disabled...  They may be depreciated as well.
+  ## Use the -v (verbose) option when you connect to find out.  if you see a line
+  ## saying the option is depreciated, you can remove it from here to get rid of
+  ## that message.  UseRoaming has been depreciated since OpenSSH V7.0.  I keep it
+  ## here for historical reference only...
 
   ## UseRoaming no  (depreciated after OpenSSH v7.0)
-
+  PasswordAuthentication no
   ForwardAgent no
   ForwardX11 no
 
 ## END Default Generic Host Section
-#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## END: $HOME/.ssh/config

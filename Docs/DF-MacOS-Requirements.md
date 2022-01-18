@@ -1,29 +1,34 @@
 ---
 file: DF-MacOS-Requirements.md
-author: Alisha Awen Sheppard
+author: Alisha Awen, siren1@disroot.org
 created: 2019-010-27
-updated: 2020-009-11
-tags: MWM-README, 2020, Mac-OS, SysAdmin, bash, sHell, zsh
+updated: 2022-001-18
+tags: README, 2022, Mac-OS, SysAdmin, bash, sHell, zsh
 ---
-<!-- #MWM-README #2020 #Mac-OS #SysAdmin #bash #sHell #zsh -->
 
 ![Banner](./media/Dotfiles-Github-Banner-v2.png)
 
 **[\[Table of Contents\]](#table-of-contents)**
 
-# `dotfiles`: Postmortem Mac OS Tasks after HomeBrew Removal:
+# `dotfiles:` Postmortem Mac OS Tasks after HomeBrew Removal:
 
 This document is an actual saga... With personal joke inflections and all!  Have fun with it!  Here is the setting for the story...  A few events during the summer and fall of 2019 convinced me to go through the pain of switching my **Mac OS** optional package manager from **Homebrew** to **Macports** _(Whaaat? omg! Is this is starting to get Mark Twain funny yet? You just wait... there is more...)_ This document addresses my painful but humorous process...
 
 ## Introduction:
 
-I have been contemplating this switch all during 2019, but now in October I finally bit the bullet and am now committed to doing it.  I am in the middile of that process ~~_(this is day four)_~~ **_Update:_** _(I finished the base install on day 4, made another Clone of my Mac OS system at that point and with a stable system had to resume previous tasks)_   I have a log entry for `Friday, 2019 October 25` in: **MWM-Daily-Planning-Log...** where this process started... I copied most of that here to continue as a real document within my `.dotfiles` repository... Now I am nit-picking the rest as I do other work...  _(i.e., the house is built, the owners have moved in, but I need to come in from time to time to finish the little things without disrupting their lifestyle. ;-)_
+I contemplated this switch all during the summer of 2019, but in October of 2019 I finally bit the bullet and committed to doing it...
+
+I finished the base install on day 4, made another Clone of my Mac OS system at that point and with a stable system had to resume previous tasks...  I maintain a log entry for `Friday, 2019 October 25` in my: **MWM-Daily-Planning-Log...** where this process started... I copied most of that here to continue as a real document within my `.dotfiles` repository and then began nit-picking the rest as I did other work...  _(i.e., the house is built, the owners have moved in, but I need to come in from time to time to finish the little things without disrupting their lifestyle. ;-)_
 
 Homebrew is getting worse and worse! I just reciently found out that Homebrew is not secure in many ways!  One of them is shooting all kinds of holes in **`/usr/local`** giving mallware a chance to probe in and install executibles in a directory that could later get elevated to root owned!  Yikes! That is my main reason for switching now... No more contemplating, procrastinating this... Its critical!
 
 ### Current Status:
 
-Ummm... I'm in the final finishing stage...  You know, the house is built, the owners moved in... BUT... Lots of little nit picky stuff... is still not done... Maybe it will never get done?  Babies get born you know... then we forget...  Until something breaks that was supposed to be finished and inspected years ago. LOL... Mostly I am writing and updating this How-to guide for personal and public future reference... btw, my babies were born over 25 years ago, lol _(while I was still finishing building my first home!)_... The above is a figure of speech... You may relate though...
+Now a couple years later _Q1-2022_ the process has long been completed, but I needed to update this doc... Of course as you know, even after a house is built, and folks have moved in, there are still many little nit picky things that never seem to get done... Maybe they will never get done?  Babies get born you know... then we forget...  Until something breaks that was supposed to be finished and inspected years ago. LOL... 
+
+Mostly I am writing and updating this How-to guide for personal and public future reference... btw, my babies were born over 25 years ago, lol _(I had to take a LONG break about finishing those nit picky tasks after the first 9 month long event! did not actually finish even after the second 9 month event 4 years later - things change in your life once you become a "mother" so to speak)_...  Now my two boys are all grown up and have homes of their own... 
+
+All the above was written as a figure of speech... You may relate though. %^)
 
 **[\[Table of Contents\]](#table-of-contents)**
 
@@ -94,18 +99,6 @@ If you need to install `oh-my-zsh` from scratch again use:
 ```
 Follow the `README.md` file after that is done...
 
-#### MacTeX:
-
-Follow instructions, including the **_Please Read_** section on: **[Tug.org/mactex/](https://tug.org/mactex/)** to install what you need... There are two options, the BIG everything, and a more reasonable BasicTeX... I went ahead and installed the big one... _(plenty of disk space)_ and I aim to be a publishing wizard!
-Once you have this, MacTeX has utilities for self update as well as TeXLive etc...  You don't need Apple, HomeBrew, or MacPorts for any of this... Got that?
-
-To make **MadTex** _(lol "a typo" but decided to leave it cause it made me laugh!)_ binaries available on the command line, _(for Pandoc etc.)_ you have to set the following in your `$PATH` definition within your shells...
-
-```script
-    /Library/TeX/texbin
-```
-Put it after your `~/.bin` and `/opt` paths but before: `/usr/bin` and `/bin` etc...
-
 #### Karabiner-Elements Mac OS Keymapping Utilities
 
 I downloaded and installed this package directly from: https://pqrs.org/osx/karabiner _(a nice open-source project created by Takayyama Fumikiko pqrs.org)_
@@ -114,10 +107,13 @@ I downloaded and installed this package directly from: https://pqrs.org/osx/kara
 
 Inkscape finally released Version 1.0 in May of 2020 and now I have a regular Mac OS App, no need for XQuartz etc.  Now Inkscape is definately _(the world's best vector graphics editor)_  Download and install it from: https://inkscape.org/release/inkscape-1.0/mac-os-x/1010-1015/dl/
 
-
 #### Gimp:
 
-Gimp may be the exception for now as I see the latest version available via Macports is ahead of ready to run packages from Gimp.org.  Therefore follow the instructions below in the MacPorts install section to find the command to install gimp `sudo port install gimp` LOL...
+> **UPDATE:** 2022-001-18   
+
+I no longer intall gimp via MacPorts either, in fact I am not installing ANY GUI apps via Macports anymore... Only command line tools, libraries, etc. are installed with MacPorts now...
+
+Get Gimp from Here: https://www.gimp.org/
 
 #### Blender v2.8+
 
@@ -141,7 +137,9 @@ I read some scary posts on MacPorts forums, and bug reports about HLedger causin
 
 My **HomeBrew** installed **Emacs** was causing problems long before I switched to **MacPorts** and my remedy a year ago was to install **Emacs** from source, from my own private clone of the master **Gnu Emacs** git repository... I keep it up to date and now have the latest version of **GNU Emacs** for **Mac OS** configured any why I need it, with the libraries compiled in that I need to do things my way... `d%^)`
 
-## Install Macports _(after removing HomeBrew)_
+## Install Macports:
+
+_(after removing HomeBrew)_
 
 I am not including the instructions for installing MacPorts itself, as that is well documented already on **`guide.macport.org`**... [fyi RTFM](https://guide.macports.org/chunked/introduction.html) 
 
@@ -184,13 +182,17 @@ _(You will be using this one a lot!)_
     port echo requested
 ```
 
-#### List Everything Installed by MacPorts _(including all dependencies)_
+#### List Everything Installed by MacPorts:
+
+ _(including all dependencies)_
 
 ```script
     port installed
 ```
 
-#### Install a Port _(and/or clean up mess)_
+#### Install a Port:
+
+_(and/or clean up mess)_
 
 - Normal Install Port:
 
@@ -210,7 +212,9 @@ _(You will be using this one a lot!)_
     sudo port clean --dist <portname>
 ```
 
-#### Uninstall a port _(does not remove dependencies)_
+#### Uninstall a port:
+
+_(does not remove dependencies)_
 
 ```script
     sudo port uninstall <portname>
@@ -478,9 +482,9 @@ Instead... Once your Global Python Environment is set up _(as above)_ run the fo
 Run the following commands within your newly created Python Virtual Environment to install the `magic-wormhole` Python app...
 
 ```yaml
-$>    cd ./magic-wormhole   # Virtual Env previously set up
-$>    source ./bin/activate # Activate this virtual environment
-(magic-wormhole) $> pip install magic-wormhole
+$> cd ./magic-wormhole      # Virtual Env previously set up
+$> source ./bin/activate    # Activate this virtual environment
+   (magic-wormhole) $> pip install magic-wormhole
 ```
 
 After the above is done, _(while still within the Virtual Environment)_ run Magic Wormhole from within any directory _(e.g., where the files you need to transfer are located etc.)_ using this command:
@@ -496,7 +500,7 @@ Use what ever options you need with the above command to get your job done... Th
 
 Any time you need to run the `wormhole` command you need to go to it's project directory and issue: `source ./bin/activate` as in the above example...  When you are done you may exit the Virtual Environment as needed with the `deactivate` command. _(example above as well)_...
 
-> **Note:** _(More Instructions for managing virtual environments may be added later... I need a good use-case project to build first then this will get written as I push through sand bars and untangle snags...)_
+> **Note:** _(More Instructions for managing virtual environments may be added later... I need a good use-case project to build first then this will get written as I "push through sand bars and untangle snags")_
 
 **[\[Table of Contents\]](#table-of-contents)**
 
@@ -530,11 +534,82 @@ $>  sudo port install hunspell-en_US_large
 
 Spelling all set for Q3-2020
 
+##### Install `TexLive` via MacPorts:  
+
+```
+$> sudo port install texlive
+
+   The texlive meta package installs the following:
+
+    | texlive-basic              |
+    | texlive-pictures           |
+    | texlive-latex-recommended  |
+    | texlive-tlpdb              |
+    | texlive-bin-extra          |
+    | texlive-fonts-recommended  |
+    | texlive-math-science       |
+    | texlive-metapost           |
+    | texlive-plain-generic      |
+    | texlive-xetex              |
+    | texlive-context            |
+    | texlive-fontutils          |
+    | texlive-luatex             |
+    | texlive-lang-czechslovak   |
+    | texlive-lang-english       |
+    | texlive-lang-european      |
+    | texlive-lang-french        |
+    | texlive-lang-german        |
+    | texlive-lang-italian       |
+    | texlive-lang-polish        |
+    | texlive-lang-portuguese    |
+    | texlive-lang-spanish       |
+    | texlive @2021_0+doc+medium |
+
+    texlive has the following notes:
+
+    The "medium" installation of TeX Live was selected. 
+    This is the standard installation containing basic and recommended 
+    packages for TeX, LaTeX, and ConTeXt, as well as support files for 
+    several common European languages.
+
+    Additional TeX Live packages are available. To see a list, use 
+    "port list texlive-* and not installed". If you want a full installation
+    (very large), reinstall this metaport with the +full variant.
+```
+
+##### Install  Extra TexLive Packages:
+
+You may need to add more texlive things, Here is what I needed:
+
+- **Install Extra Fonts:**  
+
+   `$> sudo port install texlive-fonts-extra`
+
+
+- **Install Graphics nad Fontutils:**  
+
+   `$> sudo port install texlive-fontutils`
+
+   _This one was probably installed from `texlive-fonts-recommended`_
+
+
+- **Install Texlive Extra Formats:**
+
+   `$> sudo port install texlive-formats-extra`
+
+- **Install Texlive Extra Latex Things:**
+
+   `$> sudo port install texlive-latex-extra`
+
+- **Install Texlive Other Extras:**
+
+   `$> sudo port install texlive-music`
+   `$> sudo port install texlive-publishers`
+
+
 ### Now install everything else:
 
 > **Note:** Some packages previously installed by HomeBrew are going to now be downloaded and installed another way, separately outside MacPorts because that seems to be the recommended way for those packages living in Mac OS land now...
-
-> One such package is the entire LaTeX / TeX suite.  I am using MacTeX for that...  Downloading the stand alone MacTeX PKG, verifying it, and then using that to install my LaTeX environmemt outside MacPorts... TeX has its own package management... MacTeX is TeX package management for Macs ;-) No need for extra MacPorts confusion... :octocat:
 
 #### Dev Tools:
 
@@ -555,7 +630,9 @@ OK, alright already... Install GCC with all the goodies/langs you use now... You
 **[\[Table of Contents\]](#table-of-contents)**
 
 
-##### Lisp: _(because that is really where we would rather live from now on)_
+##### Lisp:
+
+_**(because that is really where we would rather live from now on)**_
 
 - **`sbcl`** - Steel Bank Common Lisp...
 
@@ -594,39 +671,19 @@ $>  stack install
 
 #### Graphic Design Tools:
 
-- **`gimp`** - MacPorts provides a simple and effective way to install the world's best photo and image editor on the planet! No not PhotoShop... Ugh!
-
-```script
-    sudo port -v selfupdate
-    sudo port install gimp
-```
-
-As of summer 2020 Gimp is now a stand alone Mac App... The X environment is no longer needed...
-
 - **`graphviz`** - Mostly needed for Emacs...
 
 ```script
     sudo port install graphviz
 ```
 
-## Temporary Edit Workspace:
+### OLD HomeBrew List: 
 
-### Placeholders:
-
-- **``** -
-
-- **``** -
-
-- **``** -
-
-- **``** -
-
-### OLD HomeBrew List: _(some of these may be useful)_
+_(some of these may be useful to install via MacPorts)_
 
 The following packages were installed by Homebrew and need their equivilents to be installed by MacPorts...  Many of these will not be re-installed as I don't think I use them anymore... I have to do some research on that... Then the list will be reduced to only what I install via MacPorts...
 
 ```
-
 rlwrap
 rtmpdump
 ruby-build
@@ -648,16 +705,18 @@ x265
 mhash        			xz
 mosh        			ykpers
 
-    gsasl        			mpfr        			zlib
-    gts          			multimarkdown   		zsh
-    harfbuzz        		nasm        			zsh-completions
-    httpd       			ncurses      			zsh-syntax-highlighting
-    hunspell        		netpbm
+gsasl        			mpfr        			zlib
+gts          			multimarkdown   		zsh
+harfbuzz        		nasm        			zsh-completions
+httpd       			ncurses      			zsh-syntax-highlighting
+hunspell        		netpbm
 ```
 
-### HomeBrew Cask List:
+### OLD HomeBrew Cask List:
 
-GUI Apps installed by HomeBrew Cask...
+_(None of these apps will be installed with Macports...  NO GUI APPS!)_
+
+GUI Apps previously installed by HomeBrew Cask...
 
 ```
 supercollider
@@ -675,7 +734,7 @@ All of the above will be lost after un-installing Homebrew!  Some of these will 
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 
-- [`dotfiles`: Postmortem Mac OS Tasks after HomeBrew Removal:](#dotfiles-postmortem-mac-os-tasks-after-homebrew-removal)
+- [`dotfiles:` Postmortem Mac OS Tasks after HomeBrew Removal:](#dotfiles-postmortem-mac-os-tasks-after-homebrew-removal)
     - [Introduction:](#introduction)
         - [Current Status:](#current-status)
     - [First Things First:](#first-things-first)
@@ -685,7 +744,6 @@ All of the above will be lost after un-installing Homebrew!  Some of these will 
             - [iTerm2:](#iterm2)
             - [KeePassXC:](#keepassxc)
             - [Zsh:](#zsh)
-            - [MacTeX:](#mactex)
             - [Karabiner-Elements Mac OS Keymapping Utilities](#karabiner-elements-mac-os-keymapping-utilities)
             - [inkscape](#inkscape)
             - [Gimp:](#gimp)
@@ -693,15 +751,15 @@ All of the above will be lost after un-installing Homebrew!  Some of these will 
             - [HLedger Accounting Software](#hledger-accounting-software)
             - [Haskell Stack IDE](#haskell-stack-ide)
             - [Emacs](#emacs)
-    - [Install Macports _(after removing HomeBrew)_](#install-macports-_after-removing-homebrew_)
+    - [Install Macports:](#install-macports)
         - [Common MacPorts Tasks](#common-macports-tasks)
             - [Update Ports Tree:](#update-ports-tree)
             - [Which Ports Need Update?](#which-ports-need-update)
             - [Upgrade Outdated Ports](#upgrade-outdated-ports)
             - [List ports explicitly installed:](#list-ports-explicitly-installed)
-            - [List Everything Installed by MacPorts _(including all dependencies)_](#list-everything-installed-by-macports-_including-all-dependencies_)
-            - [Install a Port _(and/or clean up mess)_](#install-a-port-_andor-clean-up-mess_)
-            - [Uninstall a port _(does not remove dependencies)_](#uninstall-a-port-_does-not-remove-dependencies_)
+            - [List Everything Installed by MacPorts:](#list-everything-installed-by-macports)
+            - [Install a Port:](#install-a-port)
+            - [Uninstall a port:](#uninstall-a-port)
             - [Remove Inactive Versions](#remove-inactive-versions)
             - [MacPorts Glossary](#macports-glossary)
     - [Install Macports Packages:](#install-macports-packages)
@@ -716,18 +774,17 @@ All of the above will be lost after un-installing Homebrew!  Some of these will 
             - [Spelling:](#spelling)
                 - [Install aspell and dictionaries via MacPorts:](#install-aspell-and-dictionaries-via-macports)
                 - [Install Hunspell and dictionaries via MacPorts:](#install-hunspell-and-dictionaries-via-macports)
+                - [Install `TexLive` via MacPorts:](#install-texlive-via-macports)
+                - [Install  Extra TexLive Packages:](#install--extra-texlive-packages)
         - [Now install everything else:](#now-install-everything-else)
             - [Dev Tools:](#dev-tools)
-                - [Lisp: _(because that is really where we would rather live from now on)_](#lisp-_because-that-is-really-where-we-would-rather-live-from-now-on_)
+                - [Lisp:](#lisp)
             - [Publishing Writing Tools:](#publishing-writing-tools)
                 - [Pandoc:](#pandoc)
                     - [Clone Pandoc Repo:](#clone-pandoc-repo)
                     - [Build Pandoc with Stack/Haskell:](#build-pandoc-with-stackhaskell)
             - [Graphic Design Tools:](#graphic-design-tools)
-    - [Temporary Edit Workspace:](#temporary-edit-workspace)
-        - [Placeholders:](#placeholders)
-        - [OLD HomeBrew List: _(some of these may be useful)_](#old-homebrew-list-_some-of-these-may-be-useful_)
-        - [HomeBrew Cask List:](#homebrew-cask-list)
-    - [Table of Contents:](#table-of-contents)
+        - [OLD HomeBrew List:](#old-homebrew-list)
+        - [OLD HomeBrew Cask List:](#old-homebrew-cask-list)
 
 <!-- markdown-toc end -->

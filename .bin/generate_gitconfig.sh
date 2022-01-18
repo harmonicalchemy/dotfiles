@@ -2,7 +2,7 @@
 #### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## File:          $DOTFILES/.bin/generate_gitconfig.sh
 ## Created:       2021-012-25
-## Modified:      2021-012-25
+## Modified:      2022-001-18
 ## Author:        Alisha Awen - Siren1disroot.org
 ## Copyright:     (© 2019 - 2022 by Alisha Awen, Siren1@disroot.org, all rights reserved)
 ## Git Username:  harmonicalchemy

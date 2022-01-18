@@ -3,7 +3,7 @@
 ## File:          $HOME/.zshenv
 ##                Global Multiplatform ZSH Configs for: Non Interactive Shells...        
 ## Created:       2019-001-24
-## Modified:      2021-012-24
+## Modified:      2022-001-18
 ## Author:        Alisha Awen - Siren1disroot.org
 ## Copyright:     (© 2019 - 2022 by Alisha Awen, Siren1@disroot.org, all rights reserved)
 ## Git Username:  harmonicalchemy
@@ -39,6 +39,12 @@
 
 ###
 ## Change Log: (descending chronological order)
+
+## 2022-001-18 - Alisha Awen - Siren1@disroot.org
+##     Refreshed (synced) this file to match generic changes made to my private
+##     .DOTFILES repository...  (all docs are up to date as well)
+##     Performed Security DueDiligence for Q1 2022...
+##     This commit marks Harmonic Alchemy .DOTFILES as: Version 2.0
 
 ## 2021-012-24 - Alisha Awen - siren1disroot.org
 ##     Updated this file with mods made to my private DOTFILES version of this
@@ -159,7 +165,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     ###
 
     ## Export Linux executable $PATH:
-
     export PATH="$HOME/.bin:$HOME/.local/bin:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$GOPATH/bin:/var/lib/gems/2.5.0/gems/reckon-0.8.0/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:$PATH"
 
     ####

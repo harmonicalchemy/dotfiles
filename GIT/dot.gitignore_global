@@ -5,7 +5,7 @@
 ##                Listed below will be globally ignored by git for all local
 ##                repositories... This file is defined within global .gitconfig
 ## Created:       2019-002-21
-## Modified:      2021-012-24
+## Modified:      2022-001-18
 ## Author:        Alisha Awen - Siren1@disroot.org
 ## Copyright:     (© 2019 - 2022 by Alisha Awen, Siren1@disroot.org, all rights reserved)
 ## Github User:   harmonicalchemy
@@ -98,8 +98,8 @@
 # create a local-configs dir inside any of your git repos to store
 # things you don't want included in revision.  Like passwords etc...
 
-#local-configs/*
-#!local-configs/.gitkeep
+local-configs/*
+!local-configs/.gitkeep
 
 
 ##################

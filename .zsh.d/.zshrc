@@ -3,7 +3,7 @@
 ## File:          $HOME/.zshrc
 ##                Multiplatform ZSH Configuration for Interactive Shells...
 ## Created:       2017-004-23
-## Modified:      2021-012-24
+## Modified:      2022-001-18
 ## Author:        Alisha Awen - Siren1disroot.org
 ## Copyright:     (© 2019 - 2022 by Alisha Awen, Siren1@disroot.org, all rights reserved)
 ## Git Username:  harmonicalchemy
@@ -35,6 +35,12 @@
 
 ###
 ## Change Log: (descending chronological order)
+
+## 2022-001-18 - Alisha Awen - Siren1@disroot.org
+##     Refreshed (synced) this file to match generic changes made to my private
+##     .DOTFILES repository...  (all docs are up to date as well)
+##     Performed Security DueDiligence for Q1 2022...
+##     This commit marks Harmonic Alchemy .DOTFILES as: Version 2.0
 
 ## 2021-012-24 - Alisha Awen - siren1disroot.org
 ##     Updated this file with mods made to my private DOTFILES version of this

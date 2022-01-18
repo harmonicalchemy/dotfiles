@@ -1,18 +1,25 @@
+---
+file: qubes-split-gpg-README.md
+author: Alisha Awen, siren1@disroot.org
+created: 2019-010-27
+updated: 2022-001-18
+tags: README, 2022, SysAdmin, gnupg
+---
+
+![Banner](./media/Dotfiles-Github-Banner-v2.png)
+
 # Qubes Split GPG README
 
 [![License](https://img.shields.io/badge/LICENSE-GPL%20v3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-**Link To: [Official Qubes OS Doc & Instructions](https://www.qubes-os.org/doc/split-gpg/)**
-
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
+
+- [Official Qubes OS Doc & Instructions](https://www.qubes-os.org/doc/split-gpg/)
 
 - [Qubes Split GPG README](#qubes-split-gpg-readme)
     - [Introduction:](#introduction)
     - [The Qubes Split GPG Back End:](#the-qubes-split-gpg-back-end)
     - [The Qubes Split GPG Front End:](#the-qubes-split-gpg-front-end)
-
-<!-- markdown-toc end -->
 
 ## Introduction:
 
@@ -40,8 +47,6 @@ Although these files were tailor made for a Qubes OS based system, there is noth
 
 ## The Qubes Split GPG Front End:
 
-The Qubes Split GPG front end is a network enabled App VM that gets internet access through another System VM called: [sys-firewall].  When GPG (`qubes-gpg-client') is invoked, the back end process has keys loaded into a secure running gpg-agent which provides normal gpg2 services through a secure channel as if the agent were running on the App VM itself...
+The Qubes Split GPG front end is a network enabled App VM that gets internet access through another System VM called: [sys-firewall].  When GPG `(qubes-gpg-client)` is invoked, the back end process has keys loaded into a secure running gpg-agent which provides normal gpg2 services through a secure channel as if the agent were running on the App VM itself...
 
-Split GPG AppVM front ends are used for email using Thunderbird with the enigma plugin via qubes-split-gpg back end for GPG integration... Split GPG is also used by GIT to sign commits etc. with a designated signing sub-key.  I am also integrating GnuPG into Emacs via the **`EasyPG`** Emacs package.
-
-The child folder within this section: `app-vm` contains config files for the Qubes Split GPG Front End...   Here dirmngr.conf is not a dummy placeholder like it is in the Back End Vault VM.  Dirmngr is able to connect to the key-servers this way...
+Split GPG AppVM front ends are used for email using Thunderbird with the enigma plugin via qubes-split-gpg back end for GPG integration... Split GPG is also used by GIT to sign commits etc. with a designated signing sub-key.
